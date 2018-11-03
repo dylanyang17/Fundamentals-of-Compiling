@@ -19,6 +19,7 @@ IDENTIFIER   AND      OR    STATIC  INSTANCEOF
 LESS_EQUAL   GREATER_EQUAL  EQUAL   NOT_EQUAL
 '+'  '-'  '*'  '/'  '%'  '='  '>'  '<'  '.'
 ','  ';'  '!'  '('  ')'  '['  ']'  '{'  '}'
+SEALED TOR DMOD SCOPY IN VAR FOREACH DADD DEFAULT ':'
 
 %%
 

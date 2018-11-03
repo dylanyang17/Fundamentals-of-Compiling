@@ -1,7 +1,0 @@
-program
-    class Main <empty>
-        static func main voidtype
-            formals
-            stmtblock
-                return
-                    intconst 0

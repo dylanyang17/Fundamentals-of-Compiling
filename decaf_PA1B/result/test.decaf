@@ -1,5 +1,5 @@
 class Main{
 	static void main(){
-		return 0 ;
+		PrintComp(z,) ;
 	}
 }
