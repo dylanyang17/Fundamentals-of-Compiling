@@ -277,6 +277,22 @@ public abstract class Tree {
     public static final int BOOL = INT + 1;
     public static final int STRING = BOOL + 1;
 
+    
+    /**
+     * Defined by myself
+     */
+    public static final int SCOPY = STRING + 1 ;
+    public static final int GUARDEDIF = SCOPY + 1 ;
+    public static final int IFSUBSTMT = GUARDEDIF + 1 ;
+    public static final int ARRAYCONSTANT = IFSUBSTMT + 1;
+    public static final int DMOD = ARRAYCONSTANT + 1 ;
+    public static final int DADD = DMOD + 1;
+    public static final int SUBARRAY = DADD + 1;
+    public static final int DEFAULTARRAYREF = SUBARRAY + 1 ;
+    public static final int COMPARRAYEXPR = DEFAULTARRAYREF + 1;
+    public static final int FOREACH = COMPARRAYEXPR + 1 ;
+    public static final int VAR = FOREACH + 1 ;
+    
     public Location loc;
     public int tag;
 
@@ -327,15 +343,38 @@ public abstract class Tree {
         }
     }
 
+ public static class Scopy extends Tree{
+    	
+    	public String iName ;
+    	public Expr expr ;
+    	
+    	public Scopy(String iName, Expr expr, Location loc) {
+    		super(SCOPY, loc) ;
+    		this.iName = iName ;
+    		this.expr = expr ;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("scopy") ;
+    		pw.incIndent();
+    		pw.println(iName);
+    		expr.printTo(pw);
+    		pw.decIndent();
+    	}
+    }
+    
     public static class ClassDef extends Tree {
 
+    	public boolean isSealed ;
         public String name;
         public String parent;
         public List<Tree> fields;
 
-        public ClassDef(String name, String parent, List<Tree> fields,
+        public ClassDef(boolean isSealed, String name, String parent, List<Tree> fields,
                         Location loc) {
             super(CLASSDEF, loc);
+            this.isSealed=isSealed;
             this.name = name;
             this.parent = parent;
             this.fields = fields;
@@ -348,6 +387,7 @@ public abstract class Tree {
 
         @Override
         public void printTo(IndentPrintWriter pw) {
+        	if(isSealed) pw.print("sealed ");
             pw.println("class " + name + " "
                     + (parent != null ? parent : "<empty>"));
             pw.incIndent();
@@ -358,6 +398,49 @@ public abstract class Tree {
         }
     }
 
+    public static class IfSubStmt extends Tree{
+    	public Expr expr ;
+    	public Tree stmt ;
+    	
+    	public IfSubStmt(Expr expr, Tree stmt, Location loc) {
+    		super(IFSUBSTMT, loc) ;
+    		this.expr = expr ;
+    		this.stmt = stmt ;
+    		this.loc = loc ;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("guard");
+    		pw.incIndent();
+    		expr.printTo(pw) ;
+    		stmt.printTo(pw);
+    		pw.decIndent();
+    	}
+    }
+    
+    public static class GuardedIf extends Tree {
+    	public List<IfSubStmt> fields ;
+    	
+    	public GuardedIf(List<IfSubStmt> fields, Location loc) {
+    		super(GUARDEDIF, loc) ;
+    		this.fields = fields ;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("guarded");
+    		pw.incIndent();
+    		for (IfSubStmt s : fields) {
+    			s.printTo(pw);
+    		}
+    		if(fields.size()==0) {
+    			pw.println("<empty>");
+    		}
+    		pw.decIndent();
+    	}
+    }
+    
     public static class MethodDef extends Tree {
 
         public boolean statik;

@@ -1,0 +1,20 @@
+program
+    class Main <empty>
+        func main voidtype
+            formals
+            stmtblock
+                guarded
+                    guard
+                        varref a
+                        assign
+                            varref a
+                            add
+                                varref a
+                                varref b
+                    guard
+                        varref a
+                        assign
+                            varref a
+                            add
+                                varref a
+                                varref b

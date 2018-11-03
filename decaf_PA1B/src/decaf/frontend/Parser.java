@@ -3,6 +3,7 @@ package decaf.frontend;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList ;
 import java.util.Set;
 
 import decaf.Driver;
@@ -11,6 +12,7 @@ import decaf.tree.Tree;
 
 public class Parser extends Table {
 	private boolean fail = false;
+	private boolean debugOn = false ;
 	
     /**
      * Lexer.
@@ -73,6 +75,12 @@ public class Parser extends Table {
         return token;
     }
 
+    public void debugInfo(String s) {
+    	if(debugOn) {
+    		System.out.println(s);
+    	}
+    }
+    
     /**
      * Parse function for each non-terminal with error recovery.
      * NOTE: the current implementation is buggy and may throw NullPointerException.
@@ -94,9 +102,9 @@ public class Parser extends Table {
     			newAdded.add(t) ;
     		}
     	}
-
+    	debugInfo("lookahead: "+name(lookahead)+  "   now: " + name(symbol));
     	if(!begin.contains(lookahead)) {
-    	//	System.out.println("LALALA");
+    		debugInfo("LALALA  "+ name(lookahead) + "  now: " + name(symbol));
         	error() ;
         	while(!begin.contains(lookahead) && !follow.contains(lookahead)) {
         		lookahead=lex() ;
@@ -121,6 +129,9 @@ public class Parser extends Table {
                     ? parse(term, follow) // for non terminals: recursively parse it
                     : matchToken(term) // for terminals: match token
                     ;
+            if(!isNonTerminal(term)) {
+            	debugInfo("matchToken"+ name(term)+ " in "+name(symbol));
+            }
             if(params[i + 1] == null) fail=true ;
         }
         /*
@@ -136,7 +147,7 @@ public class Parser extends Table {
         }*/
 
         params[0] = new SemValue(); // initialize return value
-       // System.out.println("now: "+ name(symbol) + "    lookahead: "+name(lookahead));
+     //   System.out.println("now: "+ name(symbol) + "    lookahead: "+name(lookahead));
         if(!fail) act(actionId, params); // do user-defined action
         follow.removeAll(newAdded);
         return params[0];
@@ -154,7 +165,6 @@ public class Parser extends Table {
             error();
             return null;
         }
-
         lookahead = lex();
         return self;
     }

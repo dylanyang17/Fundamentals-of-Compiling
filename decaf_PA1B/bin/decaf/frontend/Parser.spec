@@ -23,6 +23,8 @@ SEALED TOR DMOD SCOPY IN VAR FOREACH DADD DEFAULT ':'
 
 %%
 
+
+
 Program         :   ClassDef ClassList
                     {
                         $$.clist = new ArrayList<ClassDef>(	);
@@ -98,11 +100,21 @@ ArrayType       :   '[' ']' ArrayType
                     }
                 ;
 
-ClassDef        :   CLASS IDENTIFIER ExtendsClause '{' FieldList '}'
+ClassDef        :   SealedOpt CLASS IDENTIFIER ExtendsClause '{' FieldList '}'
                     {
-                        $$.cdef = new Tree.ClassDef($2.ident, $3.ident, $5.flist, $1.loc);
-                    }
+	                   	 $$.cdef = new Tree.ClassDef($1.code==SEALED, $3.ident, $4.ident, $6.flist, $2.loc);
+	                }
                 ;
+
+SealedOpt		:   SEALED 
+					{
+						$$ = $1 ;
+					}
+				|	/* empty */
+					{
+						$$ = new SemValue() ;
+					}
+				;
 
 ExtendsClause   :   EXTENDS IDENTIFIER
                     {
@@ -208,10 +220,6 @@ Stmt            :   VariableDef
                             $$.stmt = $1.stmt;
                         }
                     }
-                |   IfStmt
-                    {
-                        $$.stmt = $1.stmt;
-                    }
                 |   WhileStmt
                     {
                         $$.stmt = $1.stmt;
@@ -236,7 +244,73 @@ Stmt            :   VariableDef
                     {
                         $$.stmt = $1.stmt;
                     }
+                |   OCStmt ';'
+                	{
+                		$$.stmt = $1.stmt;
+                	}
+                |   IF IfSuf
+                	{
+                		$$.stmt = $2.stmt;
+                	}
                 ;
+   
+IfSuf			:   IfStmt
+					{
+						$$.stmt = $1.stmt ;
+					}
+				|   GuardedStmt
+					{
+						$$.stmt = $1.stmt ;					
+					}
+				;
+              
+GuardedStmt		:	'{' GuardedCont '}'
+					{
+						$$.stmt = $2.gif ;
+						if($$.stmt==null)
+							$$.stmt = new GuardedIf(new ArrayList<IfSubStmt>() , $1.loc) ;
+					}
+				;
+				
+GuardedCont		:	IfSubStmt IfBranchs
+					{
+						$$.gif = new GuardedIf($2.glist, $2.loc) ;
+						$$.gif.fields.add(0, new IfSubStmt($1.expr, $1.stmt, $1.loc)) ;
+					}
+				|   /* empty */
+				;
+				
+IfBranchs		:	IfBranch IfBranchs
+					{
+						$$.glist=$2.glist ;
+						$$.glist.add(0, new IfSubStmt($1.expr, $1.stmt, $1.loc)) ;
+					}
+				|	/* empty */
+					{
+						$$.glist = new ArrayList<IfSubStmt>() ;
+					}
+				;
+				
+IfBranch		:	TOR IfSubStmt
+					{
+						$$.expr = $2.expr;
+						$$.stmt = $2.stmt;
+					}
+				;
+				
+IfSubStmt		:	Expr ':' Stmt
+					{
+						$$.expr = $1.expr ;
+						$$.stmt = $3.stmt ;
+					}
+				;
+								
+OCStmt			:	SCOPY '(' IDENTIFIER ',' Expr ')'
+					{
+						$$.stmt = new Tree.Scopy($3.ident, $5.expr , $3.loc) ;
+					}
+				;
+
 
 SimpleStmt      :   Expr Assignment
                     {
@@ -729,9 +803,9 @@ BreakStmt       :   BREAK
                     }
                 ;
 
-IfStmt          :   IF '(' Expr ')' Stmt ElseClause
+IfStmt          :   '(' Expr ')' Stmt ElseClause
                     {
-                        $$.stmt = new Tree.If($3.expr, $5.stmt, $6.stmt, $1.loc);
+                        $$.stmt = new Tree.If($2.expr, $4.stmt, $5.stmt, $1.loc);
                     }
                 ;
 

@@ -71,6 +71,12 @@ public class SemValue {
 
     public Vector<SemValue> vec;
 
+	public List<Tree.IfSubStmt> glist ;
+	
+	public Tree.GuardedIf gif ;
+	
+	public List<Tree.Literal> llist ;
+    
     /**
      * 创建一个关键字的语义值
      *
