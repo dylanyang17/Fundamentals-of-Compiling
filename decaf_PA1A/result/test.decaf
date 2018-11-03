@@ -1,0 +1,5 @@
+class Main {
+    void test() {
+		foreach (var x in [3,2,1]) return 0;
+    }
+}

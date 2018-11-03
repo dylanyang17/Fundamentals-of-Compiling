@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="decaf.tree.Tree.IfSubStmt"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.GuardedIf"/>
+<fullyQualifiedTypeName name="decaf.utils.IndentPrintWriter"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.Literal"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.ArrayConstant"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.TypeIdent"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.TypeLiteral"/>
+</qualifiedTypeNameHistroy>
