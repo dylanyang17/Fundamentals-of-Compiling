@@ -18,6 +18,8 @@ import decaf.utils.MiscUtils;
 public class SemValue {
 
     public int code;
+    
+    public int myType ;
 
     public int counter;
 

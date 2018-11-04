@@ -1,9 +1,12 @@
 program
     class Main <empty>
-        func main voidtype
+        static func main voidtype
             formals
             stmtblock
-                return
-                    array const
-                        intconst 3
-                        intconst 2
+                foreach
+                    varbind s inttype
+                    varref ss
+                    boolconst true
+                    stmtblock
+                        print
+                            varref s

@@ -292,6 +292,8 @@ public abstract class Tree {
     public static final int COMPARRAYEXPR = DEFAULTARRAYREF + 1;
     public static final int FOREACH = COMPARRAYEXPR + 1 ;
     public static final int VAR = FOREACH + 1 ;
+    public static final int LOR = VAR + 1 ;
+    public static final int ROR = LOR + 1 ;
     
     public Location loc;
     public int tag;
@@ -437,6 +439,61 @@ public abstract class Tree {
     		if(fields.size()==0) {
     			pw.println("<empty>");
     		}
+    		pw.decIndent();
+    	}
+    }
+    
+public static class Foreach extends Tree {
+    	
+    	public TypeLiteral type ;
+    	public String ident ;
+		public Expr expr1 , expr2 ;
+		public Tree stmt ;
+	
+    	public Foreach(TypeLiteral type, String ident, Expr expr1, Expr expr2, Tree stmt, Location loc){
+    		super(FOREACH, loc) ;
+    		this.type=type;
+    		this.ident=ident;
+    		this.expr1=expr1;
+    		this.expr2=expr2;
+    		this.stmt=stmt;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("foreach");
+    		pw.incIndent();
+    		pw.print("varbind " + ident + ' ');
+    		type.printTo(pw);
+    		pw.println();
+    		expr1.printTo(pw);
+    		expr2.printTo(pw);
+    		stmt.printTo(pw);
+    		pw.decIndent();
+    	}
+    }
+    
+    public static class CompArrayExpr extends Expr {
+    	
+		public Expr expr1 , expr2, boolExpr ;
+		public String ident ;
+	
+    	public CompArrayExpr(Expr expr1, String ident, Expr expr2, Expr boolExpr, Location loc){
+    		super(COMPARRAYEXPR, loc) ;
+    		this.expr1=expr1;
+    		this.ident=ident;
+    		this.expr2=expr2;
+    		this.boolExpr=boolExpr;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("array comp");
+    		pw.incIndent();
+    		pw.println("varbind "+ident);
+    		expr2.printTo(pw);
+    		boolExpr.printTo(pw);
+    		expr1.printTo(pw);
     		pw.decIndent();
     	}
     }
@@ -1101,6 +1158,26 @@ public static class ArrayRange extends Expr {
     		pw.decIndent();
     	}
     }
+    
+public static class DefaultArrayRef extends Expr {
+    	
+		public Expr index, deft ;
+	
+    	public DefaultArrayRef(Expr index, Expr deft, Location loc){
+    		super(DEFAULTARRAYREF, loc) ;
+    		this.index=index;
+    		this.deft=deft;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		index.printTo(pw);
+    		pw.println("default");
+    		pw.incIndent();
+    		deft.printTo(pw);
+    		pw.decIndent();
+    	}
+    }
 
     public static class CallExpr extends Expr {
 
@@ -1397,6 +1474,9 @@ public static class ArrayRange extends Expr {
         @Override
         public void printTo(IndentPrintWriter pw) {
             switch (typeTag) {
+            	case VAR:
+            		pw.print("var");
+            		break;
                 case INT:
                     pw.print("inttype");
                     break;

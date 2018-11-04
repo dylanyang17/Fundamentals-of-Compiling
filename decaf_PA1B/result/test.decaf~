@@ -1,5 +1,7 @@
-class Main{
-	void main(){
-		return 3 ;
+class Main {
+    static void main() {
+        foreach (int s in ss) {
+            Print(s);
+        }
 	}
 }

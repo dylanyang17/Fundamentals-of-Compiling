@@ -81,6 +81,8 @@ WHITESPACE			= ([ \t]+)
 
 
 	// 识别操作符的规则
+"[|"				{ return operator(Parser.LOR);			}
+"|]"				{ return operator(Parser.ROR);			}
 "<="				{ return operator(Parser.LESS_EQUAL);	}
 ">="				{ return operator(Parser.GREATER_EQUAL);}
 "=="				{ return operator(Parser.EQUAL);		}

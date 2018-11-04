@@ -33,7 +33,7 @@ import java.util.*;
 %token LESS_EQUAL   GREATER_EQUAL  EQUAL   NOT_EQUAL
 %token '+'  '-'  '*'  '/'  '%'  '='  '>'  '<'  '.'
 %token ','  ';'  '!'  '('  ')'  '['  ']'  '{'  '}'
-%token SCOPY SEALED ':' TOR VAR DMOD DADD DEFAULT IN FOREACH
+%token SCOPY SEALED ':' TOR VAR DMOD DADD DEFAULT IN FOREACH LOR ROR
 
 %left TOR
 %left OR

@@ -198,8 +198,10 @@ public final static short DADD=290;
 public final static short DEFAULT=291;
 public final static short IN=292;
 public final static short FOREACH=293;
-public final static short UMINUS=294;
-public final static short EMPTY=295;
+public final static short LOR=294;
+public final static short ROR=295;
+public final static short UMINUS=296;
+public final static short EMPTY=297;
 public final static short YYERRCODE=256;
 final static short yylhs[] = {                           -1,
     0,    1,    1,    3,    4,    5,    5,    5,    5,    5,
@@ -745,7 +747,7 @@ yycheck = new short[] {                         33,
 };
 }
 final static short YYFINAL=2;
-final static short YYMAXTOKEN=295;
+final static short YYMAXTOKEN=297;
 final static String yyname[] = {
 "end-of-file",null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
@@ -767,7 +769,8 @@ null,null,null,null,null,null,null,null,null,"VOID","BOOL","INT","STRING",
 "CLASS","NULL","EXTENDS","THIS","WHILE","FOR","IF","ELSE","RETURN","BREAK",
 "NEW","PRINT","READ_INTEGER","READ_LINE","LITERAL","IDENTIFIER","AND","OR",
 "STATIC","INSTANCEOF","LESS_EQUAL","GREATER_EQUAL","EQUAL","NOT_EQUAL","SCOPY",
-"SEALED","TOR","VAR","DMOD","DADD","DEFAULT","IN","FOREACH","UMINUS","EMPTY",
+"SEALED","TOR","VAR","DMOD","DADD","DEFAULT","IN","FOREACH","LOR","ROR",
+"UMINUS","EMPTY",
 };
 final static String yyrule[] = {
 "$accept : Program",
@@ -912,7 +915,7 @@ final static String yyrule[] = {
 		addReduceListener(this);
 		yyparse();
 	}
-//#line 855 "Parser.java"
+//#line 858 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -1676,7 +1679,7 @@ case 116:
 						yyval.stmt = new Print(val_peek(1).elist, val_peek(3).loc);
 					}
 break;
-//#line 1614 "Parser.java"
+//#line 1617 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

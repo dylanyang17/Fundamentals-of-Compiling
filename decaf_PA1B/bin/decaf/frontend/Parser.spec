@@ -19,7 +19,7 @@ IDENTIFIER   AND      OR    STATIC  INSTANCEOF
 LESS_EQUAL   GREATER_EQUAL  EQUAL   NOT_EQUAL
 '+'  '-'  '*'  '/'  '%'  '='  '>'  '<'  '.'
 ','  ';'  '!'  '('  ')'  '['  ']'  '{'  '}'
-SEALED TOR DMOD SCOPY IN VAR FOREACH DADD DEFAULT ':'
+SEALED TOR DMOD SCOPY IN VAR FOREACH DADD DEFAULT ':' LOR ROR
 
 %%
 
@@ -252,8 +252,42 @@ Stmt            :   VariableDef
                 	{
                 		$$.stmt = $2.stmt;
                 	}
+                |	ForeachStmt
+                	{
+                		$$.stmt = $1.stmt;
+                	}
                 ;
-
+                
+ForeachStmt		:	FOREACH '(' BoundVariable IN Expr whileExpr ')' Stmt
+					{
+						if($6.expr==null)
+							$6.expr = new Tree.Literal(Tree.BOOL, true, $7.loc) ;
+						$$.stmt = new Tree.Foreach($3.type, $3.ident, $5.expr, $6.expr, $8.stmt, $1.loc) ;
+					}
+				;
+				
+BoundVariable	:	VAR IDENTIFIER
+					{ 
+						$$.type = new Tree.TypeIdent(Tree.VAR, $1.loc) ;
+						$$.ident = $2.ident ;
+					}
+				|	Type IDENTIFIER
+					{ 
+						$$.type = $1.type ;
+						$$.ident = $2.ident ;
+					}
+				;
+				
+whileExpr		:	WHILE Expr
+					{
+						$$.expr = $2.expr ;
+					}
+				|	/* empty */
+					{
+						$$ = new SemValue() ;
+						$$.expr = null ;
+					}
+				;				
    
 IfSuf			:   IfStmt
 					{
@@ -719,25 +753,49 @@ Expr8           :   Expr9 ExprT8
                     }
                 ;
 
-SubArrayExpr	:	':'	Expr
+ExprT8_2		:	DEFAULT Expr9
 					{
-						$$.expr = $2.expr ;
+						$$.expr=$2.expr ;
+						$$.myType=2 ;
 					}
-				|	/* empty */
+				|   ExprT8
 					{
-						$$.expr=null ;
+						$$.vec=$1.vec;
 					}
 				;
 
-ExprT8          :   '[' Expr SubArrayExpr']' ExprT8
+ExprT8_1		:	':'	Expr ']'
+					{
+						$$.myType = 1 ;
+						$$.expr = $2.expr ;
+					}
+				|	']' ExprT8_2
+					{
+						$$.vec = $2.vec ;
+						$$.expr = $2.expr ;
+						if($2.myType==2) $$.myType=3 ;
+						else $$.myType=4 ;
+					}
+				;
+
+ExprT8          :   '[' Expr ExprT8_1
                     {
                         SemValue sem = new SemValue();
-                        if($3.expr == null) sem.expr = $2.expr;
-                        else sem.expr = new Tree.ArrayRange($2.expr, $3.expr, $1.loc) ;
                         $$.vec = new Vector<SemValue>();
-                        $$.vec.add(sem);
-                        if ($5.vec != null) {
-                            $$.vec.addAll($5.vec);
+                        if($3.myType == 1){
+                        	sem.expr = new Tree.ArrayRange($2.expr, $3.expr, $1.loc) ;
+                        	$$.vec.add(sem);
+                        }
+                        else if($3.myType==3){
+                        	sem.expr = new Tree.DefaultArrayRef($2.expr, $3.expr, $1.loc) ;
+                        	$$.vec.add(sem);
+                        }
+                        else if($3.myType==4){ 
+                        	sem.expr = $2.expr;
+                        	$$.vec.add(sem);
+                        	if ($3.vec != null) {
+                        	    $$.vec.addAll($3.vec);
+                        	}
                         }
                     }
                 |   '.' IDENTIFIER AfterIdentExpr ExprT8
@@ -802,7 +860,23 @@ Expr9           :   Constant
                             $$.expr = new Tree.Ident(false, null, $1.ident, $1.loc);
                         }
                     }
+                |	LOR Expr FOR IDENTIFIER IN Expr IfExpr ROR
+                	{
+                		if($7.expr==null) $7.expr = new Tree.Literal(Tree.BOOL, true, $1.loc) ;
+                		$$.expr = new Tree.CompArrayExpr($2.expr, $4.ident, $6.expr, $7.expr, $1.loc) ;
+                	}   
                 ;
+                
+IfExpr			:	IF Expr
+					{
+						$$.expr = $2.expr ;
+					}
+				|	/* empty */
+					{
+						$$ = new SemValue() ;
+						$$.expr = null ;
+					}
+				;                
 
 AfterNewExpr    :   IDENTIFIER '(' ')'
                     {
