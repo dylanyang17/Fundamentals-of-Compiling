@@ -1052,6 +1052,29 @@ public abstract class Tree {
             }
         }
     }
+    
+    public static class ArrayConstant extends Expr {
+    	
+    	public List<Expr> fields ;
+    	
+    	public ArrayConstant(List<Expr> fields, Location loc){
+    		super(ARRAYCONSTANT, loc) ;
+    		this.fields = fields ;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("array const");
+    		pw.incIndent();
+    		for(Expr s : fields) {
+    			s.printTo(pw);
+    		}
+    		if(fields.size()==0) {
+    			pw.println("<empty>");
+    		}
+    		pw.decIndent();
+    	}
+    }
 
     public static class CallExpr extends Expr {
 

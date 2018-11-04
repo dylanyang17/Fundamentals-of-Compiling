@@ -38,6 +38,7 @@ public class SemValue {
     /**
      * field list
      */
+
     public List<Tree> flist;
 
     public List<VarDef> vlist;
@@ -76,6 +77,8 @@ public class SemValue {
 	public Tree.GuardedIf gif ;
 	
 	public List<Tree.Literal> llist ;
+	
+	public Tree.ArrayConstant acons ;
     
     /**
      * 创建一个关键字的语义值

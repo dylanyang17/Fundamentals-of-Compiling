@@ -1,8 +1,6 @@
 program
     class Main <empty>
-        static func main voidtype
+        func main voidtype
             formals
             stmtblock
-                assign
-                    var x
-                    intconst 1
+                return

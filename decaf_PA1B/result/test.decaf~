@@ -1,7 +1,5 @@
-class Main {
-    static void main() {
-        var x = 1;
-        var y = true;
-        var z = "hello";
-    }
+class Main{
+	void main(){
+		return [1,2] ;
+	}
 }

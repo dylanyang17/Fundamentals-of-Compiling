@@ -1,5 +1,5 @@
-class Main {
-    static void main() {
-        var x = 1;
-    }
+class Main{
+	void main(){
+		return [1,2,12,4,"asd"] ;
+	}
 }
