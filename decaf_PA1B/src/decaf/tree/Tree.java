@@ -1239,9 +1239,11 @@ public abstract class Tree {
         public Expr owner;
         public String name;
         public boolean isDefined;
+        public boolean isVar ;
 
-        public Ident(Expr owner, String name, Location loc) {
+        public Ident(boolean isVar, Expr owner, String name, Location loc) {
             super(IDENT, loc);
+            this.isVar = isVar ;
             this.owner = owner;
             this.name = name;
         }
@@ -1253,7 +1255,8 @@ public abstract class Tree {
 
         @Override
         public void printTo(IndentPrintWriter pw) {
-            pw.println("varref " + name);
+        	if(isVar) pw.println("var " + name);
+        	else pw.println("varref " + name);
             if (owner != null) {
                 pw.incIndent();
                 owner.printTo(pw);

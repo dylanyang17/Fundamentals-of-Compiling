@@ -1,20 +1,8 @@
 program
     class Main <empty>
-        func main voidtype
+        static func main voidtype
             formals
             stmtblock
-                guarded
-                    guard
-                        varref a
-                        assign
-                            varref a
-                            add
-                                varref a
-                                varref b
-                    guard
-                        varref a
-                        assign
-                            varref a
-                            add
-                                varref a
-                                varref b
+                assign
+                    var x
+                    intconst 1

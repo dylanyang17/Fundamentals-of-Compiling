@@ -1,5 +1,5 @@
-class Main{
-	void main(){
-		if {a:a=a+b; ||| a:a=a+b;}
-	}
+class Main {
+    static void main() {
+        var x = 1;
+    }
 }

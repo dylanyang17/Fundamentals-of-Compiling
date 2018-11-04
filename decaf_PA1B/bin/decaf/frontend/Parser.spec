@@ -253,6 +253,7 @@ Stmt            :   VariableDef
                 		$$.stmt = $2.stmt;
                 	}
                 ;
+
    
 IfSuf			:   IfStmt
 					{
@@ -320,6 +321,10 @@ SimpleStmt      :   Expr Assignment
                             $$.stmt = new Tree.Assign($1.expr, $2.expr, $2.loc);
                         }
                     }
+                |   VAR IDENTIFIER '=' Expr
+                	{
+                		$$.stmt = new Tree.Assign(new Tree.Ident(true, null, $2.ident, $2.loc), $4.expr, $1.loc);
+                	}
                 |   /* empty */
                 ;
 
@@ -624,7 +629,7 @@ Expr8           :   Expr9 ExprT8
                                     $$.expr = new Tree.CallExpr($$.expr, v.ident, v.elist, v.loc);
                                     $$.loc = v.loc;
                                 } else {
-                                    $$.expr = new Tree.Ident($$.expr, v.ident, v.loc);
+                                    $$.expr = new Tree.Ident(false, $$.expr, v.ident, v.loc);
                                     $$.loc = v.loc;
                                 }
                             }
@@ -701,7 +706,7 @@ Expr9           :   Constant
                         if ($2.elist != null) {
                             $$.expr = new Tree.CallExpr(null, $1.ident, $2.elist, $1.loc);
                         } else {
-                            $$.expr = new Tree.Ident(null, $1.ident, $1.loc);
+                            $$.expr = new Tree.Ident(false, null, $1.ident, $1.loc);
                         }
                     }
                 ;
