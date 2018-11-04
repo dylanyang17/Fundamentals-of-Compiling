@@ -385,6 +385,20 @@ Oper4           :   LESS_EQUAL
                     }
                 ;
 
+OperDMod		:	DMOD
+					{
+						$$.counter = Tree.DMOD;
+						$$.loc = $1.loc;
+					}
+				;
+				
+OperDAdd		:	DADD
+					{
+						$$.counter = Tree.DADD;
+						$$.loc = $1.loc;
+					}
+				;
+
 Oper5           :   '+'
                     {
                         $$.counter = Tree.PLUS;
@@ -520,7 +534,7 @@ ExprT3          :   Oper3 Expr4 ExprT3
                 |   /* empty */
                 ;
 
-Expr4           :   Expr5 ExprT4
+Expr4           :   ExprDAdd ExprT4
                     {
                         $$.expr = $1.expr;
                         if ($2.svec != null) {
@@ -532,7 +546,7 @@ Expr4           :   Expr5 ExprT4
                     }
                 ;
 
-ExprT4          :   Oper4 Expr5 ExprT4
+ExprT4          :   Oper4 ExprDAdd ExprT4
                     {
                         $$.svec = new Vector<Integer>();
                         $$.lvec = new Vector<Location>();
@@ -548,6 +562,74 @@ ExprT4          :   Oper4 Expr5 ExprT4
                     }
                 |   /* empty */
                 ;
+                
+ExprDAdd		:	ExprDMod ExprDAddT
+					{
+						if($2.svec==null) $$.expr = $1.expr ;
+						else{
+							int len=$2.svec.size() ;
+							$$.expr = $2.evec.get(len-1);
+							for(int i = len-2 ; i>=0; --i){
+								$$.expr = new Tree.Binary($2.svec.get(i+1), $2.evec.get(i),
+								 		$$.expr, $2.lvec.get(i+1));
+							}
+							$$.expr = new Tree.Binary($2.svec.get(0), $1.expr,
+										$$.expr, $2.lvec.get(0)) ;
+						}
+					}
+				;
+				
+ExprDAddT		:	OperDAdd ExprDMod ExprDAddT
+					{
+						$$.svec = new Vector<Integer>() ;
+						$$.lvec = new Vector<Location>() ;
+						$$.evec = new Vector<Expr>() ;
+						$$.svec.add($1.counter) ;
+						$$.lvec.add($1.loc) ;
+						$$.evec.add($2.expr) ;
+						if($3.svec!=null){
+							$$.svec.addAll($3.svec) ;
+							$$.lvec.addAll($3.lvec) ;
+							$$.evec.addAll($3.evec) ;
+						}
+					}
+				|   /* empty */
+					{
+						$$.svec = null ;
+					}
+				;
+				
+ExprDMod		:	Expr5 ExprDModT
+					{
+						$$.expr = $1.expr ;
+						if ($2.svec != null) {
+                            for (int i = 0; i < $2.svec.size(); ++i) {
+                                $$.expr = new Tree.Binary($2.svec.get(i), $$.expr,
+                                    $2.evec.get(i), $2.lvec.get(i));
+                            }
+                        }
+					}
+				;
+				
+ExprDModT		:	OperDMod Expr5 ExprDModT
+					{
+						$$.svec = new Vector<Integer>() ;
+						$$.lvec = new Vector<Location>() ;
+						$$.evec = new Vector<Expr>() ;
+						$$.svec.add($1.counter) ;
+						$$.lvec.add($1.loc) ;
+						$$.evec.add($2.expr) ;
+						if($3.svec!=null){
+							$$.svec.addAll($3.svec) ;
+							$$.lvec.addAll($3.lvec) ;
+							$$.evec.addAll($3.evec) ;
+						}
+					}
+				|   /* empty */
+					{
+						$$.svec = null ;
+					}
+				;			
 
 Expr5           :   Expr6 ExprT5
                     {
@@ -637,14 +719,25 @@ Expr8           :   Expr9 ExprT8
                     }
                 ;
 
-ExprT8          :   '[' Expr ']' ExprT8
+SubArrayExpr	:	':'	Expr
+					{
+						$$.expr = $2.expr ;
+					}
+				|	/* empty */
+					{
+						$$.expr=null ;
+					}
+				;
+
+ExprT8          :   '[' Expr SubArrayExpr']' ExprT8
                     {
                         SemValue sem = new SemValue();
-                        sem.expr = $2.expr;
+                        if($3.expr == null) sem.expr = $2.expr;
+                        else sem.expr = new Tree.ArrayRange($2.expr, $3.expr, $1.loc) ;
                         $$.vec = new Vector<SemValue>();
                         $$.vec.add(sem);
-                        if ($4.vec != null) {
-                            $$.vec.addAll($4.vec);
+                        if ($5.vec != null) {
+                            $$.vec.addAll($5.vec);
                         }
                     }
                 |   '.' IDENTIFIER AfterIdentExpr ExprT8
@@ -758,14 +851,19 @@ Constant        :   LITERAL
                         $$.expr = new Null($1.loc);
                     }
                 |	ArrayConstant
+                	{
+                		$$.expr = $1.acons ;
+                	}
                 ;
                 
 ArrayConstant 	:	'[' Constants ']'
 					{
-						if($2.elist != null)
+						if($2.elist != null){
 							$$.acons = new Tree.ArrayConstant($2.elist, $2.loc) ;
-						else
+						}
+						else{
 							$$.acons = new Tree.ArrayConstant(new ArrayList<Tree.Expr>(), $2.loc) ;
+						}
 					}
 					
 				;

@@ -287,8 +287,8 @@ public abstract class Tree {
     public static final int ARRAYCONSTANT = IFSUBSTMT + 1;
     public static final int DMOD = ARRAYCONSTANT + 1 ;
     public static final int DADD = DMOD + 1;
-    public static final int SUBARRAY = DADD + 1;
-    public static final int DEFAULTARRAYREF = SUBARRAY + 1 ;
+    public static final int ARRAYRANGE = DADD + 1;
+    public static final int DEFAULTARRAYREF = ARRAYRANGE + 1 ;
     public static final int COMPARRAYEXPR = DEFAULTARRAYREF + 1;
     public static final int FOREACH = COMPARRAYEXPR + 1 ;
     public static final int VAR = FOREACH + 1 ;
@@ -437,6 +437,26 @@ public abstract class Tree {
     		if(fields.size()==0) {
     			pw.println("<empty>");
     		}
+    		pw.decIndent();
+    	}
+    }
+    
+public static class ArrayRange extends Expr {
+    	
+		public Expr begin, end ;
+	
+    	public ArrayRange(Expr begin, Expr end, Location loc){
+    		super(ARRAYRANGE, loc) ;
+    		this.begin=begin;
+    		this.end=end;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("range");
+    		pw.incIndent();
+    		begin.printTo(pw);
+    		end.printTo(pw);
     		pw.decIndent();
     	}
     }
@@ -1010,6 +1030,12 @@ public abstract class Tree {
         @Override
         public void printTo(IndentPrintWriter pw) {
             switch (tag) {
+            	case DADD:
+            		binaryOperatorPrintTo(pw, "array concat");
+                    break;
+            	case DMOD:
+            		binaryOperatorPrintTo(pw, "array repeat");
+                    break;
                 case PLUS:
                     binaryOperatorPrintTo(pw, "add");
                     break;
