@@ -1,5 +1,5 @@
 class Main{
 	void main(){
-		return [1,2] ;
+		return 5++3++1+2*3+4 ;
 	}
 }

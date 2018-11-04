@@ -4,3 +4,14 @@ program
             formals
             stmtblock
                 return
+                    array concat
+                        intconst 1
+                        array concat
+                            intconst 2
+                            array repeat
+                                array repeat
+                                    mul
+                                        intconst 3
+                                        intconst 4
+                                    intconst 5
+                                intconst 6
