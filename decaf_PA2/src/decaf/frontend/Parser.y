@@ -285,7 +285,7 @@ IfSubStmt		:	Expr ':' Stmt
 
 OCStmt			:	SCOPY '(' IDENTIFIER ',' Expr ')'
 					{
-						$$.stmt = new Tree.Scopy($3.ident, $5.expr , $3.loc) ;
+						$$.stmt = new Tree.Scopy(new Tree.Ident(false, null, $3.ident, $3.loc), $5.expr , $1.loc) ;
 					}
 				;
 

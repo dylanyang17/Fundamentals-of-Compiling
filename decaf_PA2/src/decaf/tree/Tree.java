@@ -371,20 +371,25 @@ public abstract class Tree {
     
     public static class Scopy extends Tree{
     	
-    	public String iName ;
+    	public Ident ident ;
     	public Expr expr ;
     	
-    	public Scopy(String iName, Expr expr, Location loc) {
+    	public Scopy(Ident ident, Expr expr, Location loc) {
     		super(SCOPY, loc) ;
-    		this.iName = iName ;
+    		this.ident = ident ;
     		this.expr = expr ;
+    	}
+    	
+    	@Override
+    	public void accept(Visitor v) {
+    		v.visitScopy(this);
     	}
     	
     	@Override
     	public void printTo(IndentPrintWriter pw) {
     		pw.println("scopy") ;
     		pw.incIndent();
-    		pw.println(iName);
+    		pw.println(ident.name);
     		expr.printTo(pw);
     		pw.decIndent();
     	}
@@ -1550,6 +1555,10 @@ public abstract class Tree {
             super();
         }
 
+        public void visitScopy(Scopy that) {
+        	visitTree(that) ;
+        }
+        
         public void visitTopLevel(TopLevel that) {
             visitTree(that);
         }

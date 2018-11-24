@@ -1,0 +1,4 @@
+*** Error at (10,13): undeclared variable 'k'
+*** Error at (11,9): undeclared variable 'c'
+*** Error at (11,17): undeclared variable 'a'
+*** Error at (12,15): undeclared variable 'k'

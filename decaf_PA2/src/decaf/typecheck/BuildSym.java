@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import decaf.Driver;
 import decaf.tree.Tree;
+import decaf.tree.Tree.Scopy;
 import decaf.error.BadArrElementError;
 import decaf.error.BadInheritanceError;
 import decaf.error.BadOverrideError;
@@ -39,7 +40,7 @@ public class BuildSym extends Tree.Visitor {
 	public static void buildSymbol(Tree.TopLevel tree) {
 		new BuildSym(Driver.getDriver().getTable()).visitTopLevel(tree);
 	}
-
+	
 	// root
 	@Override
 	public void visitTopLevel(Tree.TopLevel program) {

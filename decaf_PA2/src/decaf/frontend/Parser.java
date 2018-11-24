@@ -1313,7 +1313,7 @@ break;
 case 53:
 //#line 287 "Parser.y"
 {
-						yyval.stmt = new Tree.Scopy(val_peek(3).ident, val_peek(1).expr , val_peek(3).loc) ;
+						yyval.stmt = new Tree.Scopy(new Tree.Ident(false, null, val_peek(3).ident, val_peek(3).loc), val_peek(1).expr , val_peek(5).loc) ;
 					}
 break;
 case 54:

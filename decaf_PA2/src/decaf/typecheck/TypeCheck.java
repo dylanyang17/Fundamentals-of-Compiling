@@ -15,6 +15,8 @@ import decaf.error.BadLengthError;
 import decaf.error.BadNewArrayLength;
 import decaf.error.BadPrintArgError;
 import decaf.error.BadReturnTypeError;
+import decaf.error.BadScopyArgError;
+import decaf.error.BadScopySrcError;
 import decaf.error.BadTestExpr;
 import decaf.error.BreakOutOfLoopError;
 import decaf.error.ClassNotFoundError;
@@ -60,6 +62,23 @@ public class TypeCheck extends Tree.Visitor {
 		new TypeCheck(Driver.getDriver().getTable()).visitTopLevel(tree);
 	}
 
+	@Override
+	public void visitScopy(Tree.Scopy scopy) {
+		scopy.ident.accept(this);
+		scopy.expr.accept(this) ;
+		Symbol arg1=table.lookup(scopy.ident.name, true) ;
+		if(arg1==null) return ;
+		if(arg1.getType().isClassType() == false) {
+			issueError(new BadScopyArgError(scopy.ident.loc, "dst", arg1.getType().toString()));
+			if(scopy.expr.type.isClassType() == false) {
+				issueError(new BadScopyArgError(scopy.expr.loc, "src", scopy.expr.type.toString()));
+			}
+		} else if(scopy.expr.type.equal(arg1.getType()) == false){
+			issueError(new BadScopySrcError(scopy.loc, arg1.getType().toString(), scopy.expr.type.toString())) ;
+		}
+		
+	}
+	
 	@Override
 	public void visitBinary(Tree.Binary expr) {
 		expr.type = checkBinaryOp(expr.left, expr.right, expr.tag, expr.loc);

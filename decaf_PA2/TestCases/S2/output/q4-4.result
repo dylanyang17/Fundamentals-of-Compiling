@@ -1,0 +1,4 @@
+*** Error at (11,11): can not reference a non-static field 'k' from static method 'main'
+*** Error at (12,8): undeclared variable 'c'
+*** Error at (12,16): undeclared variable 'a'
+*** Error at (13,13): can not reference a non-static field 'k' from static method 'main'
