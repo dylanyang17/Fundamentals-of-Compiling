@@ -407,6 +407,11 @@ public abstract class Tree {
     	}
     	
     	@Override
+    	public void accept(Visitor v) {
+    		v.visitIfSubStmt(this);
+    	}
+    	
+    	@Override
     	public void printTo(IndentPrintWriter pw) {
     		pw.println("guard");
     		pw.incIndent();
@@ -422,6 +427,11 @@ public abstract class Tree {
     	public GuardedIf(List<IfSubStmt> fields, Location loc) {
     		super(GUARDEDIF, loc) ;
     		this.fields = fields ;
+    	}
+
+    	@Override
+    	public void accept(Visitor v) {
+    		v.visitGuardedIf(this);
     	}
     	
     	@Override
@@ -1556,6 +1566,14 @@ public abstract class Tree {
         }
 
         public void visitScopy(Scopy that) {
+        	visitTree(that) ;
+        }
+        
+        public void visitGuardedIf(GuardedIf that) {
+        	visitTree(that) ;
+        }
+        
+        public void visitIfSubStmt(IfSubStmt that) {
         	visitTree(that) ;
         }
         

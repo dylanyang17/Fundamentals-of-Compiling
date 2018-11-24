@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="decaf.tree.Tree.IfSubStmt"/>
-<fullyQualifiedTypeName name="decaf.tree.Tree.GuardedIf"/>
 <fullyQualifiedTypeName name="decaf.utils.IndentPrintWriter"/>
 <fullyQualifiedTypeName name="decaf.tree.Tree.Literal"/>
 <fullyQualifiedTypeName name="decaf.tree.Tree.ArrayConstant"/>
 <fullyQualifiedTypeName name="decaf.tree.Tree.TypeIdent"/>
 <fullyQualifiedTypeName name="decaf.tree.Tree.TypeLiteral"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.Scopy"/>
+<fullyQualifiedTypeName name="decaf.error.NotClassError"/>
+<fullyQualifiedTypeName name="decaf.error.BadArgTypeError"/>
+<fullyQualifiedTypeName name="decaf.error.BadScopyArgError"/>
+<fullyQualifiedTypeName name="decaf.error.BadScopySrcError"/>
+<fullyQualifiedTypeName name="decaf.error.BadSealedInherError"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.GuardedIf"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.IfSubStmt"/>
 </qualifiedTypeNameHistroy>

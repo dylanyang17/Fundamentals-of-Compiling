@@ -7,6 +7,7 @@ import java.util.Stack;
 import decaf.Driver;
 import decaf.Location;
 import decaf.tree.Tree;
+import decaf.tree.Tree.IfSubStmt;
 import decaf.error.BadArgCountError;
 import decaf.error.BadArgTypeError;
 import decaf.error.BadArrElementError;
@@ -76,6 +77,20 @@ public class TypeCheck extends Tree.Visitor {
 		} else if(scopy.expr.type.equal(arg1.getType()) == false){
 			issueError(new BadScopySrcError(scopy.loc, arg1.getType().toString(), scopy.expr.type.toString())) ;
 		}
+	}
+	
+	@Override
+	public void visitGuardedIf(Tree.GuardedIf gif) {
+		for(IfSubStmt s : gif.fields) {
+			s.accept(this);
+		}
+	}
+	
+	@Override
+	public void visitIfSubStmt(Tree.IfSubStmt ifSubStmt) {
+		ifSubStmt.expr.accept(this);
+		ifSubStmt.stmt.accept(this);
+		if(ifSubStmt.expr.)
 	}
 	
 	@Override
