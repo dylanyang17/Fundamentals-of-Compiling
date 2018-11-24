@@ -8,6 +8,7 @@ import decaf.tree.Tree.Scopy;
 import decaf.error.BadArrElementError;
 import decaf.error.BadInheritanceError;
 import decaf.error.BadOverrideError;
+import decaf.error.BadSealedInherError;
 import decaf.error.BadVarTypeError;
 import decaf.error.ClassNotFoundError;
 import decaf.error.DecafError;
@@ -47,7 +48,7 @@ public class BuildSym extends Tree.Visitor {
 		program.globalScope = new GlobalScope();
 		table.open(program.globalScope);
 		for (Tree.ClassDef cd : program.classes) {
-			Class c = new Class(cd.name, cd.parent, cd.getLocation());
+			Class c = new Class(cd.isSealed, cd.name, cd.parent, cd.getLocation());
 			Class earlier = table.lookupClass(cd.name);
 			if (earlier != null) {
 				issueError(new DeclConflictError(cd.getLocation(), cd.name,
@@ -66,6 +67,10 @@ public class BuildSym extends Tree.Visitor {
 			}
 			if (calcOrder(c) <= calcOrder(c.getParent())) {
 				issueError(new BadInheritanceError(cd.getLocation()));
+				c.dettachParent();
+			}
+			if (c.getParent()!=null && c.getParent().getSealed() == true) {
+				issueError(new BadSealedInherError(cd.loc)) ;
 				c.dettachParent();
 			}
 		}

@@ -7,7 +7,9 @@ import decaf.scope.GlobalScope;
 import decaf.type.ClassType;
 
 public class Class extends Symbol {
-
+	
+	private boolean isSealed ;
+	
 	private String parentName;
 
 	private ClassScope associatedScope;
@@ -21,7 +23,11 @@ public class Class extends Symbol {
 	private int numVar;
 
 	private int size;
-
+	
+	public boolean getSealed() {
+		return isSealed ;
+	}
+	
 	public int getSize() {
 		return size;
 	}
@@ -46,7 +52,8 @@ public class Class extends Symbol {
 		this.numVar = numVar;
 	}
 
-	public Class(String name, String parentName, Location location) {
+	public Class(boolean isSealed, String name, String parentName, Location location) {
+		this.isSealed = isSealed ;
 		this.name = name;
 		this.parentName = parentName;
 		this.location = location;

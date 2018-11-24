@@ -76,7 +76,6 @@ public class TypeCheck extends Tree.Visitor {
 		} else if(scopy.expr.type.equal(arg1.getType()) == false){
 			issueError(new BadScopySrcError(scopy.loc, arg1.getType().toString(), scopy.expr.type.toString())) ;
 		}
-		
 	}
 	
 	@Override
