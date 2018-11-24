@@ -3,10 +3,11 @@ program
         static func main voidtype
             formals
             stmtblock
-                foreach
-                    varbind s inttype
-                    varref ss
-                    boolconst true
-                    stmtblock
-                        print
-                            varref s
+                return
+                    array comp
+                        varbind x
+                        varref arr
+                        boolconst true
+                        add
+                            varref x
+                            intconst 1

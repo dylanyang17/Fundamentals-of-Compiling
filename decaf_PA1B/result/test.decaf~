@@ -1,7 +1,5 @@
 class Main {
     static void main() {
-        foreach (int s in ss) {
-            Print(s);
-        }
+		return [x+1 for x in arr] ;
 	}
 }

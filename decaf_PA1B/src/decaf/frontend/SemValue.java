@@ -23,6 +23,8 @@ public class SemValue {
 
     public int counter;
 
+    public Tree.CompArrayExpr compArrayExpr ;
+    
     public Vector<Integer> svec;
 
     public Location loc;

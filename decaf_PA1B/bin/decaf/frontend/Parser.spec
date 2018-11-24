@@ -764,10 +764,11 @@ ExprT8_2		:	DEFAULT Expr9
 					}
 				;
 
-ExprT8_1		:	':'	Expr ']'
+ExprT8_1		:	':'	Expr ']' ExprT8
 					{
 						$$.myType = 1 ;
 						$$.expr = $2.expr ;
+						$$.vec = $4.vec ;
 					}
 				|	']' ExprT8_2
 					{
@@ -785,6 +786,7 @@ ExprT8          :   '[' Expr ExprT8_1
                         if($3.myType == 1){
                         	sem.expr = new Tree.ArrayRange($2.expr, $3.expr, $1.loc) ;
                         	$$.vec.add(sem);
+                        	if($3.vec != null) $$.vec.addAll($3.vec) ;
                         }
                         else if($3.myType==3){
                         	sem.expr = new Tree.DefaultArrayRef($2.expr, $3.expr, $1.loc) ;
@@ -796,6 +798,11 @@ ExprT8          :   '[' Expr ExprT8_1
                         	if ($3.vec != null) {
                         	    $$.vec.addAll($3.vec);
                         	}
+                        }
+                        else if($3.myType==5){
+                        	$3.compArrayExpr.expr1=$2.expr ;
+                    		sem.expr = $3.compArrayExpr ;
+                    		$$.vec.add(sem) ;
                         }
                     }
                 |   '.' IDENTIFIER AfterIdentExpr ExprT8
@@ -860,12 +867,7 @@ Expr9           :   Constant
                             $$.expr = new Tree.Ident(false, null, $1.ident, $1.loc);
                         }
                     }
-                |	LOR Expr FOR IDENTIFIER IN Expr IfExpr ROR
-                	{
-                		if($7.expr==null) $7.expr = new Tree.Literal(Tree.BOOL, true, $1.loc) ;
-                		$$.expr = new Tree.CompArrayExpr($2.expr, $4.ident, $6.expr, $7.expr, $1.loc) ;
-                	}   
-                ;
+				;
                 
 IfExpr			:	IF Expr
 					{
@@ -926,31 +928,49 @@ Constant        :   LITERAL
                     }
                 |	ArrayConstant
                 	{
-                		$$.expr = $1.acons ;
+                		if($1.myType==5){
+                			$$.myType=5 ;
+                			$$.expr=$1.expr ;
+                		}
+                		else
+                			$$.expr = $1.acons ;
                 	}
                 ;
                 
 ArrayConstant 	:	'[' Constants ']'
 					{
-						if($2.elist != null){
-							$$.acons = new Tree.ArrayConstant($2.elist, $2.loc) ;
+						if($2.myType==5){
+							$$.expr = $2.expr ;
+							$$.myType = 5 ;
 						}
 						else{
-							$$.acons = new Tree.ArrayConstant(new ArrayList<Tree.Expr>(), $2.loc) ;
+							if($2.elist != null){
+								$$.acons = new Tree.ArrayConstant($2.elist, $2.loc) ;
+							}
+							else{
+								$$.acons = new Tree.ArrayConstant(new ArrayList<Tree.Expr>(), $2.loc) ;
+							}
 						}
 					}
 					
 				;
 
-Constants		:	Constant MoreConstants
+Constants		:	Expr MoreConstants
 					{
-						$$.elist = $2.elist ;
-						$$.elist.add(0, $1.expr) ;
+						if($2.myType==5){
+							$2.compArrayExpr.expr1 = $1.expr ;
+							$$.expr = $2.compArrayExpr ;
+							$$.myType = 5 ;
+						}
+						else{
+							$$.elist = $2.elist ;
+							$$.elist.add(0, $1.expr) ;
+						}
 					}
 				|   /* empty */
 				;
 
-MoreConstants	:	',' Constant MoreConstants
+MoreConstants	:	',' Expr9 MoreConstants
 					{
 						$$.elist = $3.elist ;
 						$$.elist.add(0, $2.expr) ;
@@ -959,6 +979,12 @@ MoreConstants	:	',' Constant MoreConstants
 					{
 						$$.elist = new ArrayList<Tree.Expr>() ;
 					}
+				|   FOR IDENTIFIER IN Expr IfExpr
+                	{
+                		if($5.expr==null) $5.expr = new Tree.Literal(Tree.BOOL, true, $1.loc) ;
+                		$$.compArrayExpr = new Tree.CompArrayExpr(null, $2.ident, $4.expr, $5.expr, $1.loc) ;
+                		$$.myType=5 ;
+                	}
 				;
 
 Actuals         :   ExprList

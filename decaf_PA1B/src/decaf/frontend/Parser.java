@@ -134,20 +134,7 @@ public class Parser extends Table {
             }
             if(params[i + 1] == null) fail=true ;
         }
-        /*
-        for (int i = 0; i < length; i++) { // parse right-hand side symbols one by one
-            int term = right.get(i);
-            if(begin.contains(term)==false) {
-            	
-            }
-            params[i + 1] = isNonTerminal(term)
-                    ? parse(term, follow) // for non terminals: recursively parse it
-                    : matchToken(term) // for terminals: match token
-                    ;
-        }*/
-
         params[0] = new SemValue(); // initialize return value
-      //  System.out.println("now: "+ name(symbol) + "    lookahead: "+name(lookahead));
         if(!fail) act(actionId, params); // do user-defined action
         follow.removeAll(newAdded);
         return params[0];

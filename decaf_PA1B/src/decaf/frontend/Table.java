@@ -1,7 +1,7 @@
 /* This is auto-generated source by LL1-Parser-Gen.
  * Specification file: F:\eclipse-workspace\decaf_PA1B\src\decaf\frontend\Parser.spec
  * Options: unstrict mode
- * Generated at: Sun Nov 04 22:28:54 CST 2018
+ * Generated at: Mon Nov 19 17:40:31 CST 2018
  * Please do NOT modify it!
  *
  * Project repository: https://github.com/paulzfm/LL1-Parser-Gen
@@ -206,86 +206,86 @@ public class Table
     /* begin lookahead symbols */
     private ArrayList<Set<Integer>> begin = new ArrayList<Set<Integer>>();
     private final Integer[][] beginRaw = {
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {VOID, CLASS, INT, STRING, BOOL},
-        {Integer.valueOf('+'), Integer.valueOf('-'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, Integer.valueOf('}')},
+        {Integer.valueOf('+'), Integer.valueOf('-'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, Integer.valueOf('}')},
         {VAR, VOID, CLASS, INT, STRING, BOOL},
         {EQUAL, NOT_EQUAL},
         {Integer.valueOf('*'), Integer.valueOf('/'), Integer.valueOf('%')},
         {VOID, CLASS, INT, STRING, BOOL},
         {VOID, CLASS, INT, STRING, BOOL, Integer.valueOf(')')},
         {Integer.valueOf('-'), Integer.valueOf('!')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
-        {READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
-        {Integer.valueOf(']'), Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
-        {LITERAL, NULL, Integer.valueOf('['), Integer.valueOf(']')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf(']'), Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, Integer.valueOf(']')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {AND},
         {SEALED, CLASS},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
-        {Integer.valueOf(','), Integer.valueOf(']')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf(','), Integer.valueOf(']'), FOR},
         {DADD},
         {TOR, Integer.valueOf('}')},
-        {DEFAULT, Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {DEFAULT, Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {BREAK},
-        {AND, Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, IF, Integer.valueOf(';')},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{'), Integer.valueOf('}')},
+        {AND, Integer.valueOf(']'), FOR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, IF, Integer.valueOf(';')},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{'), Integer.valueOf('}')},
         {LITERAL, NULL, Integer.valueOf('[')},
         {Integer.valueOf(','), Integer.valueOf(')')},
         {PRINT},
         {FOR},
-        {LITERAL, NULL, Integer.valueOf('['), READ_INTEGER, READ_LINE, THIS, NEW, INSTANCEOF, Integer.valueOf('('), IDENTIFIER, LOR},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {LITERAL, NULL, Integer.valueOf('['), READ_INTEGER, READ_LINE, THIS, NEW, INSTANCEOF, Integer.valueOf('('), IDENTIFIER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {Integer.valueOf(':'), Integer.valueOf(']')},
         {FOREACH},
         {Integer.valueOf('[')},
         {Integer.valueOf('{')},
         {OR},
-        {ELSE, PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
-        {DADD, LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
+        {ELSE, PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {DADD, LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
         {VOID, CLASS, INT, STRING, STATIC, BOOL, Integer.valueOf('}')},
         {TOR},
         {Integer.valueOf(','), Integer.valueOf(')')},
-        {DMOD, LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, CLASS},
+        {DMOD, LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, CLASS},
         {SEALED, CLASS},
         {RETURN},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {Integer.valueOf('{')},
         {Integer.valueOf('('), Integer.valueOf(';')},
-        {Integer.valueOf('('), Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {Integer.valueOf('('), Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
         {SEALED, CLASS},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {VOID, CLASS, INT, STRING, BOOL},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {IDENTIFIER, VOID, CLASS, INT, STRING, BOOL},
         {Integer.valueOf('='), Integer.valueOf(';'), Integer.valueOf(')')},
         {EXTENDS, Integer.valueOf('{')},
-        {IF, ROR},
+        {IF, Integer.valueOf(']')},
         {Integer.valueOf('+'), Integer.valueOf('-')},
         {Integer.valueOf('['), IDENTIFIER},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, Integer.valueOf(')')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, Integer.valueOf(')')},
         {VOID, CLASS, INT, STRING, BOOL},
-        {EQUAL, NOT_EQUAL, Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
-        {VOID, CLASS, INT, STRING, BOOL, Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, VAR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), READ_INTEGER, WHILE, FOR, RETURN, PRINT, BREAK, Integer.valueOf('{'), SCOPY, IF, FOREACH},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, VAR, Integer.valueOf(';'), Integer.valueOf(')')},
+        {EQUAL, NOT_EQUAL, Integer.valueOf(']'), FOR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
+        {VOID, CLASS, INT, STRING, BOOL, Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, VAR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), READ_INTEGER, WHILE, FOR, RETURN, PRINT, BREAK, Integer.valueOf('{'), SCOPY, IF, FOREACH},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, VAR, Integer.valueOf(';'), Integer.valueOf(')')},
         {INT, VOID, BOOL, STRING, CLASS},
         {WHILE},
-        {OR, Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), IF, Integer.valueOf(';')},
+        {OR, Integer.valueOf(']'), FOR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), IF, Integer.valueOf(';')},
         {Integer.valueOf('('), Integer.valueOf('{')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
-        {LESS_EQUAL, GREATER_EQUAL, Integer.valueOf('<'), Integer.valueOf('>'), Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, Integer.valueOf(';')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {LESS_EQUAL, GREATER_EQUAL, Integer.valueOf('<'), Integer.valueOf('>'), Integer.valueOf(']'), FOR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER, Integer.valueOf(';')},
         {WHILE, Integer.valueOf(')')},
         {DMOD},
         {Integer.valueOf('(')},
         {SCOPY},
-        {Integer.valueOf('*'), Integer.valueOf('/'), Integer.valueOf('%'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
-        {Integer.valueOf('['), Integer.valueOf('.'), Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
-        {Integer.valueOf('-'), Integer.valueOf('!'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('*'), Integer.valueOf('/'), Integer.valueOf('%'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
+        {Integer.valueOf('['), Integer.valueOf('.'), Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {Integer.valueOf('-'), Integer.valueOf('!'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {SEALED, CLASS, eof, eos},
         {LESS_EQUAL, GREATER_EQUAL, Integer.valueOf('<'), Integer.valueOf('>')},
         {STATIC, VOID, CLASS, INT, STRING, BOOL},
@@ -305,88 +305,88 @@ public class Table
     /* follow set */
     private ArrayList<Set<Integer>> follow = new ArrayList<Set<Integer>>();
     private final Integer[][] followRaw = {
-        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
-        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
+        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
         {Integer.valueOf('}')},
         {IN},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {Integer.valueOf(')')},
         {Integer.valueOf(')')},
-        {READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {TOR, Integer.valueOf('}')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
         {Integer.valueOf(']')},
-        {Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, IF, Integer.valueOf(';')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf(']'), FOR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, IF, Integer.valueOf(';')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {CLASS},
-        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
+        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
         {Integer.valueOf(']')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {Integer.valueOf('}')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
-        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
         {Integer.valueOf(';')},
-        {Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, IF, Integer.valueOf(';')},
+        {Integer.valueOf(']'), FOR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, IF, Integer.valueOf(';')},
         {Integer.valueOf('}')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
         {Integer.valueOf(')')},
         {Integer.valueOf(';')},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
-        {Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), IF, Integer.valueOf(';')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
-        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {Integer.valueOf(']'), FOR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), IF, Integer.valueOf(';')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
         {Integer.valueOf('}')},
         {TOR, Integer.valueOf('}')},
         {Integer.valueOf(')')},
-        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('>')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
         {SEALED, CLASS, eof, eos},
         {Integer.valueOf(';')},
         {Integer.valueOf(')')},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, STATIC, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, STATIC, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
         {VOID, CLASS, INT, Integer.valueOf('}'), STRING, STATIC, BOOL},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
         {eof, eos},
-        {Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), IF, Integer.valueOf(';')},
+        {Integer.valueOf(']'), FOR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), IF, Integer.valueOf(';')},
         {IDENTIFIER},
-        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('.'), Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), Integer.valueOf('['), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
         {Integer.valueOf(';'), Integer.valueOf(')')},
         {Integer.valueOf('{')},
-        {ROR},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf(']')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {IDENTIFIER},
-        {Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
+        {Integer.valueOf(']'), FOR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
         {Integer.valueOf(')')},
         {Integer.valueOf(';'), Integer.valueOf(','), Integer.valueOf(')')},
-        {Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {Integer.valueOf(']'), FOR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
         {Integer.valueOf(';'), Integer.valueOf(')')},
         {Integer.valueOf('['), IDENTIFIER},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
-        {Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), IF, Integer.valueOf(';')},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
-        {Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
-        {Integer.valueOf(']'), FOR, ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {Integer.valueOf(']'), FOR, Integer.valueOf(':'), Integer.valueOf(')'), Integer.valueOf(','), WHILE, Integer.valueOf('='), IF, Integer.valueOf(';')},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {Integer.valueOf(']'), FOR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
+        {Integer.valueOf(']'), FOR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, AND, IF, Integer.valueOf(';')},
         {Integer.valueOf(';')},
         {Integer.valueOf(')')},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
-        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, LOR, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {PRINT, VOID, FOR, Integer.valueOf('!'), FOREACH, Integer.valueOf('-'), CLASS, TOR, READ_LINE, WHILE, RETURN, NULL, INT, SCOPY, Integer.valueOf('}'), IDENTIFIER, NEW, IF, VAR, THIS, INSTANCEOF, STRING, LITERAL, ELSE, Integer.valueOf('('), Integer.valueOf(';'), Integer.valueOf('['), BOOL, BREAK, READ_INTEGER, Integer.valueOf('{')},
         {Integer.valueOf(';')},
-        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
-        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), ROR, Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
+        {Integer.valueOf('/'), LESS_EQUAL, Integer.valueOf(']'), FOR, GREATER_EQUAL, Integer.valueOf('-'), Integer.valueOf(':'), EQUAL, Integer.valueOf(')'), NOT_EQUAL, Integer.valueOf(','), WHILE, Integer.valueOf('='), OR, Integer.valueOf('+'), DADD, AND, Integer.valueOf('*'), IF, Integer.valueOf(';'), Integer.valueOf('<'), DMOD, Integer.valueOf('>'), Integer.valueOf('%')},
         {eof, eos},
-        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, LOR, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
+        {Integer.valueOf('!'), Integer.valueOf('-'), READ_LINE, NULL, IDENTIFIER, NEW, THIS, INSTANCEOF, LITERAL, Integer.valueOf('('), Integer.valueOf('['), READ_INTEGER},
         {VOID, CLASS, INT, Integer.valueOf('}'), STRING, STATIC, BOOL},
     };
     
@@ -432,7 +432,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -465,7 +464,6 @@ public class Table
                     case ']':
                     case FOR:
                     case GREATER_EQUAL:
-                    case ROR:
                     case ':':
                     case EQUAL:
                     case ')':
@@ -494,7 +492,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -588,7 +585,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -606,7 +602,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -617,7 +612,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 895
+            //# line 897
             case AfterSimpleTypeExpr: {
                 switch (lookahead) {
                     case ']':
@@ -628,7 +623,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -639,13 +633,22 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 945
+            //# line 958
             case Constants: {
                 switch (lookahead) {
-                    case LITERAL:
+                    case '!':
+                    case '-':
+                    case READ_LINE:
                     case NULL:
+                    case IDENTIFIER:
+                    case NEW:
+                    case THIS:
+                    case INSTANCEOF:
+                    case LITERAL:
+                    case '(':
                     case '[':
-                        return new AbstractMap.SimpleEntry<>(22, Arrays.asList(Constant, MoreConstants));
+                    case READ_INTEGER:
+                        return new AbstractMap.SimpleEntry<>(22, Arrays.asList(Expr, MoreConstants));
                     case ']':
                         return new AbstractMap.SimpleEntry<>(150, Arrays.asList());
                     default: return null;
@@ -660,7 +663,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -698,7 +700,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -709,13 +710,15 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 953
+            //# line 973
             case MoreConstants: {
                 switch (lookahead) {
                     case ',':
-                        return new AbstractMap.SimpleEntry<>(29, Arrays.asList(Integer.valueOf(','), Constant, MoreConstants));
+                        return new AbstractMap.SimpleEntry<>(29, Arrays.asList(Integer.valueOf(','), Expr9, MoreConstants));
                     case ']':
                         return new AbstractMap.SimpleEntry<>(30, Arrays.asList());
+                    case FOR:
+                        return new AbstractMap.SimpleEntry<>(31, Arrays.asList(FOR, IDENTIFIER, IN, Expr, IfExpr));
                     default: return null;
                 }
             }
@@ -723,7 +726,7 @@ public class Table
             case OperDAdd: {
                 switch (lookahead) {
                     case DADD:
-                        return new AbstractMap.SimpleEntry<>(31, Arrays.asList(DADD));
+                        return new AbstractMap.SimpleEntry<>(32, Arrays.asList(DADD));
                     default: return null;
                 }
             }
@@ -731,9 +734,9 @@ public class Table
             case IfBranchs: {
                 switch (lookahead) {
                     case TOR:
-                        return new AbstractMap.SimpleEntry<>(32, Arrays.asList(IfBranch, IfBranchs));
+                        return new AbstractMap.SimpleEntry<>(33, Arrays.asList(IfBranch, IfBranchs));
                     case '}':
-                        return new AbstractMap.SimpleEntry<>(33, Arrays.asList());
+                        return new AbstractMap.SimpleEntry<>(34, Arrays.asList());
                     default: return null;
                 }
             }
@@ -741,7 +744,7 @@ public class Table
             case ExprT8_2: {
                 switch (lookahead) {
                     case DEFAULT:
-                        return new AbstractMap.SimpleEntry<>(34, Arrays.asList(DEFAULT, Expr9));
+                        return new AbstractMap.SimpleEntry<>(35, Arrays.asList(DEFAULT, Expr9));
                     case '/':
                     case LESS_EQUAL:
                     case ']':
@@ -749,7 +752,6 @@ public class Table
                     case GREATER_EQUAL:
                     case '.':
                     case '-':
-                    case ROR:
                     case ':':
                     case EQUAL:
                     case ')':
@@ -769,7 +771,7 @@ public class Table
                     case DMOD:
                     case '>':
                     case '%':
-                        return new AbstractMap.SimpleEntry<>(35, Arrays.asList(ExprT8));
+                        return new AbstractMap.SimpleEntry<>(36, Arrays.asList(ExprT8));
                     default: return null;
                 }
             }
@@ -782,22 +784,21 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
                     case '(':
                     case '[':
                     case READ_INTEGER:
-                        return new AbstractMap.SimpleEntry<>(36, Arrays.asList(Expr7, ExprT6));
+                        return new AbstractMap.SimpleEntry<>(37, Arrays.asList(Expr7, ExprT6));
                     default: return null;
                 }
             }
-            //# line 1007
+            //# line 1033
             case BreakStmt: {
                 switch (lookahead) {
                     case BREAK:
-                        return new AbstractMap.SimpleEntry<>(37, Arrays.asList(BREAK));
+                        return new AbstractMap.SimpleEntry<>(38, Arrays.asList(BREAK));
                     default: return null;
                 }
             }
@@ -805,10 +806,9 @@ public class Table
             case ExprT2: {
                 switch (lookahead) {
                     case AND:
-                        return new AbstractMap.SimpleEntry<>(38, Arrays.asList(Oper2, Expr3, ExprT2));
+                        return new AbstractMap.SimpleEntry<>(39, Arrays.asList(Oper2, Expr3, ExprT2));
                     case ']':
                     case FOR:
-                    case ROR:
                     case ':':
                     case ')':
                     case ',':
@@ -839,7 +839,6 @@ public class Table
                     case SCOPY:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case IF:
                     case VAR:
                     case THIS:
@@ -853,21 +852,21 @@ public class Table
                     case BREAK:
                     case READ_INTEGER:
                     case '{':
-                        return new AbstractMap.SimpleEntry<>(40, Arrays.asList(Stmt, StmtList));
+                        return new AbstractMap.SimpleEntry<>(41, Arrays.asList(Stmt, StmtList));
                     case '}':
                         return new AbstractMap.SimpleEntry<>(150, Arrays.asList());
                     default: return null;
                 }
             }
-            //# line 919
+            //# line 921
             case Constant: {
                 switch (lookahead) {
                     case LITERAL:
-                        return new AbstractMap.SimpleEntry<>(42, Arrays.asList(LITERAL));
+                        return new AbstractMap.SimpleEntry<>(43, Arrays.asList(LITERAL));
                     case NULL:
-                        return new AbstractMap.SimpleEntry<>(43, Arrays.asList(NULL));
+                        return new AbstractMap.SimpleEntry<>(44, Arrays.asList(NULL));
                     case '[':
-                        return new AbstractMap.SimpleEntry<>(44, Arrays.asList(ArrayConstant));
+                        return new AbstractMap.SimpleEntry<>(45, Arrays.asList(ArrayConstant));
                     default: return null;
                 }
             }
@@ -875,51 +874,49 @@ public class Table
             case SubVariableList: {
                 switch (lookahead) {
                     case ',':
-                        return new AbstractMap.SimpleEntry<>(45, Arrays.asList(Integer.valueOf(','), Variable, SubVariableList));
+                        return new AbstractMap.SimpleEntry<>(46, Arrays.asList(Integer.valueOf(','), Variable, SubVariableList));
                     case ')':
                         return new AbstractMap.SimpleEntry<>(150, Arrays.asList());
                     default: return null;
                 }
             }
-            //# line 1039
+            //# line 1065
             case PrintStmt: {
                 switch (lookahead) {
                     case PRINT:
-                        return new AbstractMap.SimpleEntry<>(47, Arrays.asList(PRINT, Integer.valueOf('('), ExprList, Integer.valueOf(')')));
+                        return new AbstractMap.SimpleEntry<>(48, Arrays.asList(PRINT, Integer.valueOf('('), ExprList, Integer.valueOf(')')));
                     default: return null;
                 }
             }
-            //# line 1001
+            //# line 1027
             case ForStmt: {
                 switch (lookahead) {
                     case FOR:
-                        return new AbstractMap.SimpleEntry<>(48, Arrays.asList(FOR, Integer.valueOf('('), SimpleStmt, Integer.valueOf(';'), Expr, Integer.valueOf(';'), SimpleStmt, Integer.valueOf(')'), Stmt));
+                        return new AbstractMap.SimpleEntry<>(49, Arrays.asList(FOR, Integer.valueOf('('), SimpleStmt, Integer.valueOf(';'), Expr, Integer.valueOf(';'), SimpleStmt, Integer.valueOf(')'), Stmt));
                     default: return null;
                 }
             }
-            //# line 823
+            //# line 830
             case Expr9: {
                 switch (lookahead) {
                     case LITERAL:
                     case NULL:
                     case '[':
-                        return new AbstractMap.SimpleEntry<>(49, Arrays.asList(Constant));
+                        return new AbstractMap.SimpleEntry<>(50, Arrays.asList(Constant));
                     case READ_INTEGER:
-                        return new AbstractMap.SimpleEntry<>(50, Arrays.asList(READ_INTEGER, Integer.valueOf('('), Integer.valueOf(')')));
+                        return new AbstractMap.SimpleEntry<>(51, Arrays.asList(READ_INTEGER, Integer.valueOf('('), Integer.valueOf(')')));
                     case READ_LINE:
-                        return new AbstractMap.SimpleEntry<>(51, Arrays.asList(READ_LINE, Integer.valueOf('('), Integer.valueOf(')')));
+                        return new AbstractMap.SimpleEntry<>(52, Arrays.asList(READ_LINE, Integer.valueOf('('), Integer.valueOf(')')));
                     case THIS:
-                        return new AbstractMap.SimpleEntry<>(52, Arrays.asList(THIS));
+                        return new AbstractMap.SimpleEntry<>(53, Arrays.asList(THIS));
                     case NEW:
-                        return new AbstractMap.SimpleEntry<>(53, Arrays.asList(NEW, AfterNewExpr));
+                        return new AbstractMap.SimpleEntry<>(54, Arrays.asList(NEW, AfterNewExpr));
                     case INSTANCEOF:
-                        return new AbstractMap.SimpleEntry<>(54, Arrays.asList(INSTANCEOF, Integer.valueOf('('), Expr, Integer.valueOf(','), IDENTIFIER, Integer.valueOf(')')));
+                        return new AbstractMap.SimpleEntry<>(55, Arrays.asList(INSTANCEOF, Integer.valueOf('('), Expr, Integer.valueOf(','), IDENTIFIER, Integer.valueOf(')')));
                     case '(':
-                        return new AbstractMap.SimpleEntry<>(55, Arrays.asList(Integer.valueOf('('), AfterParenExpr));
+                        return new AbstractMap.SimpleEntry<>(56, Arrays.asList(Integer.valueOf('('), AfterParenExpr));
                     case IDENTIFIER:
-                        return new AbstractMap.SimpleEntry<>(56, Arrays.asList(IDENTIFIER, AfterIdentExpr));
-                    case LOR:
-                        return new AbstractMap.SimpleEntry<>(57, Arrays.asList(LOR, Expr, FOR, IDENTIFIER, IN, Expr, IfExpr, ROR));
+                        return new AbstractMap.SimpleEntry<>(57, Arrays.asList(IDENTIFIER, AfterIdentExpr));
                     default: return null;
                 }
             }
@@ -932,7 +929,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -947,7 +943,7 @@ public class Table
             case ExprT8_1: {
                 switch (lookahead) {
                     case ':':
-                        return new AbstractMap.SimpleEntry<>(59, Arrays.asList(Integer.valueOf(':'), Expr, Integer.valueOf(']')));
+                        return new AbstractMap.SimpleEntry<>(59, Arrays.asList(Integer.valueOf(':'), Expr, Integer.valueOf(']'), ExprT8));
                     case ']':
                         return new AbstractMap.SimpleEntry<>(60, Arrays.asList(Integer.valueOf(']'), ExprT8_2));
                     default: return null;
@@ -961,7 +957,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 933
+            //# line 940
             case ArrayConstant: {
                 switch (lookahead) {
                     case '[':
@@ -985,7 +981,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 1019
+            //# line 1045
             case ElseClause: {
                 switch (lookahead) {
                     case ELSE:
@@ -1007,7 +1003,6 @@ public class Table
                     case '}':
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case IF:
                     case VAR:
                     case THIS:
@@ -1034,7 +1029,6 @@ public class Table
                     case ']':
                     case FOR:
                     case GREATER_EQUAL:
-                    case ROR:
                     case ':':
                     case EQUAL:
                     case ')':
@@ -1075,7 +1069,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 982
+            //# line 1008
             case SubExprList: {
                 switch (lookahead) {
                     case ',':
@@ -1094,7 +1088,6 @@ public class Table
                     case ']':
                     case FOR:
                     case GREATER_EQUAL:
-                    case ROR:
                     case ':':
                     case EQUAL:
                     case ')':
@@ -1113,7 +1106,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 907
+            //# line 909
             case AfterParenExpr: {
                 switch (lookahead) {
                     case '!':
@@ -1122,7 +1115,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -1144,7 +1136,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 1026
+            //# line 1052
             case ReturnStmt: {
                 switch (lookahead) {
                     case RETURN:
@@ -1152,7 +1144,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 974
+            //# line 1000
             case ExprList: {
                 switch (lookahead) {
                     case '!':
@@ -1161,7 +1153,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -1190,7 +1181,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 816
+            //# line 823
             case AfterIdentExpr: {
                 switch (lookahead) {
                     case '(':
@@ -1202,7 +1193,6 @@ public class Table
                     case GREATER_EQUAL:
                     case '.':
                     case '-':
-                    case ROR:
                     case ':':
                     case EQUAL:
                     case ')':
@@ -1244,7 +1234,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -1276,7 +1265,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -1287,7 +1275,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 881
+            //# line 883
             case AfterNewExpr: {
                 switch (lookahead) {
                     case IDENTIFIER:
@@ -1322,12 +1310,12 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 870
+            //# line 872
             case IfExpr: {
                 switch (lookahead) {
                     case IF:
                         return new AbstractMap.SimpleEntry<>(96, Arrays.asList(IF, Expr));
-                    case ROR:
+                    case ']':
                         return new AbstractMap.SimpleEntry<>(97, Arrays.asList());
                     default: return null;
                 }
@@ -1361,7 +1349,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -1372,7 +1359,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 964
+            //# line 990
             case Actuals: {
                 switch (lookahead) {
                     case '!':
@@ -1381,7 +1368,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -1414,7 +1400,6 @@ public class Table
                         return new AbstractMap.SimpleEntry<>(106, Arrays.asList(Oper3, Expr4, ExprT3));
                     case ']':
                     case FOR:
-                    case ROR:
                     case ':':
                     case ')':
                     case ',':
@@ -1443,7 +1428,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case VAR:
                     case THIS:
                     case INSTANCEOF:
@@ -1483,7 +1467,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -1515,7 +1498,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 995
+            //# line 1021
             case WhileStmt: {
                 switch (lookahead) {
                     case WHILE:
@@ -1530,7 +1513,6 @@ public class Table
                         return new AbstractMap.SimpleEntry<>(128, Arrays.asList(Oper1, Expr2, ExprT1));
                     case ']':
                     case FOR:
-                    case ROR:
                     case ':':
                     case ')':
                     case ',':
@@ -1561,7 +1543,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -1582,7 +1563,6 @@ public class Table
                         return new AbstractMap.SimpleEntry<>(133, Arrays.asList(Oper4, ExprDAdd, ExprT4));
                     case ']':
                     case FOR:
-                    case ROR:
                     case ':':
                     case EQUAL:
                     case ')':
@@ -1598,7 +1578,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 1032
+            //# line 1058
             case ReturnExpr: {
                 switch (lookahead) {
                     case '!':
@@ -1607,7 +1587,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -1638,7 +1617,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 1013
+            //# line 1039
             case IfStmt: {
                 switch (lookahead) {
                     case '(':
@@ -1666,7 +1645,6 @@ public class Table
                     case FOR:
                     case GREATER_EQUAL:
                     case '-':
-                    case ROR:
                     case ':':
                     case EQUAL:
                     case ')':
@@ -1687,7 +1665,7 @@ public class Table
                     default: return null;
                 }
             }
-            //# line 781
+            //# line 782
             case ExprT8: {
                 switch (lookahead) {
                     case '[':
@@ -1700,7 +1678,6 @@ public class Table
                     case FOR:
                     case GREATER_EQUAL:
                     case '-':
-                    case ROR:
                     case ':':
                     case EQUAL:
                     case ')':
@@ -1733,7 +1710,6 @@ public class Table
                     case NULL:
                     case IDENTIFIER:
                     case NEW:
-                    case LOR:
                     case THIS:
                     case INSTANCEOF:
                     case LITERAL:
@@ -1947,21 +1923,28 @@ public class Table
                 return;
             }
             case 20: {
-                //# line 896
+                //# line 898
                 params[0].expr = params[3].expr;
                 params[0].counter = 1 + params[3].counter;
                 return;
             }
             case 21: {
-                //# line 901
+                //# line 903
                 params[0].expr = params[1].expr;
                 params[0].counter = 0;
                 return;
             }
             case 22: {
-                //# line 946
-                params[0].elist = params[2].elist ;
-                params[0].elist.add(0, params[1].expr) ;
+                //# line 959
+                if(params[2].myType==5){
+                	params[2].compArrayExpr.expr1 = params[1].expr ;
+                	params[0].expr = params[2].compArrayExpr ;
+                	params[0].myType = 5 ;
+                }
+                else{
+                	params[0].elist = params[2].elist ;
+                	params[0].elist.add(0, params[1].expr) ;
+                }
                 return;
             }
             case 23: {
@@ -2007,45 +1990,52 @@ public class Table
                 return;
             }
             case 29: {
-                //# line 954
+                //# line 974
                 params[0].elist = params[3].elist ;
                 params[0].elist.add(0, params[2].expr) ;
                 return;
             }
             case 30: {
-                //# line 959
+                //# line 979
                 params[0].elist = new ArrayList<Tree.Expr>() ;
                 return;
             }
             case 31: {
+                //# line 983
+                if(params[5].expr==null) params[5].expr = new Tree.Literal(Tree.BOOL, true, params[1].loc) ;
+                params[0].compArrayExpr = new Tree.CompArrayExpr(null, params[2].ident, params[4].expr, params[5].expr, params[1].loc) ;
+                params[0].myType=5 ;
+                return;
+            }
+            case 32: {
                 //# line 430
                 params[0].counter = Tree.DADD;
                 params[0].loc = params[1].loc;
                 return;
             }
-            case 32: {
+            case 33: {
                 //# line 319
                 params[0].glist=params[2].glist ;
                 params[0].glist.add(0, new IfSubStmt(params[1].expr, params[1].stmt, params[1].loc)) ;
                 return;
             }
-            case 33: {
+            case 34: {
                 //# line 324
                 params[0].glist = new ArrayList<IfSubStmt>() ;
                 return;
             }
-            case 34: {
+            case 35: {
                 //# line 757
                 params[0].expr=params[2].expr ;
                 params[0].myType=2 ;
                 return;
             }
-            case 35: {
+            case 36: {
                 //# line 762
                 params[0].vec=params[1].vec;
                 return;
             }
-            case 36: {
+            case 37: {
                 //# line 698
                 params[0].expr = params[1].expr;
                 if (params[2].svec != null) {
@@ -2056,12 +2046,12 @@ public class Table
                 }
                 return;
             }
-            case 37: {
-                //# line 1008
+            case 38: {
+                //# line 1034
                 params[0].stmt = new Tree.Break(params[1].loc);
                 return;
             }
-            case 38: {
+            case 39: {
                 //# line 526
                 params[0].svec = new Vector<Integer>();
                 params[0].lvec = new Vector<Location>();
@@ -2076,36 +2066,41 @@ public class Table
                 }
                 return;
             }
-            case 39: {
+            case 40: {
                 /* no action */
                 return;
             }
-            case 40: {
+            case 41: {
                 //# line 204
                 params[0].slist.add(params[1].stmt);
                 params[0].slist.addAll(params[2].slist);
                 return;
             }
-            case 41: {
+            case 42: {
                 /* no action */
                 return;
             }
-            case 42: {
-                //# line 920
+            case 43: {
+                //# line 922
                 params[0].expr = new Tree.Literal(params[1].typeTag, params[1].literal, params[1].loc);
                 return;
             }
-            case 43: {
-                //# line 924
+            case 44: {
+                //# line 926
                 params[0].expr = new Null(params[1].loc);
                 return;
             }
-            case 44: {
-                //# line 928
-                params[0].expr = params[1].acons ;
+            case 45: {
+                //# line 930
+                if(params[1].myType==5){
+                	params[0].myType=5 ;
+                	params[0].expr=params[1].expr ;
+                }
+                else
+                	params[0].expr = params[1].acons ;
                 return;
             }
-            case 45: {
+            case 46: {
                 //# line 187
                 params[0].vlist = new ArrayList<VarDef>();
                 params[0].vlist.add(params[2].vdef);
@@ -2114,42 +2109,42 @@ public class Table
                 }
                 return;
             }
-            case 46: {
+            case 47: {
                 /* no action */
                 return;
             }
-            case 47: {
-                //# line 1040
+            case 48: {
+                //# line 1066
                 params[0].stmt = new Tree.Print(params[3].elist, params[1].loc);
                 return;
             }
-            case 48: {
-                //# line 1002
+            case 49: {
+                //# line 1028
                 params[0].stmt = new Tree.ForLoop(params[3].stmt, params[5].expr, params[7].stmt, params[9].stmt, params[1].loc);
                 return;
             }
-            case 49: {
-                //# line 824
+            case 50: {
+                //# line 831
                 params[0].expr = params[1].expr;
                 return;
             }
-            case 50: {
-                //# line 828
+            case 51: {
+                //# line 835
                 params[0].expr = new Tree.ReadIntExpr(params[1].loc);
                 return;
             }
-            case 51: {
-                //# line 832
+            case 52: {
+                //# line 839
                 params[0].expr = new Tree.ReadLineExpr(params[1].loc);
                 return;
             }
-            case 52: {
-                //# line 836
+            case 53: {
+                //# line 843
                 params[0].expr = new Tree.ThisExpr(params[1].loc);
                 return;
             }
-            case 53: {
-                //# line 840
+            case 54: {
+                //# line 847
                 if (params[2].ident != null) {
                     params[0].expr = new Tree.NewClass(params[2].ident, params[1].loc);
                 } else {
@@ -2157,29 +2152,23 @@ public class Table
                 }
                 return;
             }
-            case 54: {
-                //# line 848
+            case 55: {
+                //# line 855
                 params[0].expr = new Tree.TypeTest(params[3].expr, params[5].ident, params[1].loc);
                 return;
             }
-            case 55: {
-                //# line 852
+            case 56: {
+                //# line 859
                 params[0].expr = params[2].expr;
                 return;
             }
-            case 56: {
-                //# line 856
+            case 57: {
+                //# line 863
                 if (params[2].elist != null) {
                     params[0].expr = new Tree.CallExpr(null, params[1].ident, params[2].elist, params[1].loc);
                 } else {
                     params[0].expr = new Tree.Ident(false, null, params[1].ident, params[1].loc);
                 }
-                return;
-            }
-            case 57: {
-                //# line 864
-                if(params[7].expr==null) params[7].expr = new Tree.Literal(Tree.BOOL, true, params[1].loc) ;
-                params[0].expr = new Tree.CompArrayExpr(params[2].expr, params[4].ident, params[6].expr, params[7].expr, params[1].loc) ;
                 return;
             }
             case 58: {
@@ -2197,10 +2186,11 @@ public class Table
                 //# line 768
                 params[0].myType = 1 ;
                 params[0].expr = params[2].expr ;
+                params[0].vec = params[4].vec ;
                 return;
             }
             case 60: {
-                //# line 773
+                //# line 774
                 params[0].vec = params[2].vec ;
                 params[0].expr = params[2].expr ;
                 if(params[2].myType==2) params[0].myType=3 ;
@@ -2215,12 +2205,18 @@ public class Table
                 return;
             }
             case 62: {
-                //# line 934
-                if(params[2].elist != null){
-                	params[0].acons = new Tree.ArrayConstant(params[2].elist, params[2].loc) ;
+                //# line 941
+                if(params[2].myType==5){
+                	params[0].expr = params[2].expr ;
+                	params[0].myType = 5 ;
                 }
                 else{
-                	params[0].acons = new Tree.ArrayConstant(new ArrayList<Tree.Expr>(), params[2].loc) ;
+                	if(params[2].elist != null){
+                		params[0].acons = new Tree.ArrayConstant(params[2].elist, params[2].loc) ;
+                	}
+                	else{
+                		params[0].acons = new Tree.ArrayConstant(new ArrayList<Tree.Expr>(), params[2].loc) ;
+                	}
                 }
                 return;
             }
@@ -2238,7 +2234,7 @@ public class Table
                 return;
             }
             case 65: {
-                //# line 1020
+                //# line 1046
                 params[0].stmt = params[2].stmt;
                 return;
             }
@@ -2289,14 +2285,14 @@ public class Table
                 return;
             }
             case 72: {
-                //# line 983
+                //# line 1009
                 params[0].elist = new ArrayList<Tree.Expr>();
                 params[0].elist.add(params[2].expr);
                 params[0].elist.addAll(params[3].elist);
                 return;
             }
             case 73: {
-                //# line 989
+                //# line 1015
                 params[0].elist = new ArrayList<Tree.Expr>();
                 return;
             }
@@ -2321,12 +2317,12 @@ public class Table
                 return;
             }
             case 76: {
-                //# line 908
+                //# line 910
                 params[0].expr = params[1].expr;
                 return;
             }
             case 77: {
-                //# line 912
+                //# line 914
                 params[0].expr = new Tree.TypeCast(params[2].ident, params[4].expr, params[4].loc);
                 return;
             }
@@ -2336,12 +2332,12 @@ public class Table
                 return;
             }
             case 79: {
-                //# line 1027
+                //# line 1053
                 params[0].stmt = new Tree.Return(params[2].expr, params[1].loc);
                 return;
             }
             case 80: {
-                //# line 975
+                //# line 1001
                 params[0].elist = new ArrayList<Tree.Expr>();
                 params[0].elist.add(params[1].expr);
                 params[0].elist.addAll(params[2].elist);
@@ -2363,7 +2359,7 @@ public class Table
                 return;
             }
             case 84: {
-                //# line 817
+                //# line 824
                 params[0].elist = params[2].elist;
                 return;
             }
@@ -2406,12 +2402,12 @@ public class Table
                 return;
             }
             case 90: {
-                //# line 882
+                //# line 884
                 params[0].ident = params[1].ident;
                 return;
             }
             case 91: {
-                //# line 886
+                //# line 888
                 params[0].type = params[1].type;
                 for (int i = 0; i < params[3].counter; ++i) {
                     params[0].type = new Tree.TypeArray(params[0].type, params[1].loc);
@@ -2439,12 +2435,12 @@ public class Table
                 return;
             }
             case 96: {
-                //# line 871
+                //# line 873
                 params[0].expr = params[2].expr ;
                 return;
             }
             case 97: {
-                //# line 875
+                //# line 877
                 params[0] = new SemValue() ;
                 params[0].expr = null ;
                 return;
@@ -2483,12 +2479,12 @@ public class Table
                 return;
             }
             case 103: {
-                //# line 965
+                //# line 991
                 params[0].elist = params[1].elist;
                 return;
             }
             case 104: {
-                //# line 969
+                //# line 995
                 params[0].elist = new ArrayList<Tree.Expr>();
                 return;
             }
@@ -2619,7 +2615,7 @@ public class Table
                 return;
             }
             case 127: {
-                //# line 996
+                //# line 1022
                 params[0].stmt = new Tree.WhileLoop(params[3].expr, params[5].stmt, params[1].loc);
                 return;
             }
@@ -2683,7 +2679,7 @@ public class Table
                 return;
             }
             case 135: {
-                //# line 1033
+                //# line 1059
                 params[0].expr = params[1].expr;
                 return;
             }
@@ -2709,7 +2705,7 @@ public class Table
                 return;
             }
             case 140: {
-                //# line 1014
+                //# line 1040
                 params[0].stmt = new Tree.If(params[2].expr, params[4].stmt, params[5].stmt, params[1].loc);
                 return;
             }
@@ -2738,28 +2734,34 @@ public class Table
                 return;
             }
             case 144: {
-                //# line 782
-                SemValue sem = new SemValue();
-                params[0].vec = new Vector<SemValue>();
-                if(params[3].myType == 1){
-                	sem.expr = new Tree.ArrayRange(params[2].expr, params[3].expr, params[1].loc) ;
-                	params[0].vec.add(sem);
-                }
-                else if(params[3].myType==3){
-                	sem.expr = new Tree.DefaultArrayRef(params[2].expr, params[3].expr, params[1].loc) ;
-                	params[0].vec.add(sem);
-                }
-                else if(params[3].myType==4){ 
-                	sem.expr = params[2].expr;
-                	params[0].vec.add(sem);
-                	if (params[3].vec != null) {
-                	    params[0].vec.addAll(params[3].vec);
-                	}
-                }
+                //# line 783
+                  SemValue sem = new SemValue();
+                  params[0].vec = new Vector<SemValue>();
+                  if(params[3].myType == 1){
+                  	sem.expr = new Tree.ArrayRange(params[2].expr, params[3].expr, params[1].loc) ;
+                  	params[0].vec.add(sem);
+                  	if(params[3].vec != null) params[0].vec.addAll(params[3].vec) ;
+                  }
+                  else if(params[3].myType==3){
+                  	sem.expr = new Tree.DefaultArrayRef(params[2].expr, params[3].expr, params[1].loc) ;
+                  	params[0].vec.add(sem);
+                  }
+                  else if(params[3].myType==4){ 
+                  	sem.expr = params[2].expr;
+                  	params[0].vec.add(sem);
+                  	if (params[3].vec != null) {
+                  	    params[0].vec.addAll(params[3].vec);
+                  	}
+                  }
+                  else if(params[3].myType==5){
+                  	params[3].compArrayExpr.expr1=params[2].expr ;
+                sem.expr = params[3].compArrayExpr ;
+                params[0].vec.add(sem) ;
+                  }
                 return;
             }
             case 145: {
-                //# line 802
+                //# line 809
                 SemValue sem = new SemValue();
                 sem.ident = params[2].ident;
                 sem.loc = params[2].loc;
