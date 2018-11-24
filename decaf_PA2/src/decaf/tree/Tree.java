@@ -563,14 +563,16 @@ public abstract class Tree {
     
     public static class ClassDef extends Tree {
     	
+    	public boolean isSealed ;
     	public String name;
     	public String parent;
     	public List<Tree> fields;
     	public Class symbol;
 
-        public ClassDef(String name, String parent, List<Tree> fields,
+        public ClassDef(boolean isSealed, String name, String parent, List<Tree> fields,
     			Location loc) {
     		super(CLASSDEF, loc);
+    		this.isSealed = isSealed ;
     		this.name = name;
     		this.parent = parent;
     		this.fields = fields;
@@ -583,6 +585,7 @@ public abstract class Tree {
         
     	@Override
     	public void printTo(IndentPrintWriter pw) {
+    		if(isSealed) pw.print("sealed ");
     		pw.println("class " + name + " "
     				+ (parent != null ? parent : "<empty>"));
     		pw.incIndent();
@@ -1368,13 +1371,15 @@ public abstract class Tree {
       */
     public static class Ident extends LValue {
 
+    	public boolean isVar ;
     	public Expr owner;
     	public String name;
     	public Variable symbol;
     	public boolean isDefined;
 
-        public Ident(Expr owner, String name, Location loc) {
+        public Ident(boolean isVar, Expr owner, String name, Location loc) {
             super(IDENT, loc);
+            this.isVar = isVar ;
     		this.owner = owner;
     		this.name = name;
         }
