@@ -88,9 +88,8 @@ public class TypeCheck extends Tree.Visitor {
 	
 	@Override
 	public void visitIfSubStmt(Tree.IfSubStmt ifSubStmt) {
-		ifSubStmt.expr.accept(this);
+		checkTestExpr(ifSubStmt.expr);
 		ifSubStmt.stmt.accept(this);
-		if(ifSubStmt.expr.)
 	}
 	
 	@Override

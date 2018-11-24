@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 import decaf.Driver;
 import decaf.tree.Tree;
+import decaf.tree.Tree.GuardedIf;
+import decaf.tree.Tree.IfSubStmt;
 import decaf.tree.Tree.Scopy;
 import decaf.error.BadArrElementError;
 import decaf.error.BadInheritanceError;
@@ -40,6 +42,25 @@ public class BuildSym extends Tree.Visitor {
 
 	public static void buildSymbol(Tree.TopLevel tree) {
 		new BuildSym(Driver.getDriver().getTable()).visitTopLevel(tree);
+	}
+	
+	@Override
+	public void visitScopy(Tree.Scopy scopy) {
+		scopy.ident.accept(this);
+		scopy.expr.accept(this);
+	}
+	
+	@Override
+	public void visitGuardedIf(Tree.GuardedIf gif) {
+		for(IfSubStmt s : gif.fields) {
+			s.accept(this);
+		}
+	}
+	
+	@Override
+	public void visitIfSubStmt(Tree.IfSubStmt ifSubStmt) {
+		ifSubStmt.expr.accept(this);
+		ifSubStmt.stmt.accept(this);
 	}
 	
 	// root
