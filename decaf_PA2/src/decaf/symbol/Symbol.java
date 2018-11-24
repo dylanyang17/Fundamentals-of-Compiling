@@ -35,6 +35,10 @@ public abstract class Symbol {
 
 	};
 
+	public void setType(Type type) {
+		this.type = type ;
+	}
+	
 	public Scope getScope() {
 		return definedIn;
 	}

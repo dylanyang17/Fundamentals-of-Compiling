@@ -1,3 +1,1 @@
-*** Error at (5,12): undeclared variable 'x'
-*** Error at (7,11): undeclared variable 'k'
-*** Error at (8,13): undeclared variable 'k'
+*** Error at (5,6): incompatible operands: int = unknown

@@ -944,6 +944,7 @@ public abstract class Tree {
 
     public abstract static class Expr extends Tree {
 
+    	public boolean isLeft = false ;
     	public Type type;
     	public boolean isClass;
     	public boolean usedForRef;
@@ -1049,7 +1050,7 @@ public abstract class Tree {
     }
 
     public abstract static class LValue extends Expr {
-
+	
     	public enum Kind {
     		LOCAL_VAR, PARAM_VAR, MEMBER_VAR, ARRAY_ELEMENT
     	}

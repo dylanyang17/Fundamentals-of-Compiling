@@ -471,7 +471,17 @@ public class TypeCheck extends Tree.Visitor {
 	public void visitAssign(Tree.Assign assign) {
 		assign.left.accept(this);
 		assign.expr.accept(this);
-		if (!assign.left.type.equal(BaseType.ERROR)
+		if(!assign.expr.type.equal(BaseType.UNKNOWN) && assign.left instanceof Tree.Ident) {
+			Tree.Ident tmp = (Tree.Ident) assign.left ;
+			if(tmp.isVar==true) {
+				tmp.type = assign.expr.type ;
+				table.lookup(tmp.name, true).setType(assign.expr.type) ;
+			}
+		}
+		if(assign.expr.type.equal(BaseType.UNKNOWN)) {
+			issueError(new IncompatBinOpError(assign.loc,assign.left.type.toString(),"=",assign.expr.type.toString()));
+		}
+		else if (!assign.left.type.equal(BaseType.ERROR)
 				&& (assign.left.type.isFuncType() || !assign.expr.type
 						.compatible(assign.left.type))) {
 			issueError(new IncompatBinOpError(assign.getLocation(),
@@ -670,6 +680,10 @@ public class TypeCheck extends Tree.Visitor {
 			issueError(new IncompatBinOpError(location, left.type.toString(),
 					Parser.opStr(op), right.type.toString()));
 		}
+		if (left.type.equal(BaseType.UNKNOWN))
+			returnType=right.type ;
+		else if(right.type.equal(BaseType.UNKNOWN))
+			returnType=left.type ;
 		return returnType;
 	}
 
