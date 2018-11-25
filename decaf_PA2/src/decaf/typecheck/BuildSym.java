@@ -77,13 +77,14 @@ public class BuildSym extends Tree.Visitor {
 						&& ident.isLeft) {
 					issueError(new DeclConflictError(v.getLocation(), v.getName(),
 							sym.getLocation()));
-				} else {
+				} else if(ident.isLeft){
 					table.declare(v);
 				}
-			} else {
+			} else if(ident.isLeft){
 				table.declare(v);
 			}
 			ident.symbol = v;
+			ident.type=BaseType.UNKNOWN ;
 		}
 	}
 	

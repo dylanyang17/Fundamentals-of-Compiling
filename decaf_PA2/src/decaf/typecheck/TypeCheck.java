@@ -356,10 +356,14 @@ public class TypeCheck extends Tree.Visitor {
 
 	@Override
 	public void visitIdent(Tree.Ident ident) {
+		if (ident.isLeft == false && ident.type == BaseType.UNKNOWN) {
+			return ;
+		}
 		if (ident.owner == null) {
 			Symbol v = table.lookupBeforeLocation(ident.name, ident
 					.getLocation());
 			if (v == null) {
+				v=table.lookup(ident.name,true) ;
 				issueError(new UndeclVarError(ident.getLocation(), ident.name));
 				ident.type = BaseType.ERROR;
 			} else if (v.isVariable()) {
@@ -621,7 +625,12 @@ public class TypeCheck extends Tree.Visitor {
 	private Type checkBinaryOp(Tree.Expr left, Tree.Expr right, int op, Location location) {
 		left.accept(this);
 		right.accept(this);
+		
 
+		if(op==Tree.DMOD) {
+		//	System.out.println(left.type+"  "+right.type);
+		}
+		
 		if (left.type.equal(BaseType.ERROR) || right.type.equal(BaseType.ERROR)) {
 			switch (op) {
 			case Tree.PLUS:
@@ -631,6 +640,11 @@ public class TypeCheck extends Tree.Visitor {
 				return left.type;
 			case Tree.MOD:
 				return BaseType.INT;
+			case Tree.DMOD:
+				if(left.type.equal(BaseType.ERROR) == false)
+					return new ArrayType(left.type) ;
+				else
+					return BaseType.ERROR ;
 			default:
 				return BaseType.BOOL;
 			}
@@ -639,6 +653,15 @@ public class TypeCheck extends Tree.Visitor {
 		boolean compatible = false;
 		Type returnType = BaseType.ERROR;
 		switch (op) {
+		case Tree.DMOD:
+			if(left.type.equal(BaseType.VOID) || left.type.equal(BaseType.UNKNOWN)) {
+				issueError(new BadArrElementError(left.loc));
+			} else
+				returnType=new ArrayType(left.type) ;
+			if(right.type.equal(BaseType.INT) == false) {
+				issueError(new BadNewArrayLength(right.loc));
+			}
+			return returnType ;
 		case Tree.PLUS:
 		case Tree.MINUS:
 		case Tree.MUL:

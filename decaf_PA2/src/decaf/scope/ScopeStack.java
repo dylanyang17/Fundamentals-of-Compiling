@@ -46,6 +46,7 @@ public class ScopeStack {
 	}
 
 	public void declare(Symbol symbol) {
+		//System.out.println("Declare: "+symbol.getName());
 		scopeStack.peek().declare(symbol);
 	}
 

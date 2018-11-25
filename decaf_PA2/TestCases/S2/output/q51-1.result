@@ -1,8 +1,1 @@
-*** Error at (4,12): incompatible operands: int unknow int
-*** Error at (6,15): incompatible operands: bool unknow int
-*** Error at (8,18): incompatible operands: string unknow int
-*** Error at (11,6): undeclared variable 'd'
-*** Error at (11,12): incompatible operands: int[] unknow int
-*** Error at (14,12): incompatible operands: string[] unknow int
-*** Error at (16,8): incompatible operands: string[][] = int
-*** Error at (16,16): incompatible operands: unknown unknow int
+*** Error at (16,14): array element type must be non-void known type
