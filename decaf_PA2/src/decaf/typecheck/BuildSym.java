@@ -101,6 +101,13 @@ public class BuildSym extends Tree.Visitor {
 		binary.right.accept(this);
 	}
 	
+	@Override
+	public void visitDefaultArrayRef(Tree.DefaultArrayRef defaultArr) {
+		defaultArr.expr.accept(this);
+		defaultArr.index.accept(this);
+		defaultArr.deft.accept(this);
+	}
+	
 	// root
 	@Override
 	public void visitTopLevel(Tree.TopLevel program) {

@@ -519,6 +519,11 @@ public abstract class Tree {
     		pw.decIndent();
     		pw.decIndent();
     	}
+    	
+    	@Override
+    	public void accept(Visitor v) {
+    		v.visitDefaultArrayRef(this);
+    	}
     }
     
     public static class CompArrayExpr extends Expr {
@@ -1577,6 +1582,10 @@ public abstract class Tree {
         public void visitIfSubStmt(IfSubStmt that) {
         	visitTree(that) ;
         }
+        
+        public void visitDefaultArrayRef(Tree.DefaultArrayRef that) {
+    		visitTree(that) ;
+    	}
         
         public void visitTopLevel(TopLevel that) {
             visitTree(that);

@@ -11,6 +11,9 @@ import decaf.tree.Tree.IfSubStmt;
 import decaf.error.BadArgCountError;
 import decaf.error.BadArgTypeError;
 import decaf.error.BadArrElementError;
+import decaf.error.BadArrIndexError;
+import decaf.error.BadArrOperArgError;
+import decaf.error.BadDefError;
 import decaf.error.BadLengthArgError;
 import decaf.error.BadLengthError;
 import decaf.error.BadNewArrayLength;
@@ -62,6 +65,14 @@ public class TypeCheck extends Tree.Visitor {
 	public static void checkType(Tree.TopLevel tree) {
 		new TypeCheck(Driver.getDriver().getTable()).visitTopLevel(tree);
 	}
+	
+	public boolean checkCanBeArrElement(Type type) {
+		if(type.equal(BaseType.VOID) || type.equal(BaseType.ERROR) 
+				|| type.equal(BaseType.UNKNOWN))
+			return false ;
+		else 
+			return true ;
+	}
 
 	@Override
 	public void visitScopy(Tree.Scopy scopy) {
@@ -90,6 +101,31 @@ public class TypeCheck extends Tree.Visitor {
 	public void visitIfSubStmt(Tree.IfSubStmt ifSubStmt) {
 		checkTestExpr(ifSubStmt.expr);
 		ifSubStmt.stmt.accept(this);
+	}
+	
+	@Override
+	public void visitDefaultArrayRef(Tree.DefaultArrayRef defaultArr) {
+		defaultArr.expr.accept(this);
+		defaultArr.index.accept(this);
+		defaultArr.deft.accept(this);
+		defaultArr.type = BaseType.ERROR ;
+		if(defaultArr.expr.type.isArrayType() == false) {
+			issueError(new BadArrOperArgError(defaultArr.expr.loc));
+			if(checkCanBeArrElement(defaultArr.deft.type)) {
+				defaultArr.type = defaultArr.deft.type ;
+			}
+		} else {
+			ArrayType tmp = (ArrayType)defaultArr.expr.type ;
+			defaultArr.type = tmp.getElementType() ;
+			if(tmp.getElementType().equal(defaultArr.deft.type)==false) {
+				issueError(new BadDefError(defaultArr.index.loc, tmp.getElementType().toString(), defaultArr.deft.type.toString())) ;
+			} else {
+				defaultArr.type = defaultArr.deft.type ;
+			}
+		}
+		if(defaultArr.index.type.equal(BaseType.INT) == false) {
+			issueError(new BadArrIndexError(defaultArr.index.loc)) ;
+		}
 	}
 	
 	@Override
@@ -625,12 +661,6 @@ public class TypeCheck extends Tree.Visitor {
 	private Type checkBinaryOp(Tree.Expr left, Tree.Expr right, int op, Location location) {
 		left.accept(this);
 		right.accept(this);
-		
-
-		if(op==Tree.DMOD) {
-		//	System.out.println(left.type+"  "+right.type);
-		}
-		
 		if (left.type.equal(BaseType.ERROR) || right.type.equal(BaseType.ERROR)) {
 			switch (op) {
 			case Tree.PLUS:
