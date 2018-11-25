@@ -215,23 +215,56 @@ Stmt		    :	VariableDef
                 |	ForeachStmt
                 ;
 
-ForeachStmt		:	FOREACH '(' BoundVariable IN Expr whileExpr ')' Stmt
+AttachedStmt	:	VariableDef
+					{
+						$$.stmt = $1.vdef;
+					}
+					
+                |	SimpleStmt ';'
+                	{
+                		if ($$.stmt == null) {
+                			$$.stmt = new Tree.Skip($2.loc);
+                		}
+                	}
+                |	IfStmt
+                |	WhileStmt
+                |	ForStmt
+                |	ReturnStmt ';'
+                |	PrintStmt ';'
+                |	BreakStmt ';'
+                |	OCStmt ';'
+                |	GuardedStmt
+                |	ForeachStmt
+                ;
+
+AttachedStmtBlock:	'{' StmtList '}'
+					{
+						$$.attBlock = new AttachedStmtBlock($2.slist, $1.loc);
+					}
+				|
+					AttachedStmt
+					{
+						List<Tree> tmp = new ArrayList<Tree>() ;
+						tmp.add($1.stmt) ;
+						$$.attBlock = new AttachedStmtBlock(tmp, $1.loc) ;
+					}
+                ;
+
+ForeachStmt		:	FOREACH '(' BoundVariable IN Expr whileExpr ')' AttachedStmtBlock
 					{
 						if($6.expr==null)
 							$6.expr = new Tree.Literal(Tree.BOOL, true, $7.loc) ;
-						$$.stmt = new Tree.Foreach($3.type, $3.ident, $5.expr, $6.expr, $8.stmt, $1.loc) ;
+						$$.stmt = new Tree.Foreach($3.vdef, $5.expr, $6.expr, $8.attBlock, $1.loc) ;
 					}
 				;
 		
 BoundVariable	:	VAR IDENTIFIER
 					{ 
-						$$.type = new Tree.TypeIdent(Tree.VAR, $1.loc) ;
-						$$.ident = $2.ident ;
+						$$.vdef = new Tree.VarDef($2.ident, new Tree.TypeIdent(Tree.VAR, $1.loc), $1.loc) ;
 					}
 				|	Type IDENTIFIER
 					{ 
-						$$.type = $1.type ;
-						$$.ident = $2.ident ;
+						$$.vdef = new Tree.VarDef($2.ident, $1.type, $1.loc) ;
 					}
 				;
 				

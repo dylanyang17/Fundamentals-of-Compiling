@@ -5,6 +5,7 @@ import java.util.List;
 import decaf.Location;
 import decaf.tree.Tree;
 import decaf.tree.Tree.ArrayConstant;
+import decaf.tree.Tree.AttachedStmtBlock;
 import decaf.tree.Tree.ClassDef;
 import decaf.tree.Tree.Expr;
 import decaf.tree.Tree.GuardedIf;
@@ -22,6 +23,8 @@ public class SemValue {
 
 	public Location loc;
 
+	public Tree.AttachedStmtBlock attBlock ;
+	
 	public int typeTag;
 	
 	public Object literal;

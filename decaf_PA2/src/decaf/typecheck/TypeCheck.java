@@ -8,12 +8,14 @@ import decaf.Driver;
 import decaf.Location;
 import decaf.tree.Tree;
 import decaf.tree.Tree.IfSubStmt;
+import decaf.tree.Tree.VarDef;
 import decaf.error.BadArgCountError;
 import decaf.error.BadArgTypeError;
 import decaf.error.BadArrElementError;
 import decaf.error.BadArrIndexError;
 import decaf.error.BadArrOperArgError;
 import decaf.error.BadDefError;
+import decaf.error.BadForeachTypeError;
 import decaf.error.BadLengthArgError;
 import decaf.error.BadLengthError;
 import decaf.error.BadNewArrayLength;
@@ -73,6 +75,11 @@ public class TypeCheck extends Tree.Visitor {
 		else 
 			return true ;
 	}
+	
+	public void changeType(VarDef varDef, Type type) {
+		varDef.type.type = type ;
+		table.lookup(varDef.name, true).setType(type) ;
+	}
 
 	@Override
 	public void visitScopy(Tree.Scopy scopy) {
@@ -125,6 +132,44 @@ public class TypeCheck extends Tree.Visitor {
 		}
 		if(defaultArr.index.type.equal(BaseType.INT) == false) {
 			issueError(new BadArrIndexError(defaultArr.index.loc)) ;
+		}
+	}
+	
+	@Override
+	public void visitForeach(Tree.Foreach foreach) {
+		table.open(foreach.associatedScope); 
+		foreach.varDef.accept(this);
+		foreach.expr1.accept(this);
+		checkTestExpr(foreach.expr2);
+		breaks.add(foreach) ;
+		if(foreach.expr1.type.equal(BaseType.ERROR)) {
+			changeType(foreach.varDef, BaseType.ERROR) ;
+		}
+		else if(foreach.expr1.type.isArrayType() == false) {
+			issueError(new BadArrOperArgError(foreach.expr1.loc)) ;
+			changeType(foreach.varDef, BaseType.ERROR) ;
+		} else {
+			ArrayType tmp = (ArrayType)foreach.expr1.type;
+			if(foreach.varDef.type.type.equal(BaseType.UNKNOWN)
+					|| foreach.varDef.type.type.equal(BaseType.ERROR)
+					|| tmp.getElementType().compatible(foreach.varDef.type.type)) {
+				if(foreach.varDef.type.type.equal(BaseType.UNKNOWN))
+					changeType(foreach.varDef, tmp.getElementType()) ;
+			} else {
+				System.out.println("LALAL3");
+				issueError(new BadForeachTypeError(foreach.varDef.loc, foreach.varDef.type.type.toString(), tmp.getElementType().toString()));
+				System.out.println("LALAL4");
+			}
+		}
+		foreach.attBlock.accept(this);
+		breaks.pop();
+		table.close();
+	}
+	
+	@Override
+	public void visitAttachedStmtBlock(Tree.AttachedStmtBlock attBlock) {
+		for(Tree s : attBlock.block) {
+			s.accept(this);
 		}
 	}
 	

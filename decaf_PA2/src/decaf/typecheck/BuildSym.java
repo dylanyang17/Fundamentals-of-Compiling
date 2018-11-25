@@ -108,6 +108,24 @@ public class BuildSym extends Tree.Visitor {
 		defaultArr.deft.accept(this);
 	}
 	
+	@Override
+	public void visitForeach(Tree.Foreach foreach) {
+		foreach.associatedScope = new LocalScope(foreach.attBlock);
+		table.open(foreach.associatedScope);
+		foreach.varDef.accept(this);
+		foreach.expr1.accept(this);
+		foreach.expr2.accept(this);
+		for (Tree s : foreach.attBlock.block) {
+			s.accept(this);
+		}
+		table.close();
+	}
+	
+	@Override
+	public void visitAttachedStmtBlock(Tree.AttachedStmtBlock block) {
+		/////////////
+	}
+	
 	// root
 	@Override
 	public void visitTopLevel(Tree.TopLevel program) {
@@ -245,6 +263,9 @@ public class BuildSym extends Tree.Visitor {
 		case Tree.BOOL:
 			type.type = BaseType.BOOL;
 			break;
+		case Tree.VAR:
+			type.type = BaseType.UNKNOWN ;
+			break ;
 		default:
 			type.type = BaseType.STRING;
 		}

@@ -307,6 +307,7 @@ public abstract class Tree {
     public static final int COMPARRAYEXPR = DEFAULTARRAYREF + 1;
     public static final int FOREACH = COMPARRAYEXPR + 1 ;
     public static final int VAR = FOREACH + 1 ;
+    public static final int ATTACHEDSTMTBLOCK = VAR + 1 ;
 
     public Location loc;
     public Type type;
@@ -553,30 +554,56 @@ public abstract class Tree {
     
     public static class Foreach extends Tree {
     	
-    	public TypeLiteral type ;
-    	public String ident ;
+    	public LocalScope associatedScope;
+    	public VarDef varDef ;
 		public Expr expr1 , expr2 ;
-		public Tree stmt ;
+		public AttachedStmtBlock attBlock ;
 	
-    	public Foreach(TypeLiteral type, String ident, Expr expr1, Expr expr2, Tree stmt, Location loc){
+    	public Foreach(VarDef varDef, Expr expr1, Expr expr2, AttachedStmtBlock attBlock, Location loc){
     		super(FOREACH, loc) ;
-    		this.type=type;
-    		this.ident=ident;
+    		this.varDef=varDef ;
     		this.expr1=expr1;
     		this.expr2=expr2;
-    		this.stmt=stmt;
+    		this.attBlock=attBlock;
     	}
     	
     	@Override
     	public void printTo(IndentPrintWriter pw) {
     		pw.println("foreach");
     		pw.incIndent();
-    		pw.print("varbind " + ident + ' ');
-    		type.printTo(pw);
+    		pw.print("varbind " + varDef.name + ' ');
+    		varDef.type.printTo(pw);
     		pw.println();
     		expr1.printTo(pw);
     		expr2.printTo(pw);
-    		stmt.printTo(pw);
+    		attBlock.printTo(pw);/////
+    		pw.decIndent();
+    	}
+    	
+    	public void accept(Visitor v) {
+    		v.visitForeach(this);
+    	}
+    }
+    
+    public static class AttachedStmtBlock extends Block {
+
+        public AttachedStmtBlock(List<Tree> block, Location loc) {
+            super(block , loc);
+        }
+
+    	@Override
+        public void accept(Visitor v) {
+            v.visitAttachedStmtBlock(this);
+        }
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		//
+    		pw.println("stmtblock");
+    		pw.incIndent();
+    		for (Tree s : block) {
+    			s.printTo(pw);
+    		}
     		pw.decIndent();
     	}
     }
@@ -1586,6 +1613,14 @@ public abstract class Tree {
         public void visitDefaultArrayRef(Tree.DefaultArrayRef that) {
     		visitTree(that) ;
     	}
+        
+        public void visitForeach(Tree.Foreach that) {
+    		visitTree(that) ;
+    	}
+        
+        public void visitAttachedStmtBlock(Tree.AttachedStmtBlock that) {
+        	visitTree(that) ;
+        }
         
         public void visitTopLevel(TopLevel that) {
             visitTree(that);

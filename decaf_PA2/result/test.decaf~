@@ -1,6 +1,28 @@
+class Father {
+	int d;
+	int foo(){
+		return d;
+	}
+}
+class Child extends Father{
+	int b;
+}
 class Main {
     static void main() {
-		int b;
-		b= var x+1;
+
+		class Child[] a;
+		int c;
+		foreach(class Father i in a while c==3){
+			int x ;
+			x = i.foo();
+			break ;
+			break ;
+		}
+
+		class Father x;
+		foreach(class Father i in a while c>2)
+			foreach(class Father i in a while c>2)
+				foreach(class Father i in a while c>2)
+					x=i ;
 	}
 }
