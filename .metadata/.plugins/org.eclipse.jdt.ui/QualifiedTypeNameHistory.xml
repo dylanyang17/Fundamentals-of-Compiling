@@ -13,4 +13,20 @@
 <fullyQualifiedTypeName name="decaf.error.BadSealedInherError"/>
 <fullyQualifiedTypeName name="decaf.tree.Tree.GuardedIf"/>
 <fullyQualifiedTypeName name="decaf.tree.Tree.IfSubStmt"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.Assign"/>
+<fullyQualifiedTypeName name="decaf.error.IncompatBinOpError"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.Ident"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.LValue"/>
+<fullyQualifiedTypeName name="decaf.error.BadArrElementError"/>
+<fullyQualifiedTypeName name="decaf.error.BadNewArrayLength"/>
+<fullyQualifiedTypeName name="decaf.type.BaseType"/>
+<fullyQualifiedTypeName name="decaf.error.BadArrOperArgError"/>
+<fullyQualifiedTypeName name="decaf.error.BadArrIndexError"/>
+<fullyQualifiedTypeName name="decaf.type.ArrayType"/>
+<fullyQualifiedTypeName name="decaf.error.BadDefError"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.Foreach"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.VarDef"/>
+<fullyQualifiedTypeName name="decaf.error.BadForeachTypeError"/>
+<fullyQualifiedTypeName name="decaf.tree.Tree.AttachedStmtBlock"/>
 </qualifiedTypeNameHistroy>
