@@ -4,9 +4,13 @@ import java.util.Iterator;
 
 import decaf.Driver;
 import decaf.tree.Tree;
+import decaf.tree.Tree.GuardedIf;
+import decaf.tree.Tree.IfSubStmt;
+import decaf.tree.Tree.Scopy;
 import decaf.error.BadArrElementError;
 import decaf.error.BadInheritanceError;
 import decaf.error.BadOverrideError;
+import decaf.error.BadSealedInherError;
 import decaf.error.BadVarTypeError;
 import decaf.error.ClassNotFoundError;
 import decaf.error.DecafError;
@@ -39,14 +43,96 @@ public class BuildSym extends Tree.Visitor {
 	public static void buildSymbol(Tree.TopLevel tree) {
 		new BuildSym(Driver.getDriver().getTable()).visitTopLevel(tree);
 	}
-
+	
+	@Override
+	public void visitScopy(Tree.Scopy scopy) {
+		scopy.ident.accept(this);
+		scopy.expr.accept(this);
+	}
+	
+	@Override
+	public void visitGuardedIf(Tree.GuardedIf gif) {
+		for(IfSubStmt s : gif.fields) {
+			s.accept(this);
+		}
+	}
+	
+	@Override
+	public void visitIfSubStmt(Tree.IfSubStmt ifSubStmt) {
+		ifSubStmt.expr.accept(this);
+		ifSubStmt.stmt.accept(this);
+	}
+	
+	@Override
+	public void visitIdent(Tree.Ident ident) {
+		if(ident.isVar == true) {
+			Variable v = new Variable(ident.name, BaseType.UNKNOWN, ident.loc);
+			Symbol sym = table.lookup(ident.name, true);
+			if (sym != null) {
+				if (table.getCurrentScope().equals(sym.getScope())
+						&& ident.isLeft) {
+					issueError(new DeclConflictError(v.getLocation(), v.getName(),
+							sym.getLocation()));
+				} else if ((sym.getScope().isFormalScope() && table.getCurrentScope().isLocalScope() && ((LocalScope)table.getCurrentScope()).isCombinedtoFormal() )
+						&& ident.isLeft) {
+					issueError(new DeclConflictError(v.getLocation(), v.getName(),
+							sym.getLocation()));
+				} else if(ident.isLeft){
+					table.declare(v);
+				}
+			} else if(ident.isLeft){
+				table.declare(v);
+			}
+			ident.symbol = v;
+			ident.type=BaseType.UNKNOWN ;
+		}
+	}
+	
+	@Override
+	public void visitAssign(Tree.Assign assign) {
+		assign.left.isLeft=true ;
+		assign.left.accept(this);
+		assign.expr.accept(this);
+	}
+	
+	@Override
+	public void visitBinary(Tree.Binary binary) {
+		binary.left.accept(this);
+		binary.right.accept(this);
+	}
+	
+	@Override
+	public void visitDefaultArrayRef(Tree.DefaultArrayRef defaultArr) {
+		defaultArr.expr.accept(this);
+		defaultArr.index.accept(this);
+		defaultArr.deft.accept(this);
+	}
+	
+	@Override
+	public void visitForeach(Tree.Foreach foreach) {
+		foreach.associatedScope = new LocalScope(foreach.attBlock);
+		table.open(foreach.associatedScope);
+		foreach.varDef.accept(this);
+		foreach.expr1.accept(this);
+		foreach.expr2.accept(this);
+		for (Tree s : foreach.attBlock.block) {
+			s.accept(this);
+		}
+		table.close();
+	}
+	
+	@Override
+	public void visitAttachedStmtBlock(Tree.AttachedStmtBlock block) {
+		/////////////
+	}
+	
 	// root
 	@Override
 	public void visitTopLevel(Tree.TopLevel program) {
 		program.globalScope = new GlobalScope();
 		table.open(program.globalScope);
 		for (Tree.ClassDef cd : program.classes) {
-			Class c = new Class(cd.name, cd.parent, cd.getLocation());
+			Class c = new Class(cd.isSealed, cd.name, cd.parent, cd.getLocation());
 			Class earlier = table.lookupClass(cd.name);
 			if (earlier != null) {
 				issueError(new DeclConflictError(cd.getLocation(), cd.name,
@@ -65,6 +151,10 @@ public class BuildSym extends Tree.Visitor {
 			}
 			if (calcOrder(c) <= calcOrder(c.getParent())) {
 				issueError(new BadInheritanceError(cd.getLocation()));
+				c.dettachParent();
+			}
+			if (c.getParent()!=null && c.getParent().getSealed() == true) {
+				issueError(new BadSealedInherError(cd.loc)) ;
 				c.dettachParent();
 			}
 		}
@@ -119,8 +209,7 @@ public class BuildSym extends Tree.Visitor {
 			if (table.getCurrentScope().equals(sym.getScope())) {
 				issueError(new DeclConflictError(v.getLocation(), v.getName(),
 						sym.getLocation()));
-			} else if ((sym.getScope().isFormalScope() || sym.getScope()
-					.isLocalScope())) {
+			} else if ((sym.getScope().isFormalScope() && table.getCurrentScope().isLocalScope() && ((LocalScope)table.getCurrentScope()).isCombinedtoFormal() )) {
 				issueError(new DeclConflictError(v.getLocation(), v.getName(),
 						sym.getLocation()));
 			} else {
@@ -150,7 +239,14 @@ public class BuildSym extends Tree.Visitor {
 			d.accept(this);
 			f.appendParam(d.symbol);
 		}
-		funcDef.body.accept(this);
+
+		funcDef.body.associatedScope = new LocalScope(funcDef.body);
+		funcDef.body.associatedScope.setCombinedtoFormal(true);
+		table.open(funcDef.body.associatedScope);
+		for (Tree s : funcDef.body.block) {
+			s.accept(this);
+		}
+		table.close();
 		table.close();
 	}
 
@@ -167,6 +263,9 @@ public class BuildSym extends Tree.Visitor {
 		case Tree.BOOL:
 			type.type = BaseType.BOOL;
 			break;
+		case Tree.VAR:
+			type.type = BaseType.UNKNOWN ;
+			break ;
 		default:
 			type.type = BaseType.STRING;
 		}

@@ -4,8 +4,12 @@ import java.util.List;
 
 import decaf.Location;
 import decaf.tree.Tree;
+import decaf.tree.Tree.ArrayConstant;
+import decaf.tree.Tree.AttachedStmtBlock;
 import decaf.tree.Tree.ClassDef;
 import decaf.tree.Tree.Expr;
+import decaf.tree.Tree.GuardedIf;
+import decaf.tree.Tree.IfSubStmt;
 import decaf.tree.Tree.MethodDef;
 import decaf.tree.Tree.LValue;
 import decaf.tree.Tree.TopLevel;
@@ -14,11 +18,13 @@ import decaf.tree.Tree.TypeLiteral;
 import decaf.utils.MiscUtils;
 
 public class SemValue {
-
+	
 	public int code;
 
 	public Location loc;
 
+	public Tree.AttachedStmtBlock attBlock ;
+	
 	public int typeTag;
 	
 	public Object literal;
@@ -57,6 +63,14 @@ public class SemValue {
 	public Expr expr;
 
 	public LValue lvalue;
+	
+	public List<IfSubStmt> glist ;
+	
+	public GuardedIf gif ;
+	
+	public ArrayConstant acons ;
+	
+	public List<Tree.Literal> llist ;
 
 	/**
 	 * 创建一个关键字的语义值

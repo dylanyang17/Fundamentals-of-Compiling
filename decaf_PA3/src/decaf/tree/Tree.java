@@ -304,7 +304,22 @@ public abstract class Tree {
     public static final int BOOL = INT + 1; 
     public static final int STRING = BOOL + 1; 
 
-
+    /**
+     * Defined by myself
+     */
+    public static final int SCOPY = STRING + 1 ;
+    public static final int GUARDEDIF = SCOPY + 1 ;
+    public static final int IFSUBSTMT = GUARDEDIF + 1 ;
+    public static final int ARRAYCONSTANT = IFSUBSTMT + 1;
+    public static final int DMOD = ARRAYCONSTANT + 1 ;
+    public static final int DADD = DMOD + 1;
+    public static final int SUBARRAY = DADD + 1;
+    public static final int DEFAULTARRAYREF = SUBARRAY + 1 ;
+    public static final int COMPARRAYEXPR = DEFAULTARRAYREF + 1;
+    public static final int FOREACH = COMPARRAYEXPR + 1 ;
+    public static final int VAR = FOREACH + 1 ;
+    public static final int ATTACHEDSTMTBLOCK = VAR + 1 ;
+    
     public Location loc;
     public Type type;
     public int tag;
@@ -365,17 +380,257 @@ public abstract class Tree {
     		pw.decIndent();
     	}
     }
+    
+ public static class Scopy extends Tree{
+    	
+    	public Ident ident ;
+    	public Expr expr ;
+    	
+    	public Scopy(Ident ident, Expr expr, Location loc) {
+    		super(SCOPY, loc) ;
+    		this.ident = ident ;
+    		this.expr = expr ;
+    	}
+    	
+    	@Override
+    	public void accept(Visitor v) {
+    		v.visitScopy(this);
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("scopy") ;
+    		pw.incIndent();
+    		pw.println(ident.name);
+    		expr.printTo(pw);
+    		pw.decIndent();
+    	}
+    }
+    
+    public static class IfSubStmt extends Tree{
+    	public Expr expr ;
+    	public Tree stmt ;
+    	
+    	public IfSubStmt(Expr expr, Tree stmt, Location loc) {
+    		super(IFSUBSTMT, loc) ;
+    		this.expr = expr ;
+    		this.stmt = stmt ;
+    		this.loc = loc ;
+    	}
+    	
+    	@Override
+    	public void accept(Visitor v) {
+    		v.visitIfSubStmt(this);
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("guard");
+    		pw.incIndent();
+    		expr.printTo(pw) ;
+    		stmt.printTo(pw);
+    		pw.decIndent();
+    	}
+    }
+    
+    public static class GuardedIf extends Tree {
+    	public List<IfSubStmt> fields ;
+    	
+    	public GuardedIf(List<IfSubStmt> fields, Location loc) {
+    		super(GUARDEDIF, loc) ;
+    		this.fields = fields ;
+    	}
+
+    	@Override
+    	public void accept(Visitor v) {
+    		v.visitGuardedIf(this);
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("guarded");
+    		pw.incIndent();
+    		for (IfSubStmt s : fields) {
+    			s.printTo(pw);
+    		}
+    		if(fields.size()==0) {
+    			pw.println("<empty>");
+    		}
+    		pw.decIndent();
+    	}
+    }
+    
+    public static class ArrayConstant extends Expr {
+    	
+    	public List<Expr> fields ;
+    	
+    	public ArrayConstant(List<Expr> fields, Location loc){
+    		super(ARRAYCONSTANT, loc) ;
+    		this.fields = fields ;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("array const");
+    		pw.incIndent();
+    		for(Expr s : fields) {
+    			s.printTo(pw);
+    		}
+    		if(fields.size()==0) {
+    			pw.println("<empty>");
+    		}
+    		pw.decIndent();
+    	}
+    }
+    
+    public static class SubArray extends Expr {
+    	
+		public Expr expr , begin, end ;
+	
+    	public SubArray(Expr expr, Expr begin, Expr end, Location loc){
+    		super(SUBARRAY, loc) ;
+    		this.expr=expr;
+    		this.begin=begin;
+    		this.end=end;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("arrref");
+    		pw.incIndent();
+    		expr.printTo(pw);
+    		pw.println("range");
+    		pw.incIndent();
+    		begin.printTo(pw);
+    		end.printTo(pw);
+    		pw.decIndent();
+    		pw.decIndent();
+    	}
+    }
+
+    public static class DefaultArrayRef extends Expr {
+    	
+		public Expr expr , index, deft ;
+	
+    	public DefaultArrayRef(Expr expr, Expr index, Expr deft, Location loc){
+    		super(DEFAULTARRAYREF, loc) ;
+    		this.expr=expr;
+    		this.index=index;
+    		this.deft=deft;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("arrref");
+    		pw.incIndent();
+    		expr.printTo(pw);
+    		index.printTo(pw);
+    		pw.println("default");
+    		pw.incIndent();
+    		deft.printTo(pw);
+    		pw.decIndent();
+    		pw.decIndent();
+    	}
+    	
+    	@Override
+    	public void accept(Visitor v) {
+    		v.visitDefaultArrayRef(this);
+    	}
+    }
+    
+    public static class CompArrayExpr extends Expr {
+    	
+		public Expr expr1 , expr2, boolExpr ;
+		public String ident ;
+	
+    	public CompArrayExpr(Expr expr1, String ident, Expr expr2, Expr boolExpr, Location loc){
+    		super(COMPARRAYEXPR, loc) ;
+    		this.expr1=expr1;
+    		this.ident=ident;
+    		this.expr2=expr2;
+    		this.boolExpr=boolExpr;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("array comp");
+    		pw.incIndent();
+    		pw.println("varbind "+ident);
+    		expr2.printTo(pw);
+    		boolExpr.printTo(pw);
+    		expr1.printTo(pw);
+    		pw.decIndent();
+    	}
+    }
+    
+    public static class Foreach extends Tree {
+    	
+    	public LocalScope associatedScope;
+    	public VarDef varDef ;
+		public Expr expr1 , expr2 ;
+		public AttachedStmtBlock attBlock ;
+	
+    	public Foreach(VarDef varDef, Expr expr1, Expr expr2, AttachedStmtBlock attBlock, Location loc){
+    		super(FOREACH, loc) ;
+    		this.varDef=varDef ;
+    		this.expr1=expr1;
+    		this.expr2=expr2;
+    		this.attBlock=attBlock;
+    	}
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		pw.println("foreach");
+    		pw.incIndent();
+    		pw.print("varbind " + varDef.name + ' ');
+    		varDef.type.printTo(pw);
+    		pw.println();
+    		expr1.printTo(pw);
+    		expr2.printTo(pw);
+    		attBlock.printTo(pw);/////
+    		pw.decIndent();
+    	}
+    	
+    	public void accept(Visitor v) {
+    		v.visitForeach(this);
+    	}
+    }
+    
+    public static class AttachedStmtBlock extends Block {
+
+        public AttachedStmtBlock(List<Tree> block, Location loc) {
+            super(block , loc);
+        }
+
+    	@Override
+        public void accept(Visitor v) {
+            v.visitAttachedStmtBlock(this);
+        }
+    	
+    	@Override
+    	public void printTo(IndentPrintWriter pw) {
+    		//
+    		pw.println("stmtblock");
+    		pw.incIndent();
+    		for (Tree s : block) {
+    			s.printTo(pw);
+    		}
+    		pw.decIndent();
+    	}
+    }
 
     public static class ClassDef extends Tree {
     	
+    	public boolean isSealed ;
     	public String name;
     	public String parent;
     	public List<Tree> fields;
     	public Class symbol;
 
-        public ClassDef(String name, String parent, List<Tree> fields,
+        public ClassDef(boolean isSealed, String name, String parent, List<Tree> fields,
     			Location loc) {
     		super(CLASSDEF, loc);
+    		this.isSealed = isSealed;
     		this.name = name;
     		this.parent = parent;
     		this.fields = fields;
@@ -731,6 +986,7 @@ public abstract class Tree {
 
     public abstract static class Expr extends Tree {
 
+    	public boolean isLeft = false ;
     	public Type type;
     	public Temp val;
     	public boolean isClass;
@@ -1174,13 +1430,15 @@ public abstract class Tree {
       */
     public static class Ident extends LValue {
 
+    	public boolean isVar ;
     	public Expr owner;
     	public String name;
     	public Variable symbol;
     	public boolean isDefined;
 
-        public Ident(Expr owner, String name, Location loc) {
+        public Ident(boolean isVar, Expr owner, String name, Location loc) {
             super(IDENT, loc);
+            this.isVar = isVar ;
     		this.owner = owner;
     		this.name = name;
         }
@@ -1351,6 +1609,30 @@ public abstract class Tree {
             super();
         }
 
+        public void visitScopy(Scopy that) {
+        	visitTree(that) ;
+        }
+        
+        public void visitGuardedIf(GuardedIf that) {
+        	visitTree(that) ;
+        }
+        
+        public void visitIfSubStmt(IfSubStmt that) {
+        	visitTree(that) ;
+        }
+        
+        public void visitDefaultArrayRef(Tree.DefaultArrayRef that) {
+    		visitTree(that) ;
+    	}
+        
+        public void visitForeach(Tree.Foreach that) {
+    		visitTree(that) ;
+    	}
+        
+        public void visitAttachedStmtBlock(Tree.AttachedStmtBlock that) {
+        	visitTree(that) ;
+        }
+        
         public void visitTopLevel(TopLevel that) {
             visitTree(that);
         }
