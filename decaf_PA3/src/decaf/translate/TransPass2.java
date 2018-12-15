@@ -55,15 +55,14 @@ public class TransPass2 extends Tree.Visitor {
 	public void visitScopy(Tree.Scopy scopy) {
 		scopy.ident.accept(this);
 		scopy.expr.accept(this);
-		Temp esz = tr.genLoadImm4(0);
+		Temp esz = tr.genLoadImm4(4);
 		Temp addr1 = tr.genAdd(scopy.ident.val, esz);
 		Temp addr2 = tr.genAdd(scopy.expr.val, esz);
 		//tr.genDebug("Start!!");
-		for(int i=1;i<=scopy.classSymbol.getSize()/4;++i) {
+		for(int i=2;i<=scopy.classSymbol.getSize()/4;++i) {
 			Temp tmp = tr.genLoad(addr2, 0) ;
 			tr.genStore(tmp, addr1, 0);
-			tr.genDebugInt(addr1);
-			
+		//	tr.genDebugInt(addr1);
 			addr1=tr.genAdd(addr1, esz) ;
 			addr2=tr.genAdd(addr2, esz) ;
 		}

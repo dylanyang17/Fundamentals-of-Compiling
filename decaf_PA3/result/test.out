@@ -84,29 +84,40 @@ main:
     _T25 = *(_T17 + 0)
     _T26 = *(_T25 + 12)
     call _T26
-    _T27 = 0
+    _T27 = 4
     _T28 = (_T18 + _T27)
     _T29 = (_T17 + _T27)
     _T30 = *(_T29 + 0)
     *(_T28 + 0) = _T30
-    parm _T28
-    call _PrintInt
-    LLLL
     _T31 = (_T28 + _T27)
     _T32 = (_T29 + _T27)
     _T33 = *(_T32 + 0)
     *(_T31 + 0) = _T33
-    parm _T31
-    call _PrintInt
-    LLLL
     _T34 = (_T31 + _T27)
     _T35 = (_T32 + _T27)
-    _T36 = *(_T35 + 0)
-    *(_T34 + 0) = _T36
-    parm _T34
+    _T36 = 10
+    parm _T17
+    parm _T36
+    _T37 = *(_T17 + 0)
+    _T38 = *(_T37 + 8)
+    call _T38
+    parm _T18
+    _T39 = *(_T18 + 0)
+    _T40 = *(_T39 + 16)
+    _T41 =  call _T40
+    parm _T41
     call _PrintInt
-    LLLL
-    _T37 = (_T34 + _T27)
-    _T38 = (_T35 + _T27)
+    _T42 = "\n"
+    parm _T42
+    call _PrintString
+    parm _T18
+    _T43 = *(_T18 + 0)
+    _T44 = *(_T43 + 20)
+    _T45 =  call _T44
+    parm _T45
+    call _PrintInt
+    _T46 = "\n"
+    parm _T46
+    call _PrintString
 }
 

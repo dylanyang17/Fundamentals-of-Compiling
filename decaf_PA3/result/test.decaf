@@ -24,6 +24,9 @@ class Main {
 		a.seta(1);
 		a.setb(3);
 		scopy(b,a) ;
+		a.seta(10) ;
+        Print(b.geta(), "\n");
+        Print(b.getb(), "\n");
     }
 }
 
