@@ -1,5 +1,5 @@
 Exception in thread "main" java.lang.NullPointerException
-	at decaf.tac.Tac.toString(Tac.java:258)
+	at decaf.tac.Tac.toString(Tac.java:265)
 	at java.lang.String.valueOf(String.java:2994)
 	at java.lang.StringBuilder.append(StringBuilder.java:131)
 	at decaf.translate.Translater.printTo(Translater.java:69)

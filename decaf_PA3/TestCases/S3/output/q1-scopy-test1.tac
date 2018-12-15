@@ -118,24 +118,17 @@ main:
     _T38 = *(_T32 + 0)
     _T39 = *(_T38 + 12)
     call _T39
-    parm _T32
-    _T40 = *(_T32 + 0)
-    _T41 = *(_T40 + 16)
-    _T42 =  call _T41
-    parm _T42
-    call _PrintInt
-    parm _T31
-    _T43 = *(_T31 + 0)
-    _T44 = *(_T43 + 16)
-    _T45 =  call _T44
-    parm _T45
-    call _PrintInt
-    _T46 = 5
-    parm _T32
-    parm _T46
-    _T47 = *(_T32 + 0)
-    _T48 = *(_T47 + 12)
-    call _T48
+    _T40 = 4
+    _T41 = (_T31 + _T40)
+    _T42 = (_T32 + _T40)
+    _T43 = *(_T42 + 0)
+    *(_T41 + 0) = _T43
+    _T44 = (_T41 + _T40)
+    _T45 = (_T42 + _T40)
+    _T46 = *(_T45 + 0)
+    *(_T44 + 0) = _T46
+    _T47 = (_T44 + _T40)
+    _T48 = (_T45 + _T40)
     parm _T32
     _T49 = *(_T32 + 0)
     _T50 = *(_T49 + 16)
@@ -147,6 +140,24 @@ main:
     _T53 = *(_T52 + 16)
     _T54 =  call _T53
     parm _T54
+    call _PrintInt
+    _T55 = 5
+    parm _T32
+    parm _T55
+    _T56 = *(_T32 + 0)
+    _T57 = *(_T56 + 12)
+    call _T57
+    parm _T32
+    _T58 = *(_T32 + 0)
+    _T59 = *(_T58 + 16)
+    _T60 =  call _T59
+    parm _T60
+    call _PrintInt
+    parm _T31
+    _T61 = *(_T31 + 0)
+    _T62 = *(_T61 + 16)
+    _T63 =  call _T62
+    parm _T63
     call _PrintInt
 }
 

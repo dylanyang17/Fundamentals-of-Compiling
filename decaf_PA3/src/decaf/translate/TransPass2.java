@@ -70,6 +70,22 @@ public class TransPass2 extends Tree.Visitor {
 	}
 	
 	@Override
+	public void visitGuardedIf(Tree.GuardedIf gif) {
+		for(Tree.IfSubStmt t : gif.fields) {
+			t.accept(this);
+		}
+	}
+	
+	@Override
+	public void visitIfSubStmt(Tree.IfSubStmt ifSubStmt) {
+		ifSubStmt.expr.accept(this);
+		Label exit = Label.createLabel();
+		tr.genBeqz(ifSubStmt.expr.val , exit);
+		ifSubStmt.stmt.accept(this);
+		tr.genMark(exit);
+	}
+	
+	@Override
 	public void visitVarDef(Tree.VarDef varDef) {
 		if (varDef.symbol.isLocalVar()) {					//处理局部变量，建立对应Temp
 			Temp t = Temp.createTempI4();
