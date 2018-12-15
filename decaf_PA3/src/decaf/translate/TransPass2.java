@@ -177,7 +177,7 @@ public class TransPass2 extends Tree.Visitor {
 		case PARAM_VAR:
 		case LOCAL_VAR:											//左值为参变量或局部变量,不涉及访存
 			tr.genAssign(((Tree.Ident) assign.left).symbol.getTemp(),
-					assign.expr.val);
+					assign.expr.val);/////getTemp()不存在
 			break;
 		}
 	}
@@ -283,6 +283,12 @@ public class TransPass2 extends Tree.Visitor {
 		if(ident.lvKind == Tree.LValue.Kind.MEMBER_VAR){
 			ident.owner.accept(this);
 		}
+		if (ident.isVar==true) {					//处理局部变量，建立对应Temp
+			Temp t = Temp.createTempI4();
+			t.sym = ident.symbol;
+			ident.symbol.setTemp(t);
+		}
+		
 		switch (ident.lvKind) {
 		case MEMBER_VAR:
 			ident.val = tr.genLoad(ident.owner.val, ident.symbol.getOffset());

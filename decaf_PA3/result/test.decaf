@@ -1,32 +1,7 @@
-class A{
-	int a;	
-	int b;
-	void seta(int t){
-		this.a=t;
-	}
-	void setb(int t){
-		this.b=t;
-	}
-	int geta(){
-		return a;
-	}
-	int getb(){
-		return b;
-	}
-}
-
 class Main {   
     static void main() {
-		class A a;
-		class A b;
-		a = new A() ;
-		b = new A() ;
-		a.seta(1);
-		a.setb(3);
-		scopy(b,a) ;
-		a.seta(10) ;
-        Print(b.geta(), "\n");
-        Print(b.getb(), "\n");
+		int a;
+		a=3;
+		var b=a ;
     }
 }
-

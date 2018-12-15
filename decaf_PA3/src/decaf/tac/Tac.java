@@ -262,7 +262,7 @@ public class Tac {
 		case LES:
 			return binanyOpToString("<");
 		case ASSIGN:
-			return op0.name + " = " + op1.name;
+			return op0.name + " = " + op1.name;  //op0不存在
 		case LOAD_VTBL:
 			return op0.name + " = VTBL <" + vt.name + ">";
 		case INDIRECT_CALL:
