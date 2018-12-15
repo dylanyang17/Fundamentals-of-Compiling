@@ -83,7 +83,7 @@ public class Translater {
 		return funcs;
 	}
 
-	public void createFuncty(Function func) {
+	public void createFuncty(Function func) {    //创建Functy类型变量并和Function符号对应起来
 		Functy functy = new Functy();
 		if (func.isMain()) {
 			functy.label = Label.createLabel("main", true);
@@ -96,18 +96,18 @@ public class Translater {
 		func.setFuncty(functy);
 	}
 
-	public void beginFunc(Function func) {
+	public void beginFunc(Function func) {		//设定currentFuncty并且生成Mark的TAC
 		currentFuncty = func.getFuncty();
 		currentFuncty.paramMemo = memoOf(func);
 		genMark(func.getFuncty().label);
 	}
 
-	public void endFunc() {
+	public void endFunc() {						//结束currentFuncty并将其加入funcs中
 		funcs.add(currentFuncty);
 		currentFuncty = null;
 	}
 
-	private Tac memoOf(Function func) {
+	private Tac memoOf(Function func) {     	//创建一个方法的memo，并返回Tac类型实例。
 		StringBuilder sb = new StringBuilder();
 		Iterator<Symbol> iter = func.getAssociatedScope().iterator();
 		while (iter.hasNext()) {
@@ -123,7 +123,7 @@ public class Translater {
 		}
 	}
 
-	public void createVTable(Class c) {
+	public void createVTable(Class c) {			//定义类c的vtable
 		if (c.getVtable() != null) {
 			return;
 		}
@@ -136,7 +136,7 @@ public class Translater {
 		vtables.add(vtable);
 	}
 
-	private void fillVTableEntries(VTable vt, ClassScope cs) {
+	private void fillVTableEntries(VTable vt, ClassScope cs) {  //填充vtable使得其中的表项与对应的Label变量对应起来
 		if (cs.getParentScope() != null) {
 			fillVTableEntries(vt, cs.getParentScope());
 		}
@@ -151,7 +151,7 @@ public class Translater {
 		}
 	}
 
-	public void append(Tac tac) {
+	public void append(Tac tac) {  	// 在当前的functy中加入Tac语句
 		if (currentFuncty.head == null) {
 			currentFuncty.head = currentFuncty.tail = tac;
 		} else {
@@ -320,7 +320,7 @@ public class Translater {
 		append(Tac.genStore(src, base, Temp.createConstTemp(offset)));
 	}
 
-	public Temp genLoadImm4(int imm) {
+	public Temp genLoadImm4(int imm) {		//生成4字节整型赋值TAC
 		Temp dst = Temp.createTempI4();
 		append(Tac.genLoadImm4(dst, Temp.createConstTemp(imm)));
 		return dst;

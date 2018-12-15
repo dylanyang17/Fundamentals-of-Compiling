@@ -14,7 +14,7 @@ public class TransPass2 extends Tree.Visitor {
 
 	private Translater tr;
 
-	private Temp currentThis;
+	private Temp currentThis;		//当前的"this"
 
 	private Stack<Label> loopExits;
 
@@ -34,11 +34,11 @@ public class TransPass2 extends Tree.Visitor {
 	public void visitMethodDef(Tree.MethodDef funcDefn) {
 		if (!funcDefn.statik) {
 			currentThis = ((Variable) funcDefn.symbol.getAssociatedScope()
-					.lookup("this")).getTemp();
+					.lookup("this")).getTemp();				//设定currentThis
 		}
-		tr.beginFunc(funcDefn.symbol);
+		tr.beginFunc(funcDefn.symbol);						//开始函数
 		funcDefn.body.accept(this);
-		tr.endFunc();
+		tr.endFunc();										//结束函数
 		currentThis = null;
 	}
 
