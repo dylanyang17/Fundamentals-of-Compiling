@@ -12,7 +12,7 @@ import decaf.symbol.Symbol;
 import decaf.symbol.Variable;
 import decaf.tac.Temp;
 
-public class TransPass1 extends Tree.Visitor {	//处理类、方法、变量等的定义，处理order、offset，以及建立对应Temp类对象
+public class TransPass1 extends Tree.Visitor {	//处理类、方法、参变量等的定义，处理order、offset，以及建立对应Temp类对象
 	private Translater tr;
 
 	private int objectSize;
@@ -43,7 +43,7 @@ public class TransPass1 extends Tree.Visitor {	//处理类、方法、变量等�
 
 	@Override
 	public void visitClassDef(Tree.ClassDef classDef) {
-		classDef.symbol.resolveFieldOrder();	//（包括从父类继承来的）类中的方法和变量的符号上分别按顺序排序并存入order中
+		classDef.symbol.resolveFieldOrder();	//（包括从父类继承来的）类中的成员方法和变量的符号上分别按顺序排序并存入order中
 		objectSize = 0;
 		vars.clear();
 		for (Tree f : classDef.fields) {
@@ -57,7 +57,7 @@ public class TransPass1 extends Tree.Visitor {	//处理类、方法、变量等�
 		} else {
 			oc.reset();
 		}
-		for (Variable v : vars) {  				//给变量类型的符号赋上其相对类基址的地址偏移值
+		for (Variable v : vars) {  				//给成员变量类型的符号赋上其相对类基址的地址偏移值
 			v.setOffset(oc.next(OffsetCounter.WORD_SIZE));
 		}
 	}
@@ -85,7 +85,7 @@ public class TransPass1 extends Tree.Visitor {	//处理类、方法、变量等�
 		} else {
 			order = 0;
 		}
-		for (Tree.VarDef vd : funcDef.formals) {	// 设定各局部变量的order并设定对应Temp类对象和偏移值
+		for (Tree.VarDef vd : funcDef.formals) {	// 设定各参变量的order并设定对应Temp类对象和偏移值
 			vd.symbol.setOrder(order++);
 			Temp t = Temp.createTempI4();
 			t.sym = vd.symbol;

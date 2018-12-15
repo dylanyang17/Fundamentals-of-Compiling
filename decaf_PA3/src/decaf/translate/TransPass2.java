@@ -12,6 +12,8 @@ import decaf.type.BaseType;
 
 public class TransPass2 extends Tree.Visitor {
 
+	static public boolean isDebug = true ;
+	
 	private Translater tr;
 
 	private Temp currentThis;		//当前的"this"
@@ -50,8 +52,27 @@ public class TransPass2 extends Tree.Visitor {
 	}
 
 	@Override
+	public void visitScopy(Tree.Scopy scopy) {
+		scopy.ident.accept(this);
+		scopy.expr.accept(this);
+		Temp esz = tr.genLoadImm4(0);
+		Temp addr1 = tr.genAdd(scopy.ident.val, esz);
+		Temp addr2 = tr.genAdd(scopy.expr.val, esz);
+		//tr.genDebug("Start!!");
+		for(int i=1;i<=scopy.classSymbol.getSize()/4;++i) {
+			Temp tmp = tr.genLoad(addr2, 0) ;
+			tr.genStore(tmp, addr1, 0);
+			tr.genDebugInt(addr1);
+			
+			addr1=tr.genAdd(addr1, esz) ;
+			addr2=tr.genAdd(addr2, esz) ;
+		}
+		//tr.genDebug("End!!");
+	}
+	
+	@Override
 	public void visitVarDef(Tree.VarDef varDef) {
-		if (varDef.symbol.isLocalVar()) {
+		if (varDef.symbol.isLocalVar()) {					//处理局部变量，建立对应Temp
 			Temp t = Temp.createTempI4();
 			t.sym = varDef.symbol;
 			varDef.symbol.setTemp(t);
@@ -98,7 +119,7 @@ public class TransPass2 extends Tree.Visitor {
 			break;
 		case Tree.EQ:
 		case Tree.NE:
-			genEquNeq(expr);
+			genEquNeq(expr);						//相等和不等单独处理(因为操作数可以为字符串)
 			break;
 		}
 	}
@@ -122,24 +143,24 @@ public class TransPass2 extends Tree.Visitor {
 	}
 
 	@Override
-	public void visitAssign(Tree.Assign assign) {
+	public void visitAssign(Tree.Assign assign) {				//判断左值类型并处理赋值语句
 		assign.left.accept(this);
 		assign.expr.accept(this);
 		switch (assign.left.lvKind) {
-		case ARRAY_ELEMENT:
+		case ARRAY_ELEMENT:										//左值为数组元素,涉及访存
 			Tree.Indexed arrayRef = (Tree.Indexed) assign.left;
 			Temp esz = tr.genLoadImm4(OffsetCounter.WORD_SIZE);
 			Temp t = tr.genMul(arrayRef.index.val, esz);
 			Temp base = tr.genAdd(arrayRef.array.val, t);
 			tr.genStore(assign.expr.val, base, 0);
 			break;
-		case MEMBER_VAR:
+		case MEMBER_VAR:										//左值为成员变量,涉及访存
 			Tree.Ident varRef = (Tree.Ident) assign.left;
 			tr.genStore(assign.expr.val, varRef.owner.val, varRef.symbol
 					.getOffset());
 			break;
 		case PARAM_VAR:
-		case LOCAL_VAR:
+		case LOCAL_VAR:											//左值为参变量或局部变量,不涉及访存
 			tr.genAssign(((Tree.Ident) assign.left).symbol.getTemp(),
 					assign.expr.val);
 			break;
@@ -147,7 +168,7 @@ public class TransPass2 extends Tree.Visitor {
 	}
 
 	@Override
-	public void visitLiteral(Tree.Literal literal) {
+	public void visitLiteral(Tree.Literal literal) {			//处理常量
 		switch (literal.typeTag) {
 		case Tree.INT:
 			literal.val = tr.genLoadImm4(((Integer)literal.value).intValue());
@@ -247,7 +268,6 @@ public class TransPass2 extends Tree.Visitor {
 		if(ident.lvKind == Tree.LValue.Kind.MEMBER_VAR){
 			ident.owner.accept(this);
 		}
-		
 		switch (ident.lvKind) {
 		case MEMBER_VAR:
 			ident.val = tr.genLoad(ident.owner.val, ident.symbol.getOffset());

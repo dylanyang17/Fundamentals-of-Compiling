@@ -385,6 +385,7 @@ public abstract class Tree {
     	
     	public Ident ident ;
     	public Expr expr ;
+    	public Class classSymbol ;
     	
     	public Scopy(Ident ident, Expr expr, Location loc) {
     		super(SCOPY, loc) ;

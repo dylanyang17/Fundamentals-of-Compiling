@@ -2,13 +2,14 @@ package decaf.tac;
 
 import java.util.Set;
 
+import decaf.translate.TransPass2;
 import decaf.utils.MiscUtils;
 
 public class Tac {
 	public enum Kind {
 		ADD, SUB, MUL, DIV, MOD, NEG, LAND, LOR, LNOT, GTR, GEQ, EQU, NEQ, LEQ,
 		LES, ASSIGN, LOAD_VTBL, INDIRECT_CALL, DIRECT_CALL, RETURN, BRANCH,
-		BEQZ, BNEZ, LOAD, STORE, LOAD_IMM4, LOAD_STR_CONST, MEMO, MARK, PARM
+		BEQZ, BNEZ, LOAD, STORE, LOAD_IMM4, LOAD_STR_CONST, MEMO, MARK, PARM, DEBUG
 	}
 
 	public Kind opc;
@@ -79,7 +80,11 @@ public class Tac {
 		this.op0 = op0;
 		this.label = label;
 	}
-
+	
+	public static Tac genDebug(String s) {
+		return new Tac(Kind.DEBUG, s) ;
+	}
+	
 	public static Tac genAdd(Temp dst, Temp src1, Temp src2) {
 		return new Tac(Kind.ADD, dst, src1, src2);
 	}
@@ -224,6 +229,8 @@ public class Tac {
 
 	public String toString() {
 		switch (opc) {
+		case DEBUG:
+			return TransPass2.isDebug?str:"";
 		case ADD:
 			return binanyOpToString("+");
 		case SUB:

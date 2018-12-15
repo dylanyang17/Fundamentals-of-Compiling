@@ -44,7 +44,7 @@ public class Translater {
 	}
 
 	public void printTo(PrintWriter pw) {
-		for (VTable vt : vtables) {
+		for (VTable vt : vtables) {						//打印Vtable，内部依次为父类名字、类名、非静态的成员方法的名字
 			pw.println("VTABLE(" + vt.name + ") {");
 			if (vt.parent != null) {
 				pw.println("    " + vt.parent.name);
@@ -58,7 +58,7 @@ public class Translater {
 			pw.println("}");
 			pw.println();
 		}
-		for (Functy ft : funcs) {
+		for (Functy ft : funcs) {						//打印
 			pw.println("FUNCTION(" + ft.label.name + ") {");
 			pw.println(ft.paramMemo);
 			Tac tac = ft.head;
@@ -161,7 +161,18 @@ public class Translater {
 		}
 	}
 
-	public Temp genAdd(Temp src1, Temp src2) {
+	public void genDebug(String s) {
+		if(TransPass2.isDebug) append(Tac.genDebug(s)) ;
+	}
+	
+	public void genDebugInt(Temp val) { //打印val对应的值
+		if(TransPass2.isDebug) {
+			genParm(val);
+			genIntrinsicCall(Intrinsic.PRINT_INT);
+		}
+	}
+	
+	public Temp genAdd(Temp src1, Temp src2) {		//增加Add的TAC，并且返回Temp类型的dst
 		Temp dst = Temp.createTempI4();
 		append(Tac.genAdd(dst, src1, src2));
 		return dst;
