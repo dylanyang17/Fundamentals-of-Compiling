@@ -1,31 +1,14 @@
-class C{
-	int a;
-	int b;
-
-	void seta(int a){
-		this.a=a;
-	}
-	void setb(int b){
-		this.b=b;
-	}
-	int geta(){
-		return a;
-	}
-	int getb(){
-		return b;
+class Main {
+    static void main() {
+    	string[] a;
+        a = "pa1" %%2;
+		string b;
+		b= a[0] default "pa2";
+		string c;
+		c= a[2] default "pa3";
+		
+		Print(b);
+		Print(c);
 	}
 }
 
-class Main {   
-	static void main() {
-		class C[] A;
-		class C a;
-		a=new C() ;
-		a.seta(3) ;
-		a.setb(7) ;
-		A = a %% 5 ;
-		a.setb(9) ;
-		Print(A[3].getb()) ;
-		Print(a.getb()) ;
-	}
-}

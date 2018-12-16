@@ -86,6 +86,31 @@ public class TransPass2 extends Tree.Visitor {
 	}
 	
 	@Override
+	public void visitDefaultArrayRef(Tree.DefaultArrayRef defaultArrayRef) {
+		defaultArrayRef.expr.accept(this);
+		defaultArrayRef.index.accept(this);
+		defaultArrayRef.deft.accept(this);
+		defaultArrayRef.val = Temp.createTempI4() ;
+		Label lDeft = Label.createLabel() , exit = Label.createLabel() ;
+		Temp zero = Temp.createTempI4() , wSize = Temp.createTempI4() ;
+		tr.genAssign(zero, Temp.createConstTemp(0));
+		tr.genAssign(wSize, Temp.createConstTemp(OffsetCounter.WORD_SIZE));
+		Temp cond = tr.genGeq(defaultArrayRef.index.val, zero) ;
+		tr.genBeqz(cond, lDeft);
+		Temp length = tr.genLoad(defaultArrayRef.expr.val, -OffsetCounter.WORD_SIZE);
+		cond = tr.genLes(defaultArrayRef.index.val, length);
+		tr.genBeqz(cond, lDeft);  //此后判定为合法
+		Temp addr = tr.genMul(defaultArrayRef.index.val, wSize) ;
+		addr = tr.genAdd(addr, defaultArrayRef.expr.val) ;
+		tr.genAssign(defaultArrayRef.val , tr.genLoad(addr , 0)) ;
+		tr.genBranch(exit);
+		
+		tr.genMark(lDeft);
+		tr.genAssign(defaultArrayRef.val, defaultArrayRef.deft.val);
+		tr.genMark(exit);
+	}
+	
+	@Override
 	public void visitVarDef(Tree.VarDef varDef) {
 		if (varDef.symbol.isLocalVar()) {					//处理局部变量，建立对应Temp
 			Temp t = Temp.createTempI4();
