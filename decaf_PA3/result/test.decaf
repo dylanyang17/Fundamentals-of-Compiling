@@ -1,7 +1,15 @@
+class A{
+	int a;
+	int b;
+	int c;
+}
+
 class Main {   
-    static void main() {
-		int a;
-		a=3;
-		var b=a ;
-    }
+	static void main() {
+		bool [] A ;
+		bool a;
+		a=true ;
+		A = a %% 5 ;
+		Print(A[4]) ;
+	}
 }

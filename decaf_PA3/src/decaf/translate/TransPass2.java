@@ -7,8 +7,10 @@ import decaf.backend.OffsetCounter;
 import decaf.machdesc.Intrinsic;
 import decaf.symbol.Variable;
 import decaf.tac.Label;
+import decaf.tac.Tac;
 import decaf.tac.Temp;
 import decaf.type.BaseType;
+import decaf.type.ClassType;
 
 public class TransPass2 extends Tree.Visitor {
 
@@ -62,11 +64,9 @@ public class TransPass2 extends Tree.Visitor {
 		for(int i=2;i<=scopy.classSymbol.getSize()/4;++i) {
 			Temp tmp = tr.genLoad(addr2, 0) ;
 			tr.genStore(tmp, addr1, 0);
-		//	tr.genDebugInt(addr1);
 			addr1=tr.genAdd(addr1, esz) ;
 			addr2=tr.genAdd(addr2, esz) ;
 		}
-		//tr.genDebug("End!!");
 	}
 	
 	@Override
@@ -93,11 +93,36 @@ public class TransPass2 extends Tree.Visitor {
 			varDef.symbol.setTemp(t);
 		}
 	}
-
+	
 	@Override
 	public void visitBinary(Tree.Binary expr) {
 		expr.left.accept(this);
 		expr.right.accept(this);
+		
+		if(expr.tag==Tree.DMOD) {
+			Temp one=Temp.createTempI4() , wSize=Temp.createTempI4() ;
+			tr.genAssign(one, Temp.createConstTemp(1)); 
+			tr.genAssign(wSize, Temp.createConstTemp(OffsetCounter.WORD_SIZE));
+			expr.val = tr.genNewArray(expr.right.val) ;
+			Temp cnt=Temp.createTempI4(), addr=Temp.createTempI4() ;
+			tr.genAssign(cnt, expr.right.val);
+			tr.genAssign(addr, expr.val);
+			if(expr.left.isClass) { //可能需要确认isClass是否有效
+				
+			} else {				//注意类似于"引用",均占4字节
+				Label loop = Label.createLabel();
+				tr.genMark(loop);			
+				Label exit = Label.createLabel();
+				tr.genBeqz(cnt, exit);
+
+				tr.genStore(expr.left.val, addr, 0);
+				tr.append(Tac.genAdd(addr, addr, wSize));
+				tr.append(Tac.genSub(cnt, cnt, one));
+				tr.genBranch(loop);
+				tr.genMark(exit);
+			}
+			//////////接下来进行赋值/浅复制
+		}
 		switch (expr.tag) {
 		case Tree.PLUS:
 			expr.val = tr.genAdd(expr.left.val, expr.right.val);
@@ -105,7 +130,7 @@ public class TransPass2 extends Tree.Visitor {
 		case Tree.MINUS:
 			expr.val = tr.genSub(expr.left.val, expr.right.val);
 			break;
-		case Tree.MUL:
+ 		case Tree.MUL:
 			expr.val = tr.genMul(expr.left.val, expr.right.val);
 			break;
 		case Tree.DIV:

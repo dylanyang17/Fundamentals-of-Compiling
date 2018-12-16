@@ -382,7 +382,7 @@ public class Translater {
 		genMark(exit);
 	}
 
-	public Temp genNewArray(Temp length) {
+	public Temp genNewArray(Temp length) {		//length为数组长度，数组每一个位置有4字节，故总字节数为4*length
 		genCheckNewArraySize(length);
 		Temp unit = genLoadImm4(OffsetCounter.WORD_SIZE);
 		Temp size = genAdd(unit, genMul(unit, length));
