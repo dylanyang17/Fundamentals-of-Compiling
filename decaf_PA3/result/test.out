@@ -1,6 +1,10 @@
-VTABLE(_A) {
+VTABLE(_C) {
     <empty>
-    A
+    C
+    _C.seta;
+    _C.setb;
+    _C.geta;
+    _C.getb;
 }
 
 VTABLE(_Main) {
@@ -8,91 +12,161 @@ VTABLE(_Main) {
     Main
 }
 
-FUNCTION(_A_New) {
+FUNCTION(_C_New) {
 memo ''
-_A_New:
-    _T0 = 16
-    parm _T0
-    _T1 =  call _Alloc
-    _T2 = 0
-    *(_T1 + 4) = _T2
-    *(_T1 + 8) = _T2
-    *(_T1 + 12) = _T2
-    _T3 = VTBL <_A>
-    *(_T1 + 0) = _T3
-    return _T1
+_C_New:
+    _T6 = 12
+    parm _T6
+    _T7 =  call _Alloc
+    _T8 = 0
+    *(_T7 + 4) = _T8
+    *(_T7 + 8) = _T8
+    _T9 = VTBL <_C>
+    *(_T7 + 0) = _T9
+    return _T7
 }
 
 FUNCTION(_Main_New) {
 memo ''
 _Main_New:
-    _T4 = 4
-    parm _T4
-    _T5 =  call _Alloc
-    _T6 = VTBL <_Main>
-    *(_T5 + 0) = _T6
-    return _T5
+    _T10 = 4
+    parm _T10
+    _T11 =  call _Alloc
+    _T12 = VTBL <_Main>
+    *(_T11 + 0) = _T12
+    return _T11
+}
+
+FUNCTION(_C.seta) {
+memo '_T0:4 _T1:8'
+_C.seta:
+    _T13 = *(_T0 + 4)
+    *(_T0 + 4) = _T1
+}
+
+FUNCTION(_C.setb) {
+memo '_T2:4 _T3:8'
+_C.setb:
+    _T14 = *(_T2 + 8)
+    *(_T2 + 8) = _T3
+}
+
+FUNCTION(_C.geta) {
+memo '_T4:4'
+_C.geta:
+    _T15 = *(_T4 + 4)
+    return _T15
+}
+
+FUNCTION(_C.getb) {
+memo '_T5:4'
+_C.getb:
+    _T16 = *(_T5 + 8)
+    return _T16
 }
 
 FUNCTION(main) {
 memo ''
 main:
-    _T9 = 1
-    _T8 = _T9
-    _T10 = 5
-    _T11 = 1
-    _T12 = 4
-    _T13 = 0
-    _T14 = (_T10 < _T13)
-    if (_T14 == 0) branch _L11
-    _T15 = "Decaf runtime error: Cannot create negative-sized array\n"
-    parm _T15
-    call _PrintString
-    call _Halt
-_L11:
-    _T16 = 4
-    _T17 = (_T16 * _T10)
-    _T18 = (_T16 + _T17)
+    _T19 =  call _C_New
+    _T18 = _T19
+    _T20 = 3
     parm _T18
-    _T19 =  call _Alloc
-    *(_T19 + 0) = _T10
-    _T20 = 0
-    _T19 = (_T19 + _T18)
-_L12:
-    _T18 = (_T18 - _T16)
-    if (_T18 == 0) branch _L13
-    _T19 = (_T19 - _T16)
-    *(_T19 + 0) = _T20
-    branch _L12
-_L13:
-    _T21 = _T10
-    _T22 = _T19
-_L14:
-    if (_T21 == 0) branch _L15
-    *(_T22 + 0) = _T8
-    _T22 = (_T22 + _T12)
-    _T21 = (_T21 - _T11)
-    branch _L14
-_L15:
-    _T7 = _T19
-    _T23 = 4
-    _T24 = *(_T7 - 4)
-    _T25 = (_T23 < _T24)
-    if (_T25 == 0) branch _L16
-    _T26 = 0
-    _T27 = (_T23 < _T26)
-    if (_T27 == 0) branch _L17
-_L16:
-    _T28 = "Decaf runtime error: Array subscript out of bounds\n"
-    parm _T28
+    parm _T20
+    _T21 = *(_T18 + 0)
+    _T22 = *(_T21 + 8)
+    call _T22
+    _T23 = 7
+    parm _T18
+    parm _T23
+    _T24 = *(_T18 + 0)
+    _T25 = *(_T24 + 12)
+    call _T25
+    _T26 = 5
+    _T27 = 1
+    _T28 = 4
+    _T29 = 0
+    _T30 = (_T26 < _T29)
+    if (_T30 == 0) branch _L15
+    _T31 = "Decaf runtime error: Cannot create negative-sized array\n"
+    parm _T31
     call _PrintString
     call _Halt
+_L15:
+    _T32 = 4
+    _T33 = (_T32 * _T26)
+    _T34 = (_T32 + _T33)
+    parm _T34
+    _T35 =  call _Alloc
+    *(_T35 + 0) = _T26
+    _T36 = 0
+    _T35 = (_T35 + _T34)
+_L16:
+    _T34 = (_T34 - _T32)
+    if (_T34 == 0) branch _L17
+    _T35 = (_T35 - _T32)
+    *(_T35 + 0) = _T36
+    branch _L16
 _L17:
-    _T29 = 4
-    _T30 = (_T23 * _T29)
-    _T31 = (_T7 + _T30)
-    _T32 = *(_T31 + 0)
-    parm _T32
-    call _PrintBool
+    _T37 = _T26
+    _T38 = _T35
+_L18:
+    if (_T37 == 0) branch _L19
+    _T39 =  call _C_New
+    _T40 = _T39
+    _T41 = _T18
+    _T42 = *(_T41 + 0)
+    *(_T40 + 0) = _T42
+    _T43 = (_T40 + _T28)
+    _T44 = (_T41 + _T28)
+    _T45 = *(_T44 + 0)
+    *(_T43 + 0) = _T45
+    _T46 = (_T43 + _T28)
+    _T47 = (_T44 + _T28)
+    _T48 = *(_T47 + 0)
+    *(_T46 + 0) = _T48
+    _T49 = (_T46 + _T28)
+    _T50 = (_T47 + _T28)
+    *(_T38 + 0) = _T39
+    _T38 = (_T38 + _T28)
+    _T37 = (_T37 - _T27)
+    branch _L18
+_L19:
+    _T17 = _T35
+    _T51 = 9
+    parm _T18
+    parm _T51
+    _T52 = *(_T18 + 0)
+    _T53 = *(_T52 + 12)
+    call _T53
+    _T54 = 3
+    _T55 = *(_T17 - 4)
+    _T56 = (_T54 < _T55)
+    if (_T56 == 0) branch _L20
+    _T57 = 0
+    _T58 = (_T54 < _T57)
+    if (_T58 == 0) branch _L21
+_L20:
+    _T59 = "Decaf runtime error: Array subscript out of bounds\n"
+    parm _T59
+    call _PrintString
+    call _Halt
+_L21:
+    _T60 = 4
+    _T61 = (_T54 * _T60)
+    _T62 = (_T17 + _T61)
+    _T63 = *(_T62 + 0)
+    parm _T63
+    _T64 = *(_T63 + 0)
+    _T65 = *(_T64 + 20)
+    _T66 =  call _T65
+    parm _T66
+    call _PrintInt
+    parm _T18
+    _T67 = *(_T18 + 0)
+    _T68 = *(_T67 + 20)
+    _T69 =  call _T68
+    parm _T69
+    call _PrintInt
 }
 

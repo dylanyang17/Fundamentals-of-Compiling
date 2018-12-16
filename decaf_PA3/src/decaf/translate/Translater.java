@@ -23,6 +23,8 @@ import decaf.type.BaseType;
 import decaf.type.Type;
 
 public class Translater {
+	public boolean inDMOD = false;
+	
 	private List<VTable> vtables;
 
 	private List<Functy> funcs;
@@ -169,6 +171,14 @@ public class Translater {
 		if(TransPass2.isDebug) {
 			genParm(val);
 			genIntrinsicCall(Intrinsic.PRINT_INT);
+		}
+	}
+	
+	public void genDebugString(String s) {
+		if(TransPass2.isDebug) {
+			Temp msg = genLoadStrConst(s);
+			genParm(msg);
+			genIntrinsicCall(Intrinsic.PRINT_STRING);
 		}
 	}
 	
@@ -375,7 +385,9 @@ public class Translater {
 		Label exit = Label.createLabel();
 		Temp cond = genLes(size, genLoadImm4(0));
 		genBeqz(cond, exit);
-		Temp msg = genLoadStrConst(RuntimeError.NEGATIVE_ARR_SIZE);
+		Temp msg ;
+		if(inDMOD) msg = genLoadStrConst(RuntimeError.NEGATIVE_ARR_SIZE2);
+		else msg = genLoadStrConst(RuntimeError.NEGATIVE_ARR_SIZE);
 		genParm(msg);
 		genIntrinsicCall(Intrinsic.PRINT_STRING);
 		genIntrinsicCall(Intrinsic.HALT);

@@ -1,15 +1,31 @@
-class A{
+class C{
 	int a;
 	int b;
-	int c;
+
+	void seta(int a){
+		this.a=a;
+	}
+	void setb(int b){
+		this.b=b;
+	}
+	int geta(){
+		return a;
+	}
+	int getb(){
+		return b;
+	}
 }
 
 class Main {   
 	static void main() {
-		string [] A ;
-		string a;
-		a="YYR" ;
+		class C[] A;
+		class C a;
+		a=new C() ;
+		a.seta(3) ;
+		a.setb(7) ;
 		A = a %% 5 ;
-		Print(A[4]) ;
+		a.setb(9) ;
+		Print(A[3].getb()) ;
+		Print(a.getb())
 	}
 }

@@ -103,25 +103,43 @@ public class TransPass2 extends Tree.Visitor {
 			Temp one=Temp.createTempI4() , wSize=Temp.createTempI4() ;
 			tr.genAssign(one, Temp.createConstTemp(1)); 
 			tr.genAssign(wSize, Temp.createConstTemp(OffsetCounter.WORD_SIZE));
+			tr.inDMOD=true ;
 			expr.val = tr.genNewArray(expr.right.val) ;
+			tr.inDMOD=false ;
 			Temp cnt=Temp.createTempI4(), addr=Temp.createTempI4() ;
 			tr.genAssign(cnt, expr.right.val);
 			tr.genAssign(addr, expr.val);
-			if(expr.left.isClass) { //可能需要确认isClass是否有效
-				
-			} else {				//注意类似于"引用",均占4字节
-				Label loop = Label.createLabel();
-				tr.genMark(loop);			
-				Label exit = Label.createLabel();
-				tr.genBeqz(cnt, exit);
-
-				tr.genStore(expr.left.val, addr, 0);
-				tr.append(Tac.genAdd(addr, addr, wSize));
-				tr.append(Tac.genSub(cnt, cnt, one));
-				tr.genBranch(loop);
-				tr.genMark(exit);
+			
+			//While-Loop
+			Label loop = Label.createLabel();
+			tr.genMark(loop);			
+			Label exit = Label.createLabel();
+			tr.genBeqz(cnt, exit);
+		
+			//Loop content
+			if(expr.left.type.isClassType()) {
+				//浅赋值
+				ClassType tmpCT = (ClassType)expr.left.type ;
+				Temp newClass = tr.genDirectCall(tmpCT.getSymbol().getNewFuncLabel(),
+						BaseType.INT);
+				Temp addr1 = Temp.createTempI4() , addr2 = Temp.createTempI4() ;
+				tr.genAssign(addr1, newClass);
+				tr.genAssign(addr2, expr.left.val);
+				for(int i=1;i<=tmpCT.getSymbol().getSize()/4;++i) {
+					Temp tmp = tr.genLoad(addr2, 0) ;
+					tr.genStore(tmp, addr1, 0);
+					addr1=tr.genAdd(addr1, wSize) ;
+					addr2=tr.genAdd(addr2, wSize) ;
+				}			
+				tr.genStore(newClass, addr, 0);
 			}
-			//////////接下来进行赋值/浅复制
+			else	tr.genStore(expr.left.val, addr, 0);
+			
+			//Loop end
+			tr.append(Tac.genAdd(addr, addr, wSize));
+			tr.append(Tac.genSub(cnt, cnt, one));
+			tr.genBranch(loop);
+			tr.genMark(exit);
 		}
 		switch (expr.tag) {
 		case Tree.PLUS:
