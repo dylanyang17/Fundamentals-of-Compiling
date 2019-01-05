@@ -144,7 +144,6 @@ public class TypeCheck extends Tree.Visitor {
 		table.open(foreach.associatedScope); 
 		foreach.varDef.accept(this);
 		foreach.expr1.accept(this);
-		checkTestExpr(foreach.expr2);
 		breaks.add(foreach) ;
 		if(foreach.expr1.type.equal(BaseType.ERROR)) {
 			changeType(foreach.varDef, BaseType.ERROR) ;
@@ -160,11 +159,10 @@ public class TypeCheck extends Tree.Visitor {
 				if(foreach.varDef.type.type.equal(BaseType.UNKNOWN))
 					changeType(foreach.varDef, tmp.getElementType()) ;
 			} else {
-				System.out.println("LALAL3");
 				issueError(new BadForeachTypeError(foreach.varDef.loc, foreach.varDef.type.type.toString(), tmp.getElementType().toString()));
-				System.out.println("LALAL4");
 			}
 		}
+		checkTestExpr(foreach.expr2);
 		foreach.attBlock.accept(this);
 		breaks.pop();
 		table.close();

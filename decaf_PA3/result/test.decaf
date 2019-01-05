@@ -1,14 +1,15 @@
 class Main {
     static void main() {
-    	string[] a;
-        a = "pa1" %%2;
-		string b;
-		b= a[0] default "pa2";
-		string c;
-		c= a[2] default "pa3";
-		
-		Print(b);
-		Print(c);
+		int []A ;
+		int a ;
+		a = 31 ;
+		A = a %% 100 ;
+		A[1]=20 ;
+		A[2]=19 ;
+		A[3]=16 ;
+		A[4]=10 ;
+		foreach(int t in A while t>10){
+			Print(t , "\n") ;
+		}
 	}
 }
-

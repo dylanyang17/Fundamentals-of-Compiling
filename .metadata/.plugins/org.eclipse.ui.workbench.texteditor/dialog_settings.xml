@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="isVar" key="selection"/>
-		<item value="true" key="casesensitive"/>
+		<item value="genNew" key="selection"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="isVar"/>
-			<item value="ClassDef"/>
-			<item value="Expr"/>
-			<item value="visitClas"/>
-			<item value="SEALED"/>
-			<item value="FOREACH"/>
-			<item value="visitAtta"/>
-			<item value="A"/>
-			<item value="breaks"/>
-			<item value="break"/>
-			<item value="forea"/>
+			<item value="genNew"/>
+			<item value="newArr"/>
+			<item value="visitBi"/>
 			<item value="visitFor"/>
-			<item value="System.out."/>
-			<item value="PPPP"/>
-			<item value="&quot;decl"/>
+			<item value="visitForea"/>
+			<item value="visitBreak"/>
+			<item value="visitFore"/>
+			<item value="visitVarde"/>
+			<item value="VarDef"/>
+			<item value="VAR"/>
+			<item value="visitIden"/>
+			<item value="loop"/>
+			<item value="length"/>
+			<item value="visitV"/>
+			<item value="forea"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -31,7 +31,7 @@
 		<item value="300" key="DIALOG_WIDTH"/>
 		<item value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI" key="DIALOG_FONT_NAME"/>
 		<item value="398" key="DIALOG_HEIGHT"/>
-		<item value="8" key="DIALOG_X_ORIGIN"/>
-		<item value="274" key="DIALOG_Y_ORIGIN"/>
+		<item value="-434" key="DIALOG_X_ORIGIN"/>
+		<item value="136" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -17,82 +17,153 @@ _Main_New:
 FUNCTION(main) {
 memo ''
 main:
-    _T4 = "pa1"
-    _T5 = 2
-    _T6 = 1
-    _T7 = 4
-    _T8 = 0
-    _T9 = (_T5 < _T8)
-    if (_T9 == 0) branch _L10
-    _T10 = "Decaf runtime error: The length of the created array should not be less than 0.\n"
-    parm _T10
+    _T5 = 31
+    _T4 = _T5
+    _T6 = 100
+    _T7 = 1
+    _T8 = 4
+    _T9 = 0
+    _T10 = (_T6 < _T9)
+    if (_T10 == 0) branch _L10
+    _T11 = "Decaf runtime error: The length of the created array should not be less than 0.\n"
+    parm _T11
     call _PrintString
     call _Halt
 _L10:
-    _T11 = 4
-    _T12 = (_T11 * _T5)
-    _T13 = (_T11 + _T12)
-    parm _T13
-    _T14 =  call _Alloc
-    *(_T14 + 0) = _T5
-    _T15 = 0
-    _T14 = (_T14 + _T13)
+    _T12 = 4
+    _T13 = (_T12 * _T6)
+    _T14 = (_T12 + _T13)
+    parm _T14
+    _T15 =  call _Alloc
+    *(_T15 + 0) = _T6
+    _T16 = 0
+    _T15 = (_T15 + _T14)
 _L11:
-    _T13 = (_T13 - _T11)
-    if (_T13 == 0) branch _L12
-    _T14 = (_T14 - _T11)
-    *(_T14 + 0) = _T15
+    _T14 = (_T14 - _T12)
+    if (_T14 == 0) branch _L12
+    _T15 = (_T15 - _T12)
+    *(_T15 + 0) = _T16
     branch _L11
 _L12:
-    _T16 = _T5
-    _T17 = _T14
+    _T17 = _T6
+    _T18 = _T15
 _L13:
-    if (_T16 == 0) branch _L14
-    *(_T17 + 0) = _T4
-    _T17 = (_T17 + _T7)
-    _T16 = (_T16 - _T6)
+    if (_T17 == 0) branch _L14
+    *(_T18 + 0) = _T4
+    _T18 = (_T18 + _T8)
+    _T17 = (_T17 - _T7)
     branch _L13
 _L14:
-    _T3 = _T14
-    _T19 = 0
-    _T20 = "pa2"
+    _T3 = _T15
+    _T19 = 1
+    _T20 = *(_T3 - 4)
+    _T21 = (_T19 < _T20)
+    if (_T21 == 0) branch _L15
     _T22 = 0
-    _T23 = 4
-    _T24 = (_T19 >= _T22)
-    if (_T24 == 0) branch _L15
-    _T25 = *(_T3 - 4)
-    _T26 = (_T19 < _T25)
-    if (_T26 == 0) branch _L15
-    _T27 = (_T19 * _T23)
-    _T28 = (_T27 + _T3)
-    _T29 = *(_T28 + 0)
-    _T21 = _T29
-    branch _L16
+    _T23 = (_T19 < _T22)
+    if (_T23 == 0) branch _L16
 _L15:
-    _T21 = _T20
+    _T24 = "Decaf runtime error: Array subscript out of bounds\n"
+    parm _T24
+    call _PrintString
+    call _Halt
 _L16:
-    _T18 = _T21
-    _T31 = 2
-    _T32 = "pa3"
-    _T34 = 0
-    _T35 = 4
-    _T36 = (_T31 >= _T34)
-    if (_T36 == 0) branch _L17
-    _T37 = *(_T3 - 4)
-    _T38 = (_T31 < _T37)
-    if (_T38 == 0) branch _L17
-    _T39 = (_T31 * _T35)
-    _T40 = (_T39 + _T3)
-    _T41 = *(_T40 + 0)
-    _T33 = _T41
-    branch _L18
+    _T25 = 4
+    _T26 = (_T19 * _T25)
+    _T27 = (_T3 + _T26)
+    _T28 = *(_T27 + 0)
+    _T29 = 20
+    _T30 = 4
+    _T31 = (_T19 * _T30)
+    _T32 = (_T3 + _T31)
+    *(_T32 + 0) = _T29
+    _T33 = 2
+    _T34 = *(_T3 - 4)
+    _T35 = (_T33 < _T34)
+    if (_T35 == 0) branch _L17
+    _T36 = 0
+    _T37 = (_T33 < _T36)
+    if (_T37 == 0) branch _L18
 _L17:
-    _T33 = _T32
+    _T38 = "Decaf runtime error: Array subscript out of bounds\n"
+    parm _T38
+    call _PrintString
+    call _Halt
 _L18:
-    _T30 = _T33
-    parm _T18
+    _T39 = 4
+    _T40 = (_T33 * _T39)
+    _T41 = (_T3 + _T40)
+    _T42 = *(_T41 + 0)
+    _T43 = 19
+    _T44 = 4
+    _T45 = (_T33 * _T44)
+    _T46 = (_T3 + _T45)
+    *(_T46 + 0) = _T43
+    _T47 = 3
+    _T48 = *(_T3 - 4)
+    _T49 = (_T47 < _T48)
+    if (_T49 == 0) branch _L19
+    _T50 = 0
+    _T51 = (_T47 < _T50)
+    if (_T51 == 0) branch _L20
+_L19:
+    _T52 = "Decaf runtime error: Array subscript out of bounds\n"
+    parm _T52
     call _PrintString
-    parm _T30
+    call _Halt
+_L20:
+    _T53 = 4
+    _T54 = (_T47 * _T53)
+    _T55 = (_T3 + _T54)
+    _T56 = *(_T55 + 0)
+    _T57 = 16
+    _T58 = 4
+    _T59 = (_T47 * _T58)
+    _T60 = (_T3 + _T59)
+    *(_T60 + 0) = _T57
+    _T61 = 4
+    _T62 = *(_T3 - 4)
+    _T63 = (_T61 < _T62)
+    if (_T63 == 0) branch _L21
+    _T64 = 0
+    _T65 = (_T61 < _T64)
+    if (_T65 == 0) branch _L22
+_L21:
+    _T66 = "Decaf runtime error: Array subscript out of bounds\n"
+    parm _T66
     call _PrintString
+    call _Halt
+_L22:
+    _T67 = 4
+    _T68 = (_T61 * _T67)
+    _T69 = (_T3 + _T68)
+    _T70 = *(_T69 + 0)
+    _T71 = 10
+    _T72 = 4
+    _T73 = (_T61 * _T72)
+    _T74 = (_T3 + _T73)
+    *(_T74 + 0) = _T71
+    _T76 = *(_T3 - 4)
+    _T77 = 0
+    _T78 = 4
+    _T79 = 1
+    _T80 = _T3
+_L23:
+    _T81 = (_T77 >= _T76)
+    if (_T81 != 0) branch _L24
+    _T82 = *(_T80 + 0)
+    _T75 = _T82
+    _T83 = 10
+    _T84 = (_T75 > _T83)
+    if (_T84 == 0) branch _L24
+    parm _T75
+    call _PrintInt
+    _T85 = "\n"
+    parm _T85
+    call _PrintString
+    _T77 = (_T77 + _T79)
+    _T80 = (_T80 + _T78)
+    branch _L23
+_L24:
 }
 

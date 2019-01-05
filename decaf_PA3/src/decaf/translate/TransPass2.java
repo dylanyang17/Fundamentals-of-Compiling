@@ -3,6 +3,8 @@ package decaf.translate;
 import java.util.Stack;
 
 import decaf.tree.Tree;
+import decaf.tree.Tree.AttachedStmtBlock;
+import decaf.tree.Tree.Foreach;
 import decaf.backend.OffsetCounter;
 import decaf.machdesc.Intrinsic;
 import decaf.symbol.Variable;
@@ -83,6 +85,45 @@ public class TransPass2 extends Tree.Visitor {
 		tr.genBeqz(ifSubStmt.expr.val , exit);
 		ifSubStmt.stmt.accept(this);
 		tr.genMark(exit);
+	}
+	
+	@Override
+	public void visitForeach(Foreach foreach) {
+		foreach.varDef.accept(this);
+		foreach.expr1.accept(this);		
+		Label loop = Label.createLabel(), exit = Label.createLabel();
+		
+		Temp length = tr.genLoad(foreach.expr1.val, -OffsetCounter.WORD_SIZE);
+		Temp index = Temp.createTempI4() , wSize = Temp.createTempI4() , one = Temp.createTempI4() ;
+		Temp addr = Temp.createTempI4() ;
+		tr.genAssign(index, Temp.createConstTemp(0));
+		tr.genAssign(wSize, Temp.createConstTemp(OffsetCounter.WORD_SIZE));
+		tr.genAssign(one, Temp.createConstTemp(1));
+		tr.genAssign(addr, foreach.expr1.val);
+		
+		tr.genMark(loop);	
+		Temp cond = tr.genGeq(index, length) ;
+		tr.genBnez(cond, exit);
+
+		Temp tmp = tr.genLoad(addr, 0) ;
+		tr.genAssign(foreach.varDef.symbol.getTemp(), tmp);
+		foreach.expr2.accept(this);
+		tr.genBeqz(foreach.expr2.val, exit) ;
+		loopExits.push(exit);
+		foreach.attBlock.accept(this);
+		loopExits.pop();
+		
+		tr.append(Tac.genAdd(index, index, one));
+		tr.append(Tac.genAdd(addr , addr, wSize));
+		tr.genBranch(loop);
+		tr.genMark(exit);
+	}
+	
+	@Override
+	public void visitAttachedStmtBlock(AttachedStmtBlock attachedStmtBlock) {
+		for(Tree t : attachedStmtBlock.block) {
+			t.accept(this);
+		}
 	}
 	
 	@Override

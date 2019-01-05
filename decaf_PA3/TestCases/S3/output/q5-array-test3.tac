@@ -101,5 +101,31 @@ _L16:
     branch _L16
 _L17:
     _T13 = _T25
+    _T30 = *(_T13 - 4)
+    _T31 = 0
+    _T32 = 4
+    _T33 = 1
+    _T34 = _T13
+_L18:
+    _T35 = (_T31 >= _T30)
+    if (_T35 != 0) branch _L19
+    _T36 = *(_T34 + 0)
+    _T29 = _T36
+    _T37 = 2
+    _T38 = (_T14 > _T37)
+    if (_T38 == 0) branch _L19
+    _T39 = (_T14 + _T29)
+    _T14 = _T39
+    parm _T29
+    call _PrintInt
+    parm _T14
+    call _PrintInt
+    _T40 = "\n"
+    parm _T40
+    call _PrintString
+    _T31 = (_T31 + _T33)
+    _T34 = (_T34 + _T32)
+    branch _L18
+_L19:
 }
 
