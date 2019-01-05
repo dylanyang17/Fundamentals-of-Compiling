@@ -71,34 +71,34 @@ _L17:
           jal   _PrintString            
           jal   _Halt                   
 _L18:                                   
-          lw    $t1, 8($fp)             
+          lw    $t5, 8($fp)             
           li    $t0, 4                  
-          mul   $t2, $t0, $t1           
-          add   $t4, $t0, $t2           
+          mul   $t1, $t0, $t5           
+          add   $t4, $t0, $t1           
           sw    $t4, 4($sp)             
-          sw    $t1, 8($fp)             
+          sw    $t5, 8($fp)             
           sw    $t4, -8($fp)            
           sw    $t0, -12($fp)           
           jal   _Alloc                  
           move  $t3, $v0                
-          lw    $t1, 8($fp)             
+          lw    $t5, 8($fp)             
           lw    $t4, -8($fp)            
           lw    $t0, -12($fp)           
-          sw    $t1, 0($t3)             
+          sw    $t5, 0($t3)             
           li    $t2, 0                  
           add   $t3, $t3, $t4           
-          sw    $t1, 8($fp)             
+          sw    $t5, 8($fp)             
           sw    $t4, -8($fp)            
           sw    $t3, -16($fp)           
           sw    $t2, -20($fp)           
           sw    $t0, -12($fp)           
 _L19:                                   
-          lw    $t1, -8($fp)            
-          lw    $t0, -12($fp)           
-          sub   $t1, $t1, $t0           
-          sw    $t1, -8($fp)            
-          sw    $t0, -12($fp)           
-          beqz  $t1, _L21               
+          lw    $t0, -8($fp)            
+          lw    $t1, -12($fp)           
+          sub   $t0, $t0, $t1           
+          sw    $t0, -8($fp)            
+          sw    $t1, -12($fp)           
+          beqz  $t0, _L21               
 _L20:                                   
           lw    $t1, -20($fp)           
           lw    $t2, -16($fp)           

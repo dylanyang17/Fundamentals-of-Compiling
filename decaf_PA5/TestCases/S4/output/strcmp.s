@@ -55,19 +55,19 @@ _L18:
           lw    $fp, 0($fp)             
           jr    $ra                     
 _L19:                                   
-          lw    $t1, 8($fp)             
-          lw    $t2, 4($fp)             
-          sw    $t2, 4($sp)             
-          sw    $t1, 8($sp)             
-          sw    $t2, 4($fp)             
-          sw    $t1, 8($fp)             
+          lw    $t3, 8($fp)             
+          lw    $t1, 4($fp)             
+          sw    $t1, 4($sp)             
+          sw    $t3, 8($sp)             
+          sw    $t1, 4($fp)             
+          sw    $t3, 8($fp)             
           jal   _StringEqual            
           move  $t0, $v0                
-          lw    $t2, 4($fp)             
-          lw    $t1, 8($fp)             
+          lw    $t1, 4($fp)             
+          lw    $t3, 8($fp)             
           not   $t0, $t0                
-          sw    $t2, 4($fp)             
-          sw    $t1, 8($fp)             
+          sw    $t1, 4($fp)             
+          sw    $t3, 8($fp)             
           beqz  $t0, _L21               
 _L20:                                   
           la    $t0, _STRING2           

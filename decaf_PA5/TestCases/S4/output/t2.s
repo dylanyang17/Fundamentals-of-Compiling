@@ -42,23 +42,24 @@ _L12:
           sw    $t1, -12($fp)           
           beqz  $t1, _L14               
 _L13:                                   
-          lw    $t0, -8($fp)            
+          lw    $t2, -8($fp)            
           li    $t1, 5                  
-          mul   $t0, $t0, $t1           
-          sw    $t0, -8($fp)            
+          mul   $t0, $t2, $t1           
+          move  $t2, $t0                
+          sw    $t2, -8($fp)            
 _L14:                                   
-          lw    $t1, -12($fp)           
-          lw    $t0, -8($fp)            
-          sw    $t1, 4($sp)             
-          sw    $t0, -8($fp)            
-          jal   _PrintBool              
-          lw    $t0, -8($fp)            
-          la    $t1, _STRING2           
-          sw    $t1, 4($sp)             
-          sw    $t0, -8($fp)            
-          jal   _PrintString            
-          lw    $t0, -8($fp)            
+          lw    $t0, -12($fp)           
+          lw    $t1, -8($fp)            
           sw    $t0, 4($sp)             
+          sw    $t1, -8($fp)            
+          jal   _PrintBool              
+          lw    $t1, -8($fp)            
+          la    $t0, _STRING2           
+          sw    $t0, 4($sp)             
+          sw    $t1, -8($fp)            
+          jal   _PrintString            
+          lw    $t1, -8($fp)            
+          sw    $t1, 4($sp)             
           jal   _PrintInt               
           move  $sp, $fp                
           lw    $ra, -4($fp)            

@@ -20,6 +20,8 @@ public class GraphColorRegisterAllocator implements RegisterAllocator {
 	private BasicBlock bb;
 
 	private CallingConv callingConv;
+	
+	private InferenceGraph inferenceGraph ;
 
 	private Register[] regs;
 
@@ -36,6 +38,11 @@ public class GraphColorRegisterAllocator implements RegisterAllocator {
 		this.bb = bb;
 		clear();
 
+		for(Temp temp : bb.liveUse) {
+			load(bb.tacList, temp) ;
+		}
+		inferenceGraph = new InferenceGraph() ;
+		inferenceGraph.alloc(bb, regs, fp.reg);
 		// Use InferenceGraph to do basicblock-wise register allocation here.
 		// But before that, you have to do something.
 
@@ -53,7 +60,7 @@ public class GraphColorRegisterAllocator implements RegisterAllocator {
 				case GEQ:
 				case EQU:
 				case NEQ:
-				case LEQ:
+				case LEQ:	
 				case LES:
 					findRegForRead(tac, tac.op1);
 					findRegForRead(tac, tac.op2);
@@ -163,7 +170,7 @@ public class GraphColorRegisterAllocator implements RegisterAllocator {
 		Tac spill = Tac.genStore(temp, fp, Temp.createConstTemp(temp.offset));
 		bb.insertBefore(spill, tac);
 	}
-
+	
 	private void saveLiveOutForTac(Tac tac) {
 		tac.saves = new HashSet<Temp>();
 		for (Temp t : tac.liveOut)

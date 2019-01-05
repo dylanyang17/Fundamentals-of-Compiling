@@ -147,7 +147,7 @@ public class BasicBlock {
 		liveIn.addAll (liveUse);
 	}
 
-	public void analyzeLiveness() {
+	public void analyzeLiveness() {	//从后向前递推计算出基本块中每一个tac语句的liveOut集合
 		if (tacList == null)
 			return;
 		Tac tac = tacList;
@@ -281,7 +281,7 @@ public class BasicBlock {
 		return sb.toString();
 	}
 
-	public void insertBefore(Tac insert, Tac base) {
+	public void insertBefore(Tac insert, Tac base) {	//将insert代码插入到base代码之前（均为TAC代码）
 		if (tacList == null) {
 			tacList = insert;
 			insert.next = null;

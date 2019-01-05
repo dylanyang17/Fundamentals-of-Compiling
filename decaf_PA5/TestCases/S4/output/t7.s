@@ -103,10 +103,11 @@ _L23:
           sw    $t0, 4($sp)             
           jal   _PrintString            
 _L21:                                   
-          lw    $t0, -8($fp)            
-          li    $t1, 1                  
-          add   $t0, $t0, $t1           
-          sw    $t0, -8($fp)            
+          lw    $t1, -8($fp)            
+          li    $t0, 1                  
+          add   $t0, $t1, $t0           
+          move  $t1, $t0                
+          sw    $t1, -8($fp)            
           b     _L22                    
 _L24:                                   
           move  $sp, $fp                

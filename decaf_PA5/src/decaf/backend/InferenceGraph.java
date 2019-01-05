@@ -24,6 +24,7 @@ class InferenceGraph {
 	public Register fp;
 	public Set<Temp> liveUseLoad = new HashSet<>();
 
+	public boolean debugOn = false;
 
 	private void clear() {
 		nodes.clear();
@@ -32,12 +33,16 @@ class InferenceGraph {
 		liveUseLoad.clear();
 	}
 
-
+	public void debugPrint(String s) {
+		if(debugOn) System.out.println(s);
+	}
+	
 	public void alloc(BasicBlock bb, Register[] regs, Register fp) {
 		this.regs = regs;
 		this.bb = bb;
 		this.fp = fp;
 		while (true) {
+			debugPrint("Clear!");
 			clear();
 			makeGraph();
 			if (color())
@@ -48,8 +53,10 @@ class InferenceGraph {
 
 
 	private void addNode(Temp node) {
+		debugPrint("AddNode: " + node);
 		if (nodes.contains(node)) return;
 		if (node.reg != null && node.reg.equals(fp)) return;
+		debugPrint("Suc!!!");
 		nodes.add(node);
 		neighbours.put(node, new HashSet<Temp>());
 		nodeDeg.put(node, 0);
@@ -65,6 +72,8 @@ class InferenceGraph {
 
 
 	private void addEdge(Temp a, Temp b) {
+		if(nodes.contains(a)==false || nodes.contains(b)==false) return ; // 处理点已经被删除的情况
+		if(neighbours.get(a).contains(b)) return ; 						// 避免重边
 		neighbours.get(a).add(b);
 		neighbours.get(b).add(a);
 		nodeDeg.put(a, nodeDeg.get(a) + 1);
@@ -177,13 +186,29 @@ class InferenceGraph {
 				case INDIRECT_CALL:
 
 				case DIRECT_CALL:
-
-				case PARM:
-
+				
 				case LOAD:
-
+					Tac tacTemp = tac ;
+					while (tacTemp != null && tacTemp.liveOut == null) {
+						tacTemp = tacTemp.prev;
+					}
+					if(tacTemp!=null) {
+						for(Temp temp : tacTemp.liveOut) {
+							if(tac.op0!=null && temp!=null)
+								addEdge(tac.op0, temp);
+						}
+					}
+					else {
+						for(Temp temp : bb.liveIn) {
+							if(tac.op0!=null && temp!=null)
+								addEdge(tac.op0, temp);
+						}
+					}
+					break ;
 				case STORE:
 					break;
+				case PARM:
+					break ;
 
 				case BRANCH: case BEQZ: case BNEZ: case RETURN:
 					throw new IllegalArgumentException();

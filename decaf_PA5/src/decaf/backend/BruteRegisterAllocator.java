@@ -173,7 +173,7 @@ public class BruteRegisterAllocator implements RegisterAllocator {
 		}
 	}
 
-	private void findRegForRead(Tac tac, Temp temp) {
+	private void findRegForRead(Tac tac, Temp temp) {	//为temp找到一个寄存器，并且需要使用其中原有的值（这意味着可能需要load）
 		findReg(tac, temp, true);
 	}
 
@@ -182,7 +182,7 @@ public class BruteRegisterAllocator implements RegisterAllocator {
 		bb.insertBefore(spill, tac);
 	}
 
-	private void load(Tac tac, Temp temp) {
+	private void load(Tac tac, Temp temp) {  //在tac语句之前插入一句load，用以将fp+temp.offset处的值load到temp上
 		if (!temp.isOffsetFixed())
 			throw new IllegalArgumentException(bb.var +
 					" may used before define during register allocation");
@@ -203,7 +203,7 @@ public class BruteRegisterAllocator implements RegisterAllocator {
 		return bb.liveIn.contains(temp);
 	}
 
-	private void findRegForWrite(Tac tac, Temp temp) {
+	private void findRegForWrite(Tac tac, Temp temp) { //为temp找到一个寄存器，不需要使用原有的值，而只是将会向其写入值
 		findReg(tac, temp, false);
 	}
 

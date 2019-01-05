@@ -308,92 +308,94 @@ _L47:
           lw    $fp, 0($fp)             
           jr    $ra                     
 _L48:                                   
-          lw    $t0, 4($fp)             
-          lw    $t1, 8($t0)             
+          lw    $t4, 4($fp)             
+          lw    $t1, 8($t4)             
           sw    $t1, 4($sp)             
-          lw    $t1, 0($t1)             
-          lw    $t1, 20($t1)            
-          sw    $t0, 4($fp)             
-          jalr  $t1                     
-          move  $t1, $v0                
-          lw    $t0, 4($fp)             
+          lw    $t0, 0($t1)             
+          lw    $t0, 20($t0)            
+          sw    $t4, 4($fp)             
+          jalr  $t0                     
+          move  $t0, $v0                
+          lw    $t4, 4($fp)             
+          move  $t1, $t0                
           sw    $t1, 4($sp)             
-          lw    $t2, 0($t1)             
-          lw    $t2, 12($t2)            
-          sw    $t0, 4($fp)             
+          lw    $t0, 0($t1)             
+          lw    $t0, 12($t0)            
+          sw    $t4, 4($fp)             
           sw    $t1, -8($fp)            
-          jalr  $t2                     
-          move  $t2, $v0                
-          lw    $t0, 4($fp)             
+          jalr  $t0                     
+          move  $t0, $v0                
+          lw    $t4, 4($fp)             
+          lw    $t1, -8($fp)            
+          move  $t2, $t0                
+          sw    $t1, 4($sp)             
+          lw    $t0, 0($t1)             
+          lw    $t0, 20($t0)            
+          sw    $t2, -12($fp)           
+          sw    $t4, 4($fp)             
+          sw    $t1, -8($fp)            
+          jalr  $t0                     
+          move  $t3, $v0                
+          lw    $t2, -12($fp)           
+          lw    $t4, 4($fp)             
           lw    $t1, -8($fp)            
           sw    $t1, 4($sp)             
-          lw    $t3, 0($t1)             
-          lw    $t3, 20($t3)            
+          lw    $t0, 0($t1)             
+          lw    $t0, 16($t0)            
           sw    $t2, -12($fp)           
-          sw    $t0, 4($fp)             
+          sw    $t3, -16($fp)           
+          sw    $t4, 4($fp)             
           sw    $t1, -8($fp)            
-          jalr  $t3                     
-          move  $t4, $v0                
+          jalr  $t0                     
+          move  $t0, $v0                
           lw    $t2, -12($fp)           
-          lw    $t0, 4($fp)             
+          lw    $t3, -16($fp)           
+          lw    $t4, 4($fp)             
+          lw    $t1, -8($fp)            
+          sw    $t3, 4($sp)             
+          sw    $t0, 8($sp)             
+          lw    $t0, 0($t3)             
+          lw    $t0, 24($t0)            
+          sw    $t2, -12($fp)           
+          sw    $t4, 4($fp)             
+          sw    $t1, -8($fp)            
+          jalr  $t0                     
+          lw    $t2, -12($fp)           
+          lw    $t4, 4($fp)             
           lw    $t1, -8($fp)            
           sw    $t1, 4($sp)             
           lw    $t3, 0($t1)             
           lw    $t3, 16($t3)            
           sw    $t2, -12($fp)           
-          sw    $t4, -16($fp)           
-          sw    $t0, 4($fp)             
+          sw    $t4, 4($fp)             
           sw    $t1, -8($fp)            
           jalr  $t3                     
           move  $t3, $v0                
           lw    $t2, -12($fp)           
-          lw    $t4, -16($fp)           
-          lw    $t0, 4($fp)             
-          lw    $t1, -8($fp)            
-          sw    $t4, 4($sp)             
-          sw    $t3, 8($sp)             
-          lw    $t3, 0($t4)             
-          lw    $t3, 24($t3)            
-          sw    $t2, -12($fp)           
-          sw    $t0, 4($fp)             
-          sw    $t1, -8($fp)            
-          jalr  $t3                     
-          lw    $t2, -12($fp)           
-          lw    $t0, 4($fp)             
-          lw    $t1, -8($fp)            
-          sw    $t1, 4($sp)             
-          lw    $t3, 0($t1)             
-          lw    $t3, 16($t3)            
-          sw    $t2, -12($fp)           
-          sw    $t0, 4($fp)             
-          sw    $t1, -8($fp)            
-          jalr  $t3                     
-          move  $t3, $v0                
-          lw    $t2, -12($fp)           
-          lw    $t0, 4($fp)             
+          lw    $t4, 4($fp)             
           lw    $t1, -8($fp)            
           sw    $t1, 4($sp)             
           lw    $t1, 0($t1)             
           lw    $t1, 20($t1)            
           sw    $t3, -20($fp)           
           sw    $t2, -12($fp)           
-          sw    $t0, 4($fp)             
+          sw    $t4, 4($fp)             
           jalr  $t1                     
           move  $t1, $v0                
           lw    $t3, -20($fp)           
           lw    $t2, -12($fp)           
-          lw    $t0, 4($fp)             
+          lw    $t4, 4($fp)             
           sw    $t3, 4($sp)             
           sw    $t1, 8($sp)             
           lw    $t1, 0($t3)             
           lw    $t1, 28($t1)            
           sw    $t2, -12($fp)           
-          sw    $t0, 4($fp)             
+          sw    $t4, 4($fp)             
           jalr  $t1                     
           lw    $t2, -12($fp)           
-          lw    $t0, 4($fp)             
+          lw    $t4, 4($fp)             
           sw    $t2, -12($fp)           
-          sw    $t0, 4($fp)             
+          sw    $t4, 4($fp)             
 _L49:                                   
           lw    $t0, -12($fp)           
           move  $v0, $t0                
@@ -421,40 +423,42 @@ _L50:
           sw    $t1, -8($fp)            
           sw    $t0, -12($fp)           
 _L52:                                   
-          lw    $t0, -12($fp)           
-          li    $t1, 10                 
-          slt   $t1, $t0, $t1           
-          sw    $t0, -12($fp)           
-          beqz  $t1, _L54               
+          lw    $t1, -12($fp)           
+          li    $t0, 10                 
+          slt   $t0, $t1, $t0           
+          sw    $t1, -12($fp)           
+          beqz  $t0, _L54               
 _L53:                                   
           lw    $t0, -12($fp)           
-          lw    $t1, -8($fp)            
-          sw    $t1, 4($sp)             
+          lw    $t2, -8($fp)            
+          sw    $t2, 4($sp)             
           sw    $t0, 8($sp)             
-          lw    $t2, 0($t1)             
-          lw    $t2, 12($t2)            
-          sw    $t1, -8($fp)            
+          lw    $t1, 0($t2)             
+          lw    $t1, 12($t1)            
+          sw    $t2, -8($fp)            
           sw    $t0, -12($fp)           
-          jalr  $t2                     
-          lw    $t1, -8($fp)            
+          jalr  $t1                     
+          lw    $t2, -8($fp)            
           lw    $t0, -12($fp)           
-          sw    $t1, -8($fp)            
+          sw    $t2, -8($fp)            
           sw    $t0, -12($fp)           
 _L51:                                   
-          lw    $t0, -12($fp)           
+          lw    $t2, -12($fp)           
           li    $t1, 1                  
-          add   $t0, $t0, $t1           
-          sw    $t0, -12($fp)           
+          add   $t0, $t2, $t1           
+          move  $t2, $t0                
+          sw    $t2, -12($fp)           
           b     _L52                    
 _L54:                                   
           li    $t0, 0                  
-          sw    $t0, -12($fp)           
+          move  $t1, $t0                
+          sw    $t1, -12($fp)           
 _L56:                                   
-          lw    $t0, -12($fp)           
-          li    $t1, 4                  
-          slt   $t1, $t0, $t1           
-          sw    $t0, -12($fp)           
-          beqz  $t1, _L58               
+          lw    $t1, -12($fp)           
+          li    $t0, 4                  
+          slt   $t0, $t1, $t0           
+          sw    $t1, -12($fp)           
+          beqz  $t0, _L58               
 _L57:                                   
           lw    $t1, -8($fp)            
           sw    $t1, 4($sp)             
@@ -487,39 +491,41 @@ _L58:
           li    $t0, 0                  
           sw    $t0, -12($fp)           
 _L60:                                   
-          lw    $t0, -12($fp)           
-          li    $t1, 10                 
-          slt   $t1, $t0, $t1           
-          sw    $t0, -12($fp)           
-          beqz  $t1, _L62               
+          lw    $t1, -12($fp)           
+          li    $t0, 10                 
+          slt   $t0, $t1, $t0           
+          sw    $t1, -12($fp)           
+          beqz  $t0, _L62               
 _L61:                                   
           lw    $t0, -12($fp)           
-          lw    $t1, -8($fp)            
-          sw    $t1, 4($sp)             
+          lw    $t2, -8($fp)            
+          sw    $t2, 4($sp)             
           sw    $t0, 8($sp)             
-          lw    $t2, 0($t1)             
-          lw    $t2, 12($t2)            
-          sw    $t1, -8($fp)            
+          lw    $t1, 0($t2)             
+          lw    $t1, 12($t1)            
+          sw    $t2, -8($fp)            
           sw    $t0, -12($fp)           
-          jalr  $t2                     
-          lw    $t1, -8($fp)            
+          jalr  $t1                     
+          lw    $t2, -8($fp)            
           lw    $t0, -12($fp)           
-          sw    $t1, -8($fp)            
+          sw    $t2, -8($fp)            
           sw    $t0, -12($fp)           
 _L59:                                   
-          lw    $t0, -12($fp)           
+          lw    $t2, -12($fp)           
           li    $t1, 1                  
-          add   $t0, $t0, $t1           
-          sw    $t0, -12($fp)           
+          add   $t0, $t2, $t1           
+          move  $t2, $t0                
+          sw    $t2, -12($fp)           
           b     _L60                    
 _L62:                                   
           li    $t0, 0                  
-          sw    $t0, -12($fp)           
+          move  $t1, $t0                
+          sw    $t1, -12($fp)           
 _L64:                                   
-          lw    $t0, -12($fp)           
-          li    $t1, 17                 
-          slt   $t1, $t0, $t1           
-          sw    $t0, -12($fp)           
+          lw    $t2, -12($fp)           
+          li    $t0, 17                 
+          slt   $t1, $t2, $t0           
+          sw    $t2, -12($fp)           
           beqz  $t1, _L66               
 _L65:                                   
           lw    $t1, -8($fp)            

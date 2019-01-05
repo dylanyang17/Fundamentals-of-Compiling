@@ -231,12 +231,12 @@ _L43:
           sw    $t1, -28($fp)           
           sw    $t0, -32($fp)           
 _L44:                                   
-          lw    $t0, -32($fp)           
-          lw    $t1, -28($fp)           
-          seq   $t2, $t1, $t0           
-          sw    $t1, -28($fp)           
-          sw    $t0, -32($fp)           
-          bne   $t2, $zero, _L47        
+          lw    $t2, -32($fp)           
+          lw    $t0, -28($fp)           
+          seq   $t1, $t0, $t2           
+          sw    $t0, -28($fp)           
+          sw    $t2, -32($fp)           
+          bne   $t1, $zero, _L47        
 _L45:                                   
           lw    $t0, -32($fp)           
           lw    $t0, 0($t0)             
@@ -297,13 +297,13 @@ _L48:
           sw    $t1, -8($fp)            
           sw    $t0, -12($fp)           
 _L49:                                   
-          lw    $t0, -12($fp)           
-          lw    $t1, -8($fp)            
-          seq   $t2, $t1, $t0           
-          sw    $t2, -16($fp)           
-          sw    $t1, -8($fp)            
-          sw    $t0, -12($fp)           
-          bne   $t2, $zero, _L52        
+          lw    $t2, -12($fp)           
+          lw    $t0, -8($fp)            
+          seq   $t1, $t0, $t2           
+          sw    $t1, -16($fp)           
+          sw    $t0, -8($fp)            
+          sw    $t2, -12($fp)           
+          bne   $t1, $zero, _L52        
 _L50:                                   
           lw    $t0, -12($fp)           
           lw    $t0, 0($t0)             
@@ -313,8 +313,8 @@ _L51:
           li    $t0, 0                  
           sw    $t0, -16($fp)           
 _L52:                                   
-          lw    $t0, -16($fp)           
-          beqz  $t0, _L54               
+          lw    $t1, -16($fp)           
+          beqz  $t1, _L54               
 _L53:                                   
           la    $t0, _STRING9           
           sw    $t0, 4($sp)             
@@ -325,20 +325,20 @@ _L78:
           lw    $fp, 0($fp)             
           jr    $ra                     
 _L54:                                   
-          lw    $t2, 4($fp)             
+          lw    $t3, 4($fp)             
           la    $t1, _Sub3              
-          lw    $t0, 0($t2)             
-          sw    $t2, 4($fp)             
+          lw    $t0, 0($t3)             
+          sw    $t3, 4($fp)             
           sw    $t1, -20($fp)           
           sw    $t0, -24($fp)           
 _L55:                                   
-          lw    $t0, -24($fp)           
-          lw    $t1, -20($fp)           
-          seq   $t2, $t1, $t0           
-          sw    $t2, -28($fp)           
-          sw    $t1, -20($fp)           
-          sw    $t0, -24($fp)           
-          bne   $t2, $zero, _L58        
+          lw    $t2, -24($fp)           
+          lw    $t0, -20($fp)           
+          seq   $t1, $t0, $t2           
+          sw    $t1, -28($fp)           
+          sw    $t0, -20($fp)           
+          sw    $t2, -24($fp)           
+          bne   $t1, $zero, _L58        
 _L56:                                   
           lw    $t0, -24($fp)           
           lw    $t0, 0($t0)             
@@ -348,8 +348,8 @@ _L57:
           li    $t0, 0                  
           sw    $t0, -28($fp)           
 _L58:                                   
-          lw    $t0, -28($fp)           
-          beqz  $t0, _L60               
+          lw    $t1, -28($fp)           
+          beqz  $t1, _L60               
 _L59:                                   
           la    $t0, _STRING10          
           sw    $t0, 4($sp)             
@@ -363,11 +363,11 @@ _L60:
           sw    $t1, -32($fp)           
           sw    $t0, -36($fp)           
 _L61:                                   
-          lw    $t0, -36($fp)           
-          lw    $t1, -32($fp)           
-          seq   $t2, $t1, $t0           
-          sw    $t1, -32($fp)           
-          sw    $t0, -36($fp)           
+          lw    $t3, -36($fp)           
+          lw    $t0, -32($fp)           
+          seq   $t2, $t0, $t3           
+          sw    $t0, -32($fp)           
+          sw    $t3, -36($fp)           
           sw    $t2, -40($fp)           
           bne   $t2, $zero, _L64        
 _L62:                                   
@@ -379,28 +379,28 @@ _L63:
           li    $t0, 0                  
           sw    $t0, -40($fp)           
 _L64:                                   
-          lw    $t0, -40($fp)           
-          beqz  $t0, _L66               
+          lw    $t1, -40($fp)           
+          beqz  $t1, _L66               
 _L65:                                   
           la    $t0, _STRING11          
           sw    $t0, 4($sp)             
           jal   _PrintString            
           b     _L78                    
 _L66:                                   
-          lw    $t2, 4($fp)             
+          lw    $t3, 4($fp)             
           la    $t1, _Sub1              
-          lw    $t0, 0($t2)             
-          sw    $t2, 4($fp)             
+          lw    $t0, 0($t3)             
+          sw    $t3, 4($fp)             
           sw    $t1, -44($fp)           
           sw    $t0, -48($fp)           
 _L67:                                   
-          lw    $t0, -48($fp)           
-          lw    $t1, -44($fp)           
-          seq   $t2, $t1, $t0           
-          sw    $t2, -52($fp)           
-          sw    $t1, -44($fp)           
-          sw    $t0, -48($fp)           
-          bne   $t2, $zero, _L70        
+          lw    $t2, -48($fp)           
+          lw    $t0, -44($fp)           
+          seq   $t1, $t0, $t2           
+          sw    $t1, -52($fp)           
+          sw    $t0, -44($fp)           
+          sw    $t2, -48($fp)           
+          bne   $t1, $zero, _L70        
 _L68:                                   
           lw    $t0, -48($fp)           
           lw    $t0, 0($t0)             
@@ -410,8 +410,8 @@ _L69:
           li    $t0, 0                  
           sw    $t0, -52($fp)           
 _L70:                                   
-          lw    $t0, -52($fp)           
-          beqz  $t0, _L72               
+          lw    $t1, -52($fp)           
+          beqz  $t1, _L72               
 _L71:                                   
           la    $t0, _STRING12          
           sw    $t0, 4($sp)             
@@ -425,13 +425,13 @@ _L72:
           sw    $t1, -56($fp)           
           sw    $t0, -60($fp)           
 _L73:                                   
-          lw    $t0, -60($fp)           
-          lw    $t1, -56($fp)           
-          seq   $t2, $t1, $t0           
-          sw    $t2, -64($fp)           
-          sw    $t1, -56($fp)           
-          sw    $t0, -60($fp)           
-          bne   $t2, $zero, _L76        
+          lw    $t2, -60($fp)           
+          lw    $t0, -56($fp)           
+          seq   $t1, $t0, $t2           
+          sw    $t1, -64($fp)           
+          sw    $t0, -56($fp)           
+          sw    $t2, -60($fp)           
+          bne   $t1, $zero, _L76        
 _L74:                                   
           lw    $t0, -60($fp)           
           lw    $t0, 0($t0)             
@@ -441,8 +441,8 @@ _L75:
           li    $t0, 0                  
           sw    $t0, -64($fp)           
 _L76:                                   
-          lw    $t0, -64($fp)           
-          beqz  $t0, _L78               
+          lw    $t1, -64($fp)           
+          beqz  $t1, _L78               
 _L77:                                   
           la    $t0, _STRING13          
           sw    $t0, 4($sp)             
